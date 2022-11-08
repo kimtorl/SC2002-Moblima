@@ -19,7 +19,6 @@ public class Movie implements Serializable{
 	private String synopsis;
 	private String director;
 	private ArrayList<String> cast;
-	private double overallReviewerRating;
 	private ArrayList<String> pastReviews;
 	private ArrayList<Integer> pastRatings;
 	
@@ -28,7 +27,7 @@ public class Movie implements Serializable{
 	}
 	
 	public Movie(int movieID,String movieTitle,TypeOfMovie movieType, String language,int duration,
-			ShowingStatus showingStatus,String synopsis,String director,ArrayList<String> cast,double overallReviewerRating,
+			ShowingStatus showingStatus,String synopsis,String director,ArrayList<String> cast,
 			ArrayList<String> pastReviews,ArrayList<Integer> pastRatings) {
 		this.movieID = movieID;
 		this.movieTitle = movieTitle;
@@ -39,7 +38,6 @@ public class Movie implements Serializable{
 		this.synopsis = synopsis;
 		this.director = director;
 		this.cast = cast;
-		this.overallReviewerRating = overallReviewerRating;
 		this.pastReviews = pastReviews;
 		this.pastRatings = pastRatings;
 	}
@@ -61,7 +59,7 @@ public class Movie implements Serializable{
 			else
 				System.out.print(cast.get(i)+", ");
 		}
-		System.out.println("Overall Ratings: "+overallReviewerRating);
+		System.out.println("Overall Ratings: "+ getOverallReviewerRating());
 	}
 	
 	
@@ -125,11 +123,16 @@ public class Movie implements Serializable{
 		this.cast = cast;
 	}
 	public double getOverallReviewerRating() {
-		return overallReviewerRating;
+		double value=0;
+		
+		for(int i=0; i< pastRatings.size();i++) {
+			value += pastRatings.get(i);
+		}
+		value = value/ (double) pastRatings.size();
+		
+		return value;
 	}
-	public void setOverallReviewerRating(double overallReviewerRating) {
-		this.overallReviewerRating = overallReviewerRating;
-	}
+
 	public ArrayList<String> getPastReviews() {
 		return pastReviews;
 	}

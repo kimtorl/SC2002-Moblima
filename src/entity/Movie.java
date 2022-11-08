@@ -1,25 +1,34 @@
 package entity;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Movie {	
+public class Movie implements Serializable{	
 	
-	enum TypeOfMovie {BLOCKBUSTER_2D, BLOCKBUSTER_3D, NONBLOCKBUSTER_2D, NONBLOCKBUSTER_3D};
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9L;
+	
 	private int movieID;
 	private String movieTitle;
 	private	TypeOfMovie movieType;
 	private String language;
-	private int duration;
+	private int duration; //in minutes
 	private ShowingStatus showingStatus;
 	private String synopsis;
 	private String director;
 	private ArrayList<String> cast;
-	private float overallReviewerRating;
+	private double overallReviewerRating;
 	private ArrayList<String> pastReviews;
 	private ArrayList<Integer> pastRatings;
 	
-	public Movie() {}
+	public Movie() {
+		
+	}
+	
 	public Movie(int movieID,String movieTitle,TypeOfMovie movieType, String language,int duration,
-			ShowingStatus showingStatus,String synopsis,String director,ArrayList<String> cast,float overallReviewerRating,
+			ShowingStatus showingStatus,String synopsis,String director,ArrayList<String> cast,double overallReviewerRating,
 			ArrayList<String> pastReviews,ArrayList<Integer> pastRatings) {
 		this.movieID = movieID;
 		this.movieTitle = movieTitle;
@@ -55,45 +64,87 @@ public class Movie {
 		System.out.println("Overall Ratings: "+overallReviewerRating);
 	}
 	
-	public String getMovieTitle() 
-	{
+	
+	public String toString() {
+		return "Movie is" + movieTitle;
+	}
+	
+	//getters and setters
+	public int getMovieID() {
+		return movieID;
+	}
+	public void setMovieID(int movieID) {
+		this.movieID = movieID;
+	}
+	public String getMovieTitle() {
 		return movieTitle;
 	}
-	
-	public void setMovieTitle(String movieTitle)
-	{
+	public void setMovieTitle(String movieTitle) {
 		this.movieTitle = movieTitle;
 	}
-	
-	public ShowingStatus getShowingStatus()
-	{
+	public TypeOfMovie getMovieType() {
+		return movieType;
+	}
+	public void setMovieType(TypeOfMovie movieType) {
+		this.movieType = movieType;
+	}
+	public String getLanguage() {
+		return language;
+	}
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	public int getDuration() {
+		return duration;
+	}
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+	public ShowingStatus getShowingStatus() {
 		return showingStatus;
 	}
-	
-	public void setShowingStatus(ShowingStatus a)
-	{
-		this.showingStatus = a;
+	public void setShowingStatus(ShowingStatus showingStatus) {
+		this.showingStatus = showingStatus;
 	}
-	
-	public ArrayList<Integer> getPastRatings()
-	{
-		return pastRatings;
+	public String getSynopsis() {
+		return synopsis;
 	}
-	
-	public void setPastRatings(ArrayList<Integer> a)
-	{
-		pastRatings = a;
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
 	}
-	
-	public ArrayList<String> getPastReviews()
-	{
+	public String getDirector() {
+		return director;
+	}
+	public void setDirector(String director) {
+		this.director = director;
+	}
+	public ArrayList<String> getCast() {
+		return cast;
+	}
+	public void setCast(ArrayList<String> cast) {
+		this.cast = cast;
+	}
+	public double getOverallReviewerRating() {
+		return overallReviewerRating;
+	}
+	public void setOverallReviewerRating(double overallReviewerRating) {
+		this.overallReviewerRating = overallReviewerRating;
+	}
+	public ArrayList<String> getPastReviews() {
 		return pastReviews;
 	}
-	
-	public void setPastReviews(ArrayList<String> a)
-	{
-		pastReviews = a;
+	public void setPastReviews(ArrayList<String> pastReviews) {
+		this.pastReviews = pastReviews;
 	}
+	public ArrayList<Integer> getPastRatings() {
+		return pastRatings;
+	}
+	public void setPastRatings(ArrayList<Integer> pastRatings) {
+		this.pastRatings = pastRatings;
+	}
+	
+
+	
 	
 	
 

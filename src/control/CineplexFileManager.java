@@ -26,6 +26,7 @@ public class CineplexFileManager {
 	
 	
 	//reads and return an ArrayList of Cineplex from the file
+	@SuppressWarnings("unchecked")
 	public static ArrayList<Cineplex> getAllCineplex(){
 		ArrayList<Cineplex> cineplexList = new ArrayList<Cineplex>();
 		
@@ -88,7 +89,7 @@ public class CineplexFileManager {
 	
 	
 	//deletes a cineplex using the cineplexName
-	public static boolean delete(String cineplexName) {
+	public static boolean deleteCineplex(String cineplexName) {
 		File f = new File(FILENAME);
 		
 		if(f.exists()) {

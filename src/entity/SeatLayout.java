@@ -10,10 +10,23 @@ public class SeatLayout implements Serializable{
 	private static final long serialVersionUID = 4L;
 	//Attributes
 	private Seat[][] seatLayout;
-	private int numOfRow;
-	private int numOfCol;
+	private int numOfRow = 8; //default values
+	private int numOfCol = 8; //default values
 	
-	//Constructor
+	//Constructor 
+	public SeatLayout() {
+		seatLayout = new Seat[numOfRow][numOfCol];
+		
+		for (int row =0; row < numOfRow; row++) {
+			for(int col=0; col< numOfCol; col++) {
+				seatLayout[row][col] = new Seat(row*numOfRow + col, row, col);
+			}
+		}
+		
+	}
+	
+	
+	//Constructor with params
 	public SeatLayout(int rowSize, int colSize) {
 		this.numOfRow = rowSize;
 		this.numOfCol = colSize;
@@ -25,7 +38,7 @@ public class SeatLayout implements Serializable{
 			}
 		}
 		
-		}
+	}
 	
 	
 	//prints out the cinema Seating layout in a matrix

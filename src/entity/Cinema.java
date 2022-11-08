@@ -10,7 +10,7 @@ public class Cinema implements Serializable{
 	 */
 	private static final long serialVersionUID = 2L;
 	//Attributes
-	private String cinemaCode;
+	private String cinemaCode; //cinemaCode is unique across Cineplexes
 	private ClassOfCinema cinemaClass;
 	private ArrayList<Showtime> showtimeList;
 	
@@ -21,6 +21,10 @@ public class Cinema implements Serializable{
 		this.showtimeList = showtimeList;
 	}
 
+	public String toString() {
+		return "Cinema Code: " + cinemaCode + " Cinema Class: " + cinemaClass;
+	}
+	
 	
 	//getters and setters
 	public String getCinemaCode() {

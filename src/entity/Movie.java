@@ -29,7 +29,7 @@ public class Movie implements Serializable{
 	public Movie(int movieID,String movieTitle,TypeOfMovie movieType, String language,int duration,
 			ShowingStatus showingStatus,String synopsis,String director,ArrayList<String> cast,
 			ArrayList<String> pastReviews,ArrayList<Integer> pastRatings) {
-		this.movieID = movieID;
+		this.movieID = movieID; //unique for each variation of the same movie e.g. 2D and 3D movie has diff movieID
 		this.movieTitle = movieTitle;
 		this.movieType = movieType;
 		this.language = language;
@@ -46,10 +46,10 @@ public class Movie implements Serializable{
 	{
 		System.out.println("Movie ID: "+movieID);
 		System.out.println("Movie Title: "+movieTitle);
-		System.out.println(movieType.name());
+		System.out.println(movieType);
 		System.out.println("Language: "+language);
 		System.out.println("Duration: "+duration+" minutes");
-		System.out.println("Showing status: "+showingStatus.name());
+		System.out.println("Showing status: "+showingStatus);
 		System.out.println("Synopsis: "+synopsis);
 		System.out.println("Directed by "+director);
 		System.out.print("Casts: ");

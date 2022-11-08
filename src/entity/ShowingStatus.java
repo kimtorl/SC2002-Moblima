@@ -5,7 +5,7 @@ public enum ShowingStatus {
 	PREVIEW("Preview"),
 	NOW_SHOWING("Now Showing"),
 	END_OF_SHOWING("End Of Showing");
-	
+	 
 	private final String name;
 	
 	//constructor

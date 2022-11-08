@@ -21,7 +21,7 @@ public class ShowtimeFileManager {
 		
 	}
 	
-	
+
 	//reads and return all Showtime available from all Cineplexes in an ArrayList
 	public static ArrayList<Showtime> getAllShowtime(){
 		ArrayList<Cinema> cinemaList = CinemaFileManager.getAllCinema();

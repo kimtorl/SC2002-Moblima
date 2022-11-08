@@ -6,7 +6,7 @@ public enum TypeOfMovie {
 	NONBLOCKBUSTER_2D("2D"),
 	NONBLOCKBUSTER_3D("3D");
 	
-	
+	 
 	private final String name;
 	
 	//constructor

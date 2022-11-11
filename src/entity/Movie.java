@@ -26,9 +26,18 @@ public class Movie implements Serializable{
 		
 	}
 	
-	public Movie(int movieID,String movieTitle,TypeOfMovie movieType, String language,int duration,
-			ShowingStatus showingStatus,String synopsis,String director,ArrayList<String> cast,
-			ArrayList<String> pastReviews,ArrayList<Integer> pastRatings) {
+	public Movie(int movieID,
+			String movieTitle,
+			TypeOfMovie movieType, 
+			String language,
+			int duration,
+			ShowingStatus showingStatus,
+			String synopsis,
+			String director,
+			ArrayList<String> cast,
+			ArrayList<String> pastReviews,
+			ArrayList<Integer> pastRatings) 
+	{
 		this.movieID = movieID; //unique for each variation of the same movie e.g. 2D and 3D movie has diff movieID
 		this.movieTitle = movieTitle;
 		this.movieType = movieType;

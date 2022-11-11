@@ -13,7 +13,7 @@ import entity.Movie;
 import entity.ShowingStatus;
 import entity.TypeOfMovie;
 
-public class MovieFileManager {
+public class MovieFileManager implements MovieManager{
 
 	//Attribute
 	private static final String FILENAME = "Database/movies.txt"; //file that this class manages
@@ -28,7 +28,7 @@ public class MovieFileManager {
 	//returns all the movies from the file
 	//if file not found, an empty ArrayList is returned
 	@SuppressWarnings("unchecked")
-	public static ArrayList<Movie> getAllMovie(){
+	public ArrayList<Movie> getAllMovie(){
 		ArrayList<Movie> movieList = new ArrayList<Movie>();
 		
 		try {
@@ -48,7 +48,7 @@ public class MovieFileManager {
 	
 	
 	//writes an ArrayList of Movie to the file
-	public static void writeToFile(ArrayList<Movie> movieList) {
+	public void writeToFile(ArrayList<Movie> movieList) {
 		try {
 			FileOutputStream fos = new FileOutputStream(FILENAME);
 			ObjectOutputStream out = new ObjectOutputStream(fos);
@@ -64,9 +64,17 @@ public class MovieFileManager {
 	//reads the current list of movies if file exists
 	//check for duplicates, return false if duplicates found
 	//creates a movie and store to file
-	public static boolean createMovie(int movieID,String movieTitle,TypeOfMovie movieType, String language, int duration,
-			ShowingStatus showingStatus,String synopsis,String director,ArrayList<String> cast,
-			ArrayList<String> pastReviews,ArrayList<Integer> pastRatings) {
+	public boolean createMovie(int movieID,
+			String movieTitle,
+			TypeOfMovie movieType, 
+			String language, 
+			int duration,
+			ShowingStatus showingStatus,
+			String synopsis,
+			String director,
+			ArrayList<String> cast,
+			ArrayList<String> pastReviews,
+			ArrayList<Integer> pastRatings) {
 		
 		ArrayList<Movie> movieList;
 		File f = new File(FILENAME);
@@ -99,7 +107,8 @@ public class MovieFileManager {
 	}
 	
 	//finds and returns a specific movie based on movieID
-	public static Movie findMovie(ArrayList<Movie> movieList, int movieID) {
+	//return null if not found
+	public Movie findMovie(ArrayList<Movie> movieList, int movieID) {
 		if(movieList ==null) return null; 
 		Movie mov=null;
 		
@@ -115,7 +124,7 @@ public class MovieFileManager {
 	//returns all the movies that have the movieTitle
 	// as the same movie titles are stored in various versions such as 2D,3D, Blockbuster
 	// empty ArrayList is returned if nothing found
-	public static ArrayList<Movie> findAllMovieOfTitle(ArrayList<Movie> movieList, String movieTitle) {
+	public ArrayList<Movie> findAllMovieOfTitle(ArrayList<Movie> movieList, String movieTitle) {
 		ArrayList<Movie> movies = new ArrayList<Movie>();
 		
 		for(int i=0; i < movieList.size();i++) {
@@ -131,7 +140,7 @@ public class MovieFileManager {
 	//reads movieList from file
 	//update movie attributes
 	//saved updated movieList
-	public static boolean updateMovieID(int oldMovieID, int newMovieID) {
+	public boolean updateMovieID(int oldMovieID, int newMovieID) {
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		Movie movie = findMovie(movieList,oldMovieID);
@@ -144,7 +153,7 @@ public class MovieFileManager {
 	}
 	
 	//updates all movies with oldMovieTitle to newMovieTitle
-	public static boolean updateMovieTitle(String oldMovieTitle, String newMovieTitle) {
+	public boolean updateMovieTitle(String oldMovieTitle, String newMovieTitle) {
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		for(Movie m : movieList) {
@@ -156,7 +165,7 @@ public class MovieFileManager {
 	}
 	
 	//update movieType of a specific movie
-	public static boolean updateMovieType(int movieID, TypeOfMovie newMovieType) {
+	public boolean updateMovieType(int movieID, TypeOfMovie newMovieType) {
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		Movie movie = findMovie(movieList, movieID);
@@ -169,7 +178,7 @@ public class MovieFileManager {
 	}
 	
 	//updates a movie's dubbed language
-	public static boolean updateMovieLanguage(int movieID, String newLanguage) {
+	public boolean updateMovieLanguage(int movieID, String newLanguage) {
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		Movie movie = findMovie(movieList, movieID);
@@ -182,7 +191,7 @@ public class MovieFileManager {
 	}
 	
 	//updates the duration of all movies of the same title
-	public static boolean updateMovieDuration(String movieTitle, int newDuration) {
+	public boolean updateMovieDuration(String movieTitle, int newDuration) {
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		for (Movie m : movieList) {
@@ -194,7 +203,7 @@ public class MovieFileManager {
 	}
 	
 	//updates the showingStatus of all movies of the same title
-	public static boolean updateMovieShowingStatus(String movieTitle, ShowingStatus newShowingStatus) {
+	public boolean updateMovieShowingStatus(String movieTitle, ShowingStatus newShowingStatus) {
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		for(Movie m:movieList) {
@@ -206,7 +215,7 @@ public class MovieFileManager {
 	}
 	
 	//updates the Synopsis of all movies of the same title
-	public static boolean updateMovieSynopsis(String movieTitle, String newSynopsis) {
+	public boolean updateMovieSynopsis(String movieTitle, String newSynopsis) {
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		for(Movie m:movieList) {
@@ -217,7 +226,7 @@ public class MovieFileManager {
 	}
 
 	//updates the Director of all movies of the same title
-	public static boolean updateMovieDirector(String movieTitle, String newDirector) {
+	public boolean updateMovieDirector(String movieTitle, String newDirector) {
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		for(Movie m:movieList) {
@@ -228,7 +237,7 @@ public class MovieFileManager {
 	}
 	
 	//updates the cast of all movies of the same title
-	public static boolean updateMovieCast(String movieTitle, ArrayList<String> newCast) {
+	public boolean updateMovieCast(String movieTitle, ArrayList<String> newCast) {
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		for(Movie m:movieList) {
@@ -239,7 +248,7 @@ public class MovieFileManager {
 	}
 	
 	//updates the reviews of all movies of the same title
-	public static boolean updateMovieReview(String movieTitle, ArrayList<String> newReview) {
+	public boolean updateMovieReview(String movieTitle, ArrayList<String> newReview) {
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		for(Movie m:movieList) {
@@ -250,7 +259,7 @@ public class MovieFileManager {
 	}
 	
 	//updates the rating of all movies of the same title
-	public static boolean updateMovieRating(String movieTitle, ArrayList<Integer> newRating) {
+	public boolean updateMovieRating(String movieTitle, ArrayList<Integer> newRating) {
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		for(Movie m:movieList) {
@@ -265,7 +274,7 @@ public class MovieFileManager {
 	//reads movieList from file
 	//delete a movie based on movieID 
 	//save updated movieList to file
-	public static boolean deleteMovie(int movieID) {
+	public boolean deleteMovie(int movieID) {
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		for(int i=0; i<movieList.size();i++) {
@@ -279,6 +288,14 @@ public class MovieFileManager {
 	}
 	
 	
+	//displays Info
+	public void displayMovieInfo(int movieID) {
+		Movie movie = findMovie(getAllMovie(), movieID); //may return null
+		
+		if(movie==null) return;
+		
+		movie.dislayInfo();
+	}
 	
 	
 }

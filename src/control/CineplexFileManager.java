@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class CineplexFileManager {
+public class CineplexFileManager implements CineplexManager{
 	
 	//Attribute 
 	private static final String FILENAME = "Database/cineplex.txt"; //stores an array of Cineplexes
@@ -27,7 +27,7 @@ public class CineplexFileManager {
 	
 	//reads and return an ArrayList of Cineplex from the file
 	@SuppressWarnings("unchecked")
-	public static ArrayList<Cineplex> getAllCineplex(){
+	public ArrayList<Cineplex> getAllCineplex(){
 		ArrayList<Cineplex> cineplexList = new ArrayList<Cineplex>();
 		
 		try {
@@ -37,6 +37,7 @@ public class CineplexFileManager {
 			in.close();
 			
 		}catch(IOException ex) {
+			System.out.println("File not found!");
 			ex.printStackTrace();
 		}catch(ClassNotFoundException ex) {
 			ex.printStackTrace();
@@ -46,7 +47,7 @@ public class CineplexFileManager {
 	}
 	
 	//writes an ArrayList of Cineplex to the file
-	public static void writeToFile(ArrayList<Cineplex> cineplexList) {
+	public void writeToFile(ArrayList<Cineplex> cineplexList) {
 		try {
 			FileOutputStream fos = new FileOutputStream(FILENAME);
 			ObjectOutputStream out = new ObjectOutputStream(fos);
@@ -60,7 +61,7 @@ public class CineplexFileManager {
 	
 	
 	//creates and save the cineplex into the file
-	public static boolean createCineplex(int cineplexID, String cineplexName, ArrayList<Cinema> cinemaList) {
+	public boolean createCineplex(int cineplexID, String cineplexName, ArrayList<Cinema> cinemaList) {
 		ArrayList<Cineplex> cineplexList;
 		File f = new File(FILENAME);
 		
@@ -89,7 +90,7 @@ public class CineplexFileManager {
 	
 	
 	//deletes a cineplex using the cineplexName
-	public static boolean deleteCineplex(String cineplexName) {
+	public boolean deleteCineplex(String cineplexName) {
 		File f = new File(FILENAME);
 		
 		if(f.exists()) {

@@ -11,20 +11,24 @@ import entity.Movie;
 import entity.SeatLayout;
 import entity.Showtime;
 
-public class ShowtimeFileManager {
+public class ShowtimeFileManager implements ShowtimeManager{
 
 	
-	//no Attributes
+	//Attributes
+	private CinemaManager cinemaMgr;
 	
 	//empty constructor
 	public ShowtimeFileManager() {
-		
+		cinemaMgr = new CinemaFileManager();
 	}
 	
+	public ShowtimeFileManager(CinemaManager cinemaMgr) {
+		this.cinemaMgr = cinemaMgr;
+	}
 
 	//reads and return all Showtime available from all Cineplexes in an ArrayList
-	public static ArrayList<Showtime> getAllShowtime(){
-		ArrayList<Cinema> cinemaList = CinemaFileManager.getAllCinema();
+	public ArrayList<Showtime> getAllShowtime(){
+		ArrayList<Cinema> cinemaList = cinemaMgr.getAllCinema();
 		
 		ArrayList<Showtime> showtimeList = new ArrayList<Showtime>();
 		
@@ -39,11 +43,11 @@ public class ShowtimeFileManager {
 	
 	//returns true if successfully created
 	//returns false if failed
-	public static boolean createShowtime(int cineplexID, String cinemaCode, Movie movie, LocalDateTime dateTime) {
+	public boolean createShowtime(int cineplexID, String cinemaCode, Movie movie, LocalDateTime dateTime) {
 		
-		ArrayList<Cineplex> cineplexList = CineplexFileManager.getAllCineplex(); //retrieve cineplexList
+		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex(); //retrieve cineplexList
 		
-		Cinema cinema = CinemaFileManager.findCinema(cineplexList, cineplexID, cinemaCode);
+		Cinema cinema = cinemaMgr.findCinema(cineplexList, cineplexID, cinemaCode);
 		if(cinema == null) return false; //cinema not found
 		
 		
@@ -77,14 +81,14 @@ public class ShowtimeFileManager {
 		});
 		
 		//save to file
-		CineplexFileManager.writeToFile(cineplexList);
+		cinemaMgr.writeToFile(cineplexList);
 		
 		return true;
 	}
 		
 	//checks if showtime clashes with showtime to be added
 	//Showtimes within a cinema cannot clash as one cinema can only show one movie at a time
-	public static boolean hasClashes(ArrayList<Showtime> showtimeList, Movie movie, LocalDateTime dateTime) {
+	public boolean hasClashes(ArrayList<Showtime> showtimeList, Movie movie, LocalDateTime dateTime) {
 		if(showtimeList == null) return false; //showtimeList not found
 		
 		LocalDateTime startTimeA = dateTime, endTimeA = dateTime.plusMinutes(movie.getDuration());
@@ -107,7 +111,7 @@ public class ShowtimeFileManager {
 	//Showtimes within a cineplex should not have duplicates
 	//i.e. A cineplex shouldn't have two showtimes with the same Movie and dateTime across cinemas
 	//cinemaList contains cinemas from the same Cineplex
-	public static boolean isDuplicate(ArrayList<Cinema> cinemaList, Movie movie, LocalDateTime dateTime) {
+	public boolean isDuplicate(ArrayList<Cinema> cinemaList, Movie movie, LocalDateTime dateTime) {
 		if (cinemaList ==null) return false; //cinemaList not found
 
 		ArrayList<Showtime> showtimeList;
@@ -125,7 +129,7 @@ public class ShowtimeFileManager {
 	
 	
 	//return all the showtime Available for a movie across cineplexes
-	public static ArrayList<Showtime> findAllShowtimeByMovie(int movieID){
+	public ArrayList<Showtime> findAllShowtimeByMovie(int movieID){
 		ArrayList<Showtime> movieShowtimeList = new ArrayList<Showtime>();
 			
 		ArrayList<Showtime> showtimeList = getAllShowtime();
@@ -142,7 +146,7 @@ public class ShowtimeFileManager {
 	
 	
 	//return all the showtime available by given date across cineplexes
-	public static ArrayList<Showtime> findAllShowtimeByDate(LocalDate date){
+	public ArrayList<Showtime> findAllShowtimeByDate(LocalDate date){
 		ArrayList<Showtime> movieShowtimeList = new ArrayList<Showtime>();
 		
 		ArrayList<Showtime> showtimeList = getAllShowtime();
@@ -159,9 +163,9 @@ public class ShowtimeFileManager {
 	
 	//returns the corresponding showtime
 	//returns null if not found
-	public static Showtime findShowtime(ArrayList<Cineplex> cineplexList, int cineplexID, String cinemaCode, LocalDateTime dateTime) {
+	public Showtime findShowtime(ArrayList<Cineplex> cineplexList, int cineplexID, String cinemaCode, LocalDateTime dateTime) {
 		
-		Cinema cinema = CinemaFileManager.findCinema(cineplexList, cineplexID, cinemaCode);
+		Cinema cinema = cinemaMgr.findCinema(cineplexList, cineplexID, cinemaCode);
 		
 		ArrayList<Showtime> showtimeList = cinema.getShowtimeList();
 		if(showtimeList == null) return null;
@@ -175,8 +179,8 @@ public class ShowtimeFileManager {
 	
 	//updates a showtime with a new movie and save to file
 	//the correct showtime to be updated is found using dateTime as its unique in a cinema
-	public static boolean updateShowtimeMovie(int cineplexID, String cinemaCode, LocalDateTime dateTime, Movie newMovie) {
-		ArrayList<Cineplex> cineplexList = CineplexFileManager.getAllCineplex();
+	public boolean updateShowtimeMovie(int cineplexID, String cinemaCode, LocalDateTime dateTime, Movie newMovie) {
+		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex();
 		
 		Showtime st = findShowtime(cineplexList, cineplexID, cinemaCode, dateTime);
 		if(st == null) {
@@ -187,14 +191,14 @@ public class ShowtimeFileManager {
 		st.setMovie(newMovie);
 		System.out.println("Showtime has been updated with new movie!");
 		
-		CineplexFileManager.writeToFile(cineplexList);
+		cinemaMgr.writeToFile(cineplexList);
 		return true;
 	}
 	
 	
 	//updates a showtime with a new dateTime and save to file
-	public static boolean updateShowtimeDateTime(int cineplexID, String cinemaCode, LocalDateTime oldDateTime, LocalDateTime newDateTime) {
-		ArrayList<Cineplex> cineplexList = CineplexFileManager.getAllCineplex();
+	public boolean updateShowtimeDateTime(int cineplexID, String cinemaCode, LocalDateTime oldDateTime, LocalDateTime newDateTime) {
+		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex();
 		
 		Showtime st = findShowtime(cineplexList, cineplexID, cinemaCode, oldDateTime);
 		if(st == null) {
@@ -205,18 +209,18 @@ public class ShowtimeFileManager {
 		st.setDateTime(newDateTime);
 		System.out.println("Showtime has been updated with new dateTime!");
 		
-		CineplexFileManager.writeToFile(cineplexList);
+		cinemaMgr.writeToFile(cineplexList);
 		return true;
 	}
 	
 	
 	//deletes all showtimes in a cinema that has this movieID
-	public static boolean deleteShowTimeByMovieID(int cineplexID, String cinemaCode, int movieID) {
+	public boolean deleteShowTimeByMovieID(int cineplexID, String cinemaCode, int movieID) {
 		boolean deleted = false;
-		ArrayList<Cineplex> cineplexList = CineplexFileManager.getAllCineplex();
+		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex();
 		
 		//get the correct cinema
-		Cinema cinema = CinemaFileManager.findCinema(cineplexList, cineplexID, cinemaCode);
+		Cinema cinema = cinemaMgr.findCinema(cineplexList, cineplexID, cinemaCode);
 		if (cinema == null) return deleted; //cinema not found
 		
 		ArrayList<Showtime> showtimeList = cinema.getShowtimeList();
@@ -231,17 +235,17 @@ public class ShowtimeFileManager {
 			}
 		}
 		
-		CineplexFileManager.writeToFile(cineplexList);
+		cinemaMgr.writeToFile(cineplexList);
 		return deleted;
 	}
 	
 	
 	//deletes a specific showtime in a cinema specified by dateTime
-	public static boolean deleteSpecificShowtime(int cineplexID, String cinemaCode, LocalDateTime dateTime) {
-		ArrayList<Cineplex> cineplexList = CineplexFileManager.getAllCineplex();
+	public boolean deleteSpecificShowtime(int cineplexID, String cinemaCode, LocalDateTime dateTime) {
+		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex();
 		
 		//get the correct cinema
-		Cinema cinema = CinemaFileManager.findCinema(cineplexList, cineplexID, cinemaCode);
+		Cinema cinema = cinemaMgr.findCinema(cineplexList, cineplexID, cinemaCode);
 		if (cinema == null) return false; //cinema not found
 		
 		ArrayList<Showtime> showtimeList = cinema.getShowtimeList();
@@ -251,7 +255,7 @@ public class ShowtimeFileManager {
 		for(int i=0; i<showtimeList.size();i++) {
 			if(showtimeList.get(i).getDateTime().equals(dateTime)) {
 				showtimeList.remove(i);
-				CineplexFileManager.writeToFile(cineplexList);
+				cinemaMgr.writeToFile(cineplexList);
 				return true;
 			}
 		}

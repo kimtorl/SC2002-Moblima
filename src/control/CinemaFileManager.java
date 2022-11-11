@@ -8,24 +8,24 @@ import entity.Cineplex;
 import entity.ClassOfCinema;
 import entity.Showtime;
 
-public class CinemaFileManager {
+public class CinemaFileManager implements CinemaManager{
 
-	//No attributes
-	
+	//Attributes
+	private CineplexManager cineplexMgr;
 	
 	//Empty Constructor
 	public CinemaFileManager() {
-		
+		cineplexMgr = new CineplexFileManager();
+	}
+	
+	public CinemaFileManager(CineplexManager cineplexMgr) {
+		this.cineplexMgr = cineplexMgr;
 	}
 	
 	
-	
-	
-
-	
 	//reads and returns all the Cinema in an ArrayList
-	public static ArrayList<Cinema> getAllCinema(){
-		ArrayList<Cineplex> cineplexList = CineplexFileManager.getAllCineplex();
+	public ArrayList<Cinema> getAllCinema(){
+		ArrayList<Cineplex> cineplexList = cineplexMgr.getAllCineplex();
 		
 		ArrayList<Cinema> cinemaList = new ArrayList<Cinema>();
 		
@@ -40,11 +40,11 @@ public class CinemaFileManager {
 	
 	//reads and return a specific cinema specified by the cinemaCode from a given cineplexList
 	//returns null if not found
-	public static Cinema findCinema(ArrayList<Cineplex> cineplexList,int cineplexID, String cinemaCode) {
+	public Cinema findCinema(ArrayList<Cineplex> cineplexList,int cineplexID, String cinemaCode) {
 		
 		ArrayList<Cinema> cinemaList = cineplexList.get(cineplexID).getCinemaList(); //retrieve cinemaList
 		
-		int cinemaIndex = CinemaFileManager.findCinemaIndex(cinemaList, cinemaCode);
+		int cinemaIndex = findCinemaIndex(cinemaList, cinemaCode);
 		if(cinemaIndex == -1) return null; //cinema not found
 		
 		return cinemaList.get(cinemaIndex);
@@ -53,8 +53,8 @@ public class CinemaFileManager {
 	
 	
 	//creates a single Cinema object for a specific cineplex
-	public static boolean createCinema(int cineplexID, String cinemaCode, ClassOfCinema cinemaClass, ArrayList<Showtime> showtime) {
-		ArrayList<Cineplex> cineplexList = CineplexFileManager.getAllCineplex();
+	public boolean createCinema(int cineplexID, String cinemaCode, ClassOfCinema cinemaClass, ArrayList<Showtime> showtime) {
+		ArrayList<Cineplex> cineplexList = cineplexMgr.getAllCineplex();
 		
 		//retrieve corresponding cinemaList
 		ArrayList<Cinema> cinemaList = cineplexList.get(cineplexID).getCinemaList();
@@ -71,7 +71,7 @@ public class CinemaFileManager {
 		
 		cinemaList.add(new Cinema(cinemaCode,cinemaClass,showtime));
 		
-		CineplexFileManager.writeToFile(cineplexList);
+		writeToFile(cineplexList);
 		return true;
 	}
 	
@@ -79,8 +79,8 @@ public class CinemaFileManager {
 	//deletes a cinema using cinemaCode string
 	//return false if failed to delete
 	//return true if deleted successfully
-	public static boolean deleteCinema(int cineplexID, String cinemaCode) {
-		ArrayList<Cineplex> cineplexList = CineplexFileManager.getAllCineplex();
+	public boolean deleteCinema(int cineplexID, String cinemaCode) {
+		ArrayList<Cineplex> cineplexList = cineplexMgr.getAllCineplex();
 		
 		ArrayList<Cinema> cinemaList = cineplexList.get(cineplexID).getCinemaList();
 		
@@ -92,14 +92,14 @@ public class CinemaFileManager {
 		
 		cinemaList.remove(cinemaIndex);
 		
-		CineplexFileManager.writeToFile(cineplexList);
+		writeToFile(cineplexList);
 		return true;
 	}
 	
 	
 	//returns the index of the cinema that matches the cinemaCode
 	//returns -1 if not found
-	public static int findCinemaIndex(ArrayList<Cinema> cinemaList,String cinemaCode) {
+	public int findCinemaIndex(ArrayList<Cinema> cinemaList,String cinemaCode) {
 		if(cinemaList == null) return -1;
 		
 		for(int i=0; i<cinemaList.size(); i++ ) {
@@ -109,21 +109,11 @@ public class CinemaFileManager {
 		return -1;
 	}
 	
-	
-	
-	
-	/*
-	//do we even need this?
-	//writes an ArrayList of Cinema to the file
-	public static void writeToFile(int cineplexID, ArrayList<Cinema> cinemaList) {
-			//reads the cineplexList 
-			ArrayList<Cineplex> cineplexList = CineplexFileManager.getAllCineplex();
-			
-			//modifies the cinemaList of a particular cineplex
-			cineplexList.get(cineplexID).setCinemaList(cinemaList);
-			
-			//saves file
-			CineplexFileManager.writeToFile(cineplexList);		
+	public void writeToFile(ArrayList<Cineplex> cineplexList) {
+		cineplexMgr.writeToFile(cineplexList);
 	}
-	*/
+	
+	public ArrayList<Cineplex> getAllCineplex(){
+		return cineplexMgr.getAllCineplex();
+	}
 }

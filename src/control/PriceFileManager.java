@@ -70,7 +70,8 @@ public class PriceFileManager {
         public void insertInformation(String[] currentLine) {
             String finalPrice = currentLine[currentLine.length - 1];
             TrieNode node = root;
-            for (String currentString : currentLine) {
+            for (int i = 0; i < currentLine.length - 1; i++) {
+                String currentString = currentLine[i];
                 if (!node.children.containsKey(currentString)) {
                     TrieNode newNode = new TrieNode();
                     node.children.put(currentString, newNode);

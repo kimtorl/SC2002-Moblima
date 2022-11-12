@@ -1,6 +1,6 @@
-package entity;
+package boundary;
 
-public interface Capability {
+public interface Capability{
 	
 	public void performCapability();
 	

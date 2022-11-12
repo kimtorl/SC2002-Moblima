@@ -2,13 +2,17 @@ package control;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Random;
 
 import entity.Cinema;
 import entity.Cineplex;
 import entity.Movie;
 import entity.SeatLayout;
+import entity.ShowingStatus;
 import entity.Showtime;
 
 public class ShowtimeFileManager implements ShowtimeManager{
@@ -55,6 +59,12 @@ public class ShowtimeFileManager implements ShowtimeManager{
 		if(showtimeList == null) {
 			showtimeList = new ArrayList<Showtime>();
 			cinema.setShowtimeList(showtimeList);
+		}
+		
+		//check for movie's showing status
+		if(movie.getShowingStatus() == ShowingStatus.COMING_SOON || movie.getShowingStatus() == ShowingStatus.END_OF_SHOWING) {
+			System.out.println("Movie has invalid Showing Status");
+			return false;
 		}
 		
 		//check for duplicate showtimes 
@@ -263,6 +273,61 @@ public class ShowtimeFileManager implements ShowtimeManager{
 	}
 	
 	
+	//randomly creates showtime to populate the ShowtimeList of a cinema based off on current System dateTime
+	public void populateShowtime(int cineplexID, String cinemaCode) {
+		MovieManager movieMgr = new MovieFileManager();
+		ArrayList<Movie> movieList = movieMgr.getAllMovie(); //get list of movies
+		
+		LocalDateTime now = LocalDateTime.now(); //get current time
+		LocalDateTime startTime;
+		//Assume that the the earlist possible showtime is 10:00 and last possible show time is at 23:30
+		if(now.toLocalTime().isAfter(LocalTime.of(21, 59))) { //if its currently after 21:59
+			startTime = now.plusDays(1).truncatedTo(ChronoUnit.HOURS).withHour(10); //set startTime to next day at 10:00
+		}
+		else if(now.toLocalTime().isBefore(LocalTime.of(10, 0))) { //if its currently before 10:00
+			startTime = now.truncatedTo(ChronoUnit.HOURS).withHour(10); //set startTime to current day at 10:00
+		}
+		else {
+			startTime = now.truncatedTo(ChronoUnit.HOURS).plusHours(1); //set startTime to the next hour
+		}
+		
+		//Randomise the startTime with 0-11 intervals of 5mins
+		Random rand = new Random();
+		startTime = startTime.plusMinutes(rand.nextInt(12) * 5);
+		
+		
+		Movie movie;
+		//Add 5 showtimes for each cinema
+		for(int i=0; i < 5; i++) {
+			movie = movieList.get(rand.nextInt(movieList.size())); //retrives a random Movie from the movieList
+			if(createShowtime(cineplexID, cinemaCode, movie, startTime)) { //check showing status, showtime added successfully
+				//Calculate the startTime of the nextMovie;
+				startTime = startTime.plusMinutes(movie.getDuration()+30); //update startTime to 30mins after movie ended
+				startTime = startTime.truncatedTo(ChronoUnit.HOURS).plusMinutes(15*(startTime.getMinute()+14)/15); //round up to nearest 15min
+				
+			}
+			else i--; //Showtime not created.
+			
+			//last possible show time is at 23:30
+			if(startTime.toLocalTime().isAfter(LocalTime.of(23, 30))) return;;
+		}
+	}
+	
+	
+	//creates showtime for all cinemas
+	public void populateAllCinemaShowtime() {
+		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex(); //retrieve cineplexList
+		
+		for(int i=0; i<cineplexList.size(); i++) {
+			Cineplex cineplex = cineplexList.get(i);
+			ArrayList<Cinema> cinemaList = cineplex.getCinemaList();
+			for(int j=0; j<cinemaList.size(); j++) {
+				Cinema cinema = cinemaList.get(j);
+				populateShowtime(cineplex.getCineplexID(),cinema.getCinemaCode());
+			}
+		}
+		
+	}
 	
 	
 }

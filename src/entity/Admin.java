@@ -2,6 +2,8 @@ package entity;
 
 import java.util.ArrayList;
 
+import boundary.Capability;
+
 public class Admin extends Account {
 
 	
@@ -17,15 +19,17 @@ public class Admin extends Account {
 	@Override
 	public void displayCapabilities() {
 		//print out list of capabilities
-		System.out.println("Choose an option: ");
-		for(int i=0; i < getCapabilities().size();i++) {
-			System.out.println("Option " + i + ". " + getCapabilities().get(i));
+		int i;
+		for(i=0; i < getCapabilities().size();i++) {
+			System.out.println((i+1) + ". " + getCapabilities().get(i));
 		}
 		
 	}
 
 	@Override
 	public void performSelectCapability(int choice) {
+		//error checking
+		if(choice<1 || choice >getCapabilities().size()) return;
 		getCapabilities().get(choice-1).performCapability();
 	}
 

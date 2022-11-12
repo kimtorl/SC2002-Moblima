@@ -2,6 +2,8 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import boundary.Capability;
 public abstract class Account implements Serializable{
 
 	

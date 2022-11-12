@@ -4,13 +4,27 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.*;
 
 public class PriceFileManager {
+	
+	public static final String FILENAME = "Database/prices.txt";
+	
     public static void main(String[] args) {
-        String path_student_weekday = "./../Database/Movie_Student_Weekday.csv";
-        String path_student_weekend = "./../Database/Movie_Student_Weekend.csv";
-        String path_adult = "./../Database/Movie_Price_Adult.csv";
+    	
+        
+
+    }
+    
+    public void writeToFile() {
+    	
+    }
+    
+    public void initialisePrice() {
+    	String path_student_weekday = "Database/Movie_Student_Weekday.csv";
+        String path_student_weekend = "Database/Movie_Student_Weekend.csv";
+        String path_adult = "Database/Movie_Price_Adult.csv";
         String line = "";
 
         // my Tries
@@ -125,16 +139,18 @@ public class PriceFileManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+    
 
-    public static class TrieNode {
-        Map<String, TrieNode> children = new HashMap<String, TrieNode>();
+    public static class TrieNode implements Serializable {
+        private static final long serialVersionUID = 1L;
+		Map<String, TrieNode> children = new HashMap<String, TrieNode>();
         String finalInformation = "";
     }
 
-    public static class Trie {
-        TrieNode root = new TrieNode();
+    public static class Trie implements Serializable{
+        private static final long serialVersionUID = 1L;
+		TrieNode root = new TrieNode();
 
         public void insertInformation(String[] currentLine) {
             String finalPrice = currentLine[currentLine.length - 1];

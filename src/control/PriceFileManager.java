@@ -61,12 +61,14 @@ public class PriceFileManager {
 
     public static class TrieNode {
         Map<String, TrieNode> children = new HashMap<String, TrieNode>();
+        String finalInformation = "";
     }
 
     public static class Trie {
         TrieNode root = new TrieNode();
 
         public void insertInformation(String[] currentLine) {
+            String finalPrice = currentLine[currentLine.length - 1];
             TrieNode node = root;
             for (String currentString : currentLine) {
                 if (!node.children.containsKey(currentString)) {
@@ -75,6 +77,8 @@ public class PriceFileManager {
                 }
 
             }
+            node.finalInformation = finalPrice;
+
         }
     }
 

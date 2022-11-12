@@ -3,10 +3,17 @@ package boundary;
 import java.io.Serializable;
 
 import control.InputManager;
+import control.MovieManager;
 
 public class EditMovieListing implements Capability, Serializable {
 
 	private static final long serialVersionUID = 30L;
+	
+	private MovieManager movieMgr;
+	
+	public EditMovieListing(MovieManager movieMgr) {
+		this.movieMgr = movieMgr;
+	}
 
 	@Override
 	public void performCapability() {

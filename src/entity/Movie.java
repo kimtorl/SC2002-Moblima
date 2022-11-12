@@ -73,7 +73,7 @@ public class Movie implements Serializable{
 	
 	
 	public String toString() {
-		return movieTitle;
+		return "MovieID: " + movieID + ". Title: " + movieTitle;
 	}
 	
 	//getters and setters

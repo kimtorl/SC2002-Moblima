@@ -1,9 +1,11 @@
 package boundary;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import control.InputManager;
 import control.MovieManager;
+import entity.Movie;
 
 public class SearchOrListMovie implements Capability, Serializable {
 
@@ -24,24 +26,27 @@ public class SearchOrListMovie implements Capability, Serializable {
 			System.out.println("------------------------------");
 			System.out.println("Choose an option: ");
 			System.out.println("1. List All Movies");
-			System.out.println("2. Search Movie");
-			System.out.println("3. Go back");
+			System.out.println("2. Search Movie By MovieID");
+			System.out.println("3. Search Movie By Movie Title");
+			System.out.println("4. Go back");
 			System.out.println("------------------------------");
 			
-			choice = InputManager.getInt(1, 3);
+			choice = InputManager.getInt(1, 4);
 			
 			switch(choice) {
 			case 1:
 				listMovie();
 				break;
 			case 2:
-				searchMovie();
+				searchMovieByMovieID();
 				break;
+			case 3:
+				searchMovieByMovieTitle();
 			default:
 					
 			}
 			
-		}while(choice != 3);
+		}while(choice != 4);
 
 	}
 
@@ -60,10 +65,32 @@ public class SearchOrListMovie implements Capability, Serializable {
 		System.out.println("------------------------------");
 	}
 	
-	public void searchMovie() {
+	public void searchMovieByMovieID() {
 		System.out.println("------------------------------");
 		System.out.println("Enter a movieID: ");
+		int movieID = InputManager.getInt();
 		
+		Movie movie = movieMgr.findMovie(movieID);
+		if (movie == null) {
+			System.out.println("Movie cannot be found! Please try again!");
+		}
+		else System.out.println(movie);
+		
+	}
+	
+	public void searchMovieByMovieTitle() {
+		String str = InputManager.getString();
+		
+		ArrayList<Movie> movieList = movieMgr.findAllMovieOfTitle(movieMgr.getAllMovie(), str);
+		
+		if(movieList.size() == 0) {
+			System.out.println("No movies found!");
+			return;
+		}
+		
+		for(Movie m: movieList) {
+			System.out.println(m);
+		}	
 	}
 	
 }

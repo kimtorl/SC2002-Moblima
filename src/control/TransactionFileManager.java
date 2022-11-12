@@ -6,14 +6,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import entity.Transaction;
 
-public class TransactionFileManager implements TransactionManager {
+public class TransactionFileManager implements TransactionManager, Serializable {
 
 	
+	private static final long serialVersionUID = 25L;
 	public static final String FILENAME = "Database/transactions.txt";
 	
 	

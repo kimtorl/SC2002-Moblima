@@ -11,9 +11,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class CineplexFileManager implements CineplexManager{
+public class CineplexFileManager implements CineplexManager, Serializable{
 	
+	private static final long serialVersionUID = 23L;
 	//Attribute 
 	private static final String FILENAME = "Database/cineplex.txt"; //stores an array of Cineplexes
 	

@@ -87,6 +87,7 @@ public class MainApplication {
 			System.out.println("Choose an option: ");
 			currentAcc.displayCapabilities();
 			System.out.println(numOfOptions  + ". Logout");
+			System.out.println("------------------------------");
 			choice = InputManager.getInt(1, numOfOptions);
 			currentAcc.performSelectCapability(choice);
 			
@@ -111,6 +112,7 @@ public class MainApplication {
 			System.out.println("Choose an option: ");
 			currentAcc.displayCapabilities();
 			System.out.println(numOfOptions  + ". Logout");
+			System.out.println("------------------------------");
 			choice = InputManager.getInt(1, numOfOptions);
 			currentAcc.performSelectCapability(choice);
 			

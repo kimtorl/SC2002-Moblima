@@ -17,8 +17,8 @@ public class InitialiseData {
 		//Initialise attributes
 		AccountManager accMgr = new AccountFileManager();
 		CineplexManager cineplexMgr = new CineplexFileManager();
-		CinemaManager cinemaMgr = new CinemaFileManager();
-		ShowtimeManager showtimeMgr = new ShowtimeFileManager();
+		CinemaManager cinemaMgr = new CinemaFileManager(cineplexMgr);
+		ShowtimeManager showtimeMgr = new ShowtimeFileManager(cinemaMgr);
 		MovieManager movieMgr = new MovieFileManager();
 		HolidayManager holidayMgr = new HolidayFileManager();
 		TransactionManager transactionMgr = new TransactionFileManager();
@@ -39,7 +39,7 @@ public class InitialiseData {
 		
 		//create MovieGoer Account
 		ArrayList<Capability> movieGoerCapabilities = new ArrayList<Capability>();
-		movieGoerCapabilities.add(new SearchOrListMovie());
+		movieGoerCapabilities.add(new SearchOrListMovie(movieMgr));
 		movieGoerCapabilities.add(new ViewMovieDetail());
 		movieGoerCapabilities.add(new ReviewMovie());
 		movieGoerCapabilities.add(new BookTicket());

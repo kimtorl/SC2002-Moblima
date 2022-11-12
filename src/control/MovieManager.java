@@ -88,5 +88,8 @@ public interface MovieManager {
 	
 	//displays Info
 	public void displayMovieInfo(int movieID);
+	
+	//prints out all movies
+	public void listAllMovies();
 			
 }

@@ -66,6 +66,8 @@ public class MovieFileManager implements MovieManager, Serializable{
 	//reads the current list of movies if file exists
 	//check for duplicates, return false if duplicates found
 	//creates a movie and store to file
+
+	
 	public boolean createMovie(int movieID,
 			String movieTitle,
 			TypeOfMovie movieType, 
@@ -161,8 +163,15 @@ public class MovieFileManager implements MovieManager, Serializable{
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		Movie movie = findMovie(movieList,oldMovieID);
-		if(movie==null) return false;
-		
+		if(movie==null) {
+			System.out.println("The MovieID to be updated doesn't exist!");
+			return false;
+		}
+		Movie movie2 = findMovie(movieList,newMovieID);
+		if(movie2!=null) {
+			System.out.println("The new input ID already exists!");
+			return false;
+		}
 		movie.setMovieID(newMovieID);
 		
 		writeToFile(movieList);
@@ -172,13 +181,23 @@ public class MovieFileManager implements MovieManager, Serializable{
 	//updates all movies with oldMovieTitle to newMovieTitle
 	public boolean updateMovieTitle(String oldMovieTitle, String newMovieTitle) {
 		ArrayList<Movie> movieList = getAllMovie();
-		
+		boolean modified = false;
 		for(Movie m : movieList) {
-			if(m.getMovieTitle().equals(oldMovieTitle)) m.setMovieTitle(newMovieTitle);
+			if(m.getMovieTitle().equals(oldMovieTitle))
+			{
+				m.setMovieTitle(newMovieTitle);
+				modified = true;
+			}
 		}
-		
+		if(!modified) {
+			System.out.println("Movie title doesn't exist");
+		}
+		else
+		{
+			System.out.println("Successfully updated title.");
+		}
 		writeToFile(movieList);
-		return true;
+		return modified;
 	}
 	
 	//update movieType of a specific movie
@@ -186,11 +205,15 @@ public class MovieFileManager implements MovieManager, Serializable{
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		Movie movie = findMovie(movieList, movieID);
-		if(movie==null) return false;
+		if(movie==null) {
+			System.out.println("Movie ID doesn't exist!");
+			return false;
+		}
 		
 		movie.setMovieType(newMovieType);
 		
 		writeToFile(movieList);
+		System.out.println("Successfully updated movie type!");
 		return true;
 	}
 	
@@ -199,7 +222,10 @@ public class MovieFileManager implements MovieManager, Serializable{
 		ArrayList<Movie> movieList = getAllMovie();
 		
 		Movie movie = findMovie(movieList, movieID);
-		if(movie==null) return false;
+		if(movie==null) {
+			System.out.println("Movie ID doesn't exist!");
+			return false;
+		}
 		
 		movie.setLanguage(newLanguage);
 		
@@ -222,57 +248,100 @@ public class MovieFileManager implements MovieManager, Serializable{
 	//updates the showingStatus of all movies of the same title
 	public boolean updateMovieShowingStatus(String movieTitle, ShowingStatus newShowingStatus) {
 		ArrayList<Movie> movieList = getAllMovie();
-		
+		boolean modified = false;
 		for(Movie m:movieList) {
-			if(m.getMovieTitle().equals(movieTitle)) m.setShowingStatus(newShowingStatus);
+			if(m.getMovieTitle().equals(movieTitle))
+			{
+				m.setShowingStatus(newShowingStatus);
+				modified = true;
+			}
 		}
+		if(modified)
+			System.out.println("Successfully updated showing status.");
+		else
+			System.out.println("Movie title doesn't exist.");
 		
 		writeToFile(movieList);
-		return true;
+		return modified;
 	}
 	
 	//updates the Synopsis of all movies of the same title
 	public boolean updateMovieSynopsis(String movieTitle, String newSynopsis) {
 		ArrayList<Movie> movieList = getAllMovie();
-		
+		boolean modified = false;
 		for(Movie m:movieList) {
-			if(m.getMovieTitle().equals(movieTitle)) m.setSynopsis(newSynopsis);;
+			if(m.getMovieTitle().equals(movieTitle)) {
+				m.setSynopsis(newSynopsis);;
+				modified = true;
+			}
 		}
 		writeToFile(movieList);
-		return true;
+		
+		if(modified)
+			System.out.println("Successfully updated synopsis.");
+		else
+			System.out.println("Movie title doesn't exist.");
+		
+		
+		return modified;
 	}
 
 	//updates the Director of all movies of the same title
 	public boolean updateMovieDirector(String movieTitle, String newDirector) {
 		ArrayList<Movie> movieList = getAllMovie();
-		
+		boolean modified = false;
 		for(Movie m:movieList) {
-			if(m.getMovieTitle().equals(movieTitle)) m.setDirector(newDirector);
+			if(m.getMovieTitle().equals(movieTitle)) {
+				modified = true;
+				m.setDirector(newDirector);
+			}
 		}
 		writeToFile(movieList);
-		return true;
+		
+		if(modified)
+			System.out.println("Successfully updated director.");
+		else
+			System.out.println("Movie title doesn't exist.");
+		
+		return modified;
 	}
 	
 	//updates the cast of all movies of the same title
 	public boolean updateMovieCast(String movieTitle, ArrayList<String> newCast) {
 		ArrayList<Movie> movieList = getAllMovie();
-		
+		boolean modified = false;
 		for(Movie m:movieList) {
-			if(m.getMovieTitle().equals(movieTitle)) m.setCast(newCast);
+			if(m.getMovieTitle().equals(movieTitle)) {
+				modified = true;
+				m.setCast(newCast);
+			}
 		}
 		writeToFile(movieList);
-		return true;
+		
+		if(modified)
+			System.out.println("Successfully updated cast.");
+		else
+			System.out.println("Movie title doesn't exist.");
+		
+		return modified;
 	}
 	
 	//updates the reviews of all movies of the same title
 	public boolean updateMovieReview(String movieTitle, ArrayList<String> newReview) {
 		ArrayList<Movie> movieList = getAllMovie();
-		
+		boolean modified = false;
 		for(Movie m:movieList) {
-			if(m.getMovieTitle().equals(movieTitle)) m.setPastReviews(newReview);;
+			if(m.getMovieTitle().equals(movieTitle)) {
+				modified = true;
+				m.setPastReviews(newReview);;
+			}
 		}
 		writeToFile(movieList);
-		return true;
+		if(modified)
+			System.out.println("Successfully updated reviews.");
+		else
+			System.out.println("Movie title doesn't exist.");
+		return modified;
 	}
 	
 	//updates the rating of all movies of the same title
@@ -298,9 +367,11 @@ public class MovieFileManager implements MovieManager, Serializable{
 			if(movieList.get(i).getMovieID() == movieID) {
 				movieList.remove(i);
 				writeToFile(movieList);
+				System.out.println("Successfully deleted movie.");
 				return true;
 			}
 		}
+		System.out.println("Movie ID doesn't exist.");
 		return false;
 	}
 	

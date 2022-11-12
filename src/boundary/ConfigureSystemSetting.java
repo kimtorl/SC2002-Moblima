@@ -34,7 +34,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 					
 			}
 			
-		}while(choice != 4);
+		}while(choice != 3);
 		
 		
 

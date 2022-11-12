@@ -76,10 +76,28 @@ public class PriceFileManager {
                     TrieNode newNode = new TrieNode();
                     node.children.put(currentString, newNode);
                 }
+                node.children.get(currentString);
 
             }
             node.finalInformation = finalPrice;
 
+        }
+
+        public String readPrice(String[] queries) {
+            String res = "";
+
+            TrieNode node = root;
+            for (String query : queries) {
+                if (!node.children.containsKey(query)) {
+                    System.out.println("Key does not exist!", query);
+
+                }
+                node = node.children.get(query);
+
+            }
+
+            res = node.finalInformation;
+            return res;
         }
     }
 

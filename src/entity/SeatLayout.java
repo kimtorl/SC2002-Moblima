@@ -64,17 +64,24 @@ public class SeatLayout implements Serializable{
 		
 	}
 	
-	//returns false if seat is already booked
-	//returns true is seat is booked successfully
-	public boolean bookSeat(String seatCode) {
+	//returns -1 if seat is already booked or invalid seatCode
+	//returns seatID if seat is booked successfully
+	public int bookSeat(String seatCode) {
 		int row = seatCode.charAt(0)-65; //convert the alphabetical row into int
 		seatCode = seatCode.substring(1);
-		int col = Integer.parseInt(seatCode); 
+		int col;
+		try {
+			col = Integer.parseInt(seatCode); 
+		}catch(Exception e) {
+			return -1;
+		}
 		
-		if(seatLayout[row][col].isBooked()) return false;
+		if(row<0 || row>=numOfRow || col<0 || col >=numOfCol) return -1;//invalid seatCode
+		
+		if(seatLayout[row][col].isBooked()) return -1;
 		
 		seatLayout[row][col].setBooked(true);
-		return true;
+		return seatLayout[row][col].getSeatID();
 		
 	}
 	

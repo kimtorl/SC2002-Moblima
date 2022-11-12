@@ -174,6 +174,7 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	public Showtime findShowtime(ArrayList<Cineplex> cineplexList, int cineplexID, String cinemaCode, LocalDateTime dateTime) {
 		
 		Cinema cinema = cinemaMgr.findCinema(cineplexList, cineplexID, cinemaCode);
+		if(cinema == null) return null; //error checking
 		
 		ArrayList<Showtime> showtimeList = cinema.getShowtimeList();
 		if(showtimeList == null) return null;
@@ -216,6 +217,24 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 		
 		st.setDateTime(newDateTime);
 		System.out.println("Showtime has been updated with new dateTime!");
+		
+		cinemaMgr.writeToFile(cineplexList);
+		return true;
+	}
+	
+	//update a showtime with a new seatLayout and save to file
+	public boolean updateShowtimeSeatLayout(String cinemaCode, LocalDateTime dateTime, SeatLayout seatLayout) {
+		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex();
+		
+		Showtime st=null;
+		for(Cineplex cineplex : cineplexList) {
+			st = findShowtime(cineplexList, cineplex.getCineplexID(), cinemaCode, dateTime);
+			if (st!=null) break; //showtime found
+		}
+		if (st == null) return false; //showtime not found
+		
+		//update seat layout
+		st.setSeatLayout(seatLayout);
 		
 		cinemaMgr.writeToFile(cineplexList);
 		return true;
@@ -304,7 +323,7 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 			if(createShowtime(cineplexID, cinemaCode, movie, startTime)) { //check showing status, showtime added successfully
 				//Calculate the startTime of the nextMovie;
 				startTime = startTime.plusMinutes(movie.getDuration()+30); //update startTime to 30mins after movie ended
-				startTime = startTime.truncatedTo(ChronoUnit.HOURS).plusMinutes(15*(startTime.getMinute()+14)/15); //round up to nearest 15min
+				startTime = startTime.truncatedTo(ChronoUnit.HOURS).plusMinutes(15*((startTime.getMinute()+14)/15)); //round up to nearest 15min
 				
 			}
 			else {

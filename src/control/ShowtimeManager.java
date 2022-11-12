@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import entity.Cinema;
 import entity.Cineplex;
 import entity.Movie;
+import entity.SeatLayout;
 import entity.Showtime;
 
 public interface ShowtimeManager {
@@ -46,6 +47,9 @@ public interface ShowtimeManager {
 		
 		//updates a showtime with a new dateTime and save to file
 		public boolean updateShowtimeDateTime(int cineplexID, String cinemaCode, LocalDateTime oldDateTime, LocalDateTime newDateTime);
+		
+		//update a showtime with a new seatLayout and save to file
+		public boolean updateShowtimeSeatLayout(String cinemaCode, LocalDateTime dateTime, SeatLayout seatLayout);
 		
 		
 		//deletes all showtimes in a cinema that has this movieID

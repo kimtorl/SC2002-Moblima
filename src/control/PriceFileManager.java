@@ -11,6 +11,8 @@ public class PriceFileManager {
         String path_student_weekday = "./../Database/Movie_Student_Weekday.csv";
         String path_student_weekend = "./../Database/Movie_Student_Weekend.csv";
         String path_adult = "./../Database/Movie_Price_Adult.csv";
+        String path_senior_weekday = "./../Database/Movie_Senior_weekday.csv";
+        String path_senior_weekend = "./../Database/Movie_Senior_weekend.csv";
         String line = "";
 
         // my Tries
@@ -88,7 +90,7 @@ public class PriceFileManager {
             e.printStackTrace();
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path_student_weekday))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(path_senior_weekday))) {
             while ((line = br.readLine()) != null) {
                 String[] currentLine = line.split(",");
                 // insert student weekday prices in
@@ -107,7 +109,7 @@ public class PriceFileManager {
             e.printStackTrace();
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path_student_weekday))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(path_senior_weekend))) {
             while ((line = br.readLine()) != null) {
                 String[] currentLine = line.split(",");
                 // insert student weekday prices in

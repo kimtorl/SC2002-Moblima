@@ -8,10 +8,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import boundary.Capability;
 import entity.Account;
 import entity.AccountType;
 import entity.Admin;
-import entity.Capability;
 import entity.MovieGoer;
 
 

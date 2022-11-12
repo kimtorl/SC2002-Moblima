@@ -4,6 +4,7 @@ import control.AccountFileManager;
 import control.AccountManager;
 import control.InputManager;
 import entity.Account;
+import entity.AccountType;
 
 public class MainApplication {
 	
@@ -38,6 +39,10 @@ public class MainApplication {
 	}
 	
 	
+	//Asks for username and password
+	//verifies account
+	//Assigns an Account to currentAcc if verified, or null if not verified
+	//user can chooose to try again or exit.
 	public static void login() {
 		
 		//verify the user and retrieve the user Account
@@ -55,12 +60,65 @@ public class MainApplication {
 				System.out.println("1. Try again");
 				System.out.println("2. Exit");
 				choice = InputManager.getInt(1, 2);
+				if(choice == 2) return; //exit Login function
 			}
 		
 		}while(currentAcc==null && choice == 1 );
 	
+		
+		if(currentAcc.getAccountType() == AccountType.ADMIN) {
+			adminLogin();
+		}
+		else if(currentAcc.getAccountType() == AccountType.MOVIEGOER) {
+			movieGoerLogin();
+		}
+	}
 	
+	//Admin account
+	//Displays menu with possible options
+	//until user chooses to logout
+	public static void adminLogin() {
+		System.out.println("Welcome admin " + currentAcc.getUsername() + "!");
+		int choice, numOfOptions;
+		//display menu
+		do {
+			numOfOptions = currentAcc.getCapabilities().size() +1;
+			System.out.println("------------------------------");
+			System.out.println("Choose an option: ");
+			currentAcc.displayCapabilities();
+			System.out.println(numOfOptions  + ". Logout");
+			choice = InputManager.getInt(1, numOfOptions);
+			currentAcc.performSelectCapability(choice);
+			
+			if(choice == numOfOptions) { //Logout chosen
+				System.out.println("Logging out...");
+				currentAcc = null; //remove reference to this Account
+			}
+		}while(choice != numOfOptions);
+		
+	}
 	
+	//MovieGoer account
+	//Displays menu with possible options
+	//until user chooses to logout
+	public static void movieGoerLogin() {
+		System.out.println("Welcome MovieGoer " + currentAcc.getUsername() + "!");
+		int choice, numOfOptions;
+		//display menu
+		do {
+			numOfOptions = currentAcc.getCapabilities().size() +1;
+			System.out.println("------------------------------");
+			System.out.println("Choose an option: ");
+			currentAcc.displayCapabilities();
+			System.out.println(numOfOptions  + ". Logout");
+			choice = InputManager.getInt(1, numOfOptions);
+			currentAcc.performSelectCapability(choice);
+			
+			if(choice == numOfOptions) { //Logout chose
+				System.out.println("Logging out...");
+				currentAcc = null; //remove reference to this Account
+			}
+		}while(choice != numOfOptions);
 	}
 
 }

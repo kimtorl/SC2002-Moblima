@@ -21,7 +21,10 @@ public class Movie implements Serializable{
 	private ArrayList<String> cast;
 	private ArrayList<String> pastReviews;
 	private ArrayList<Integer> pastRatings;
+	private int ticketSales = 0;
 	
+
+
 	public Movie() {
 		
 	}
@@ -162,6 +165,20 @@ public class Movie implements Serializable{
 	public void setPastRatings(ArrayList<Integer> pastRatings) {
 		this.pastRatings = pastRatings;
 	}
+	
+	public int getTicketSales() {
+		return ticketSales;
+	}
+
+	public void setTicketSales(int ticketSales) {
+		this.ticketSales = ticketSales;
+	}
+	
+	public void plusOneSales() {
+		this.ticketSales++;
+	}
+	
+
 	
 
 	

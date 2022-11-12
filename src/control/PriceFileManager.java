@@ -10,12 +10,22 @@ public class PriceFileManager {
     public static void main(String[] args) {
         String path_student_weekday = "./../Database/Movie_Student_Weekday.csv";
         String path_student_weekend = "./../Database/Movie_Student_Weekend.csv";
-
+        String path_adult = "./../Database/Movie_Price_Adult.csv";
         String line = "";
 
         // my Tries
+
+        // ====== Student ========
         Trie student_weekday_prices = new Trie();
         Trie student_weekend_prices = new Trie();
+
+        // ====== Adult =========
+        Trie adult_prices = new Trie();
+
+        // ======= Senior ===========
+
+        Trie senior_weekday_prices = new Trie();
+        Trie senior_weekend_prices = new Trie();
 
         // weekday prices
         try (BufferedReader br = new BufferedReader(new FileReader(path_student_weekday))) {
@@ -44,6 +54,65 @@ public class PriceFileManager {
                 // insert student weekday prices in
                 if (currentLine.length != 0) {
                     student_weekend_prices.insertInformation(currentLine);
+
+                }
+
+                System.out.println(line);
+
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // collect adult data
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path_adult))) {
+            while ((line = br.readLine()) != null) {
+                String[] currentLine = line.split(",");
+
+                if (currentLine.length != 0) {
+                    adult_prices.insertInformation(currentLine);
+
+                }
+
+                System.out.println(line);
+
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path_student_weekday))) {
+            while ((line = br.readLine()) != null) {
+                String[] currentLine = line.split(",");
+                // insert student weekday prices in
+                if (currentLine.length != 0) {
+                    senior_weekday_prices.insertInformation(currentLine);
+
+                }
+
+                System.out.println(line);
+
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path_student_weekday))) {
+            while ((line = br.readLine()) != null) {
+                String[] currentLine = line.split(",");
+                // insert student weekday prices in
+                if (currentLine.length != 0) {
+                    senior_weekend_prices.insertInformation(currentLine);
 
                 }
 
@@ -89,7 +158,8 @@ public class PriceFileManager {
             TrieNode node = root;
             for (String query : queries) {
                 if (!node.children.containsKey(query)) {
-                    System.out.println("Key does not exist!", query);
+                    System.out.println("Key does not exist!");
+                    System.out.println(query);
 
                 }
                 node = node.children.get(query);

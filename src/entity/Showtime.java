@@ -3,6 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Showtime implements Serializable{
 	
@@ -35,6 +36,11 @@ public class Showtime implements Serializable{
 		}
 		
 		return false;
+	}
+	
+	public String dateTimeToString() {
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return dateTime.format(format);
 	}
 	
 	

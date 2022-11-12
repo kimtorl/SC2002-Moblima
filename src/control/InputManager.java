@@ -105,7 +105,17 @@ public class InputManager {
 		return str;
 	}
 	
-	
+	//used when input error
+	//return true if user wants to input again
+	//returns false if user does not want to try again
+	public static boolean tryAgain() {
+		System.out.println("Choose an option:");
+		System.out.println("1. Try again");
+		System.out.println("2. Exit");
+		int choice = getInt(1,2);
+		if(choice ==1) return true;
+		else return false;
+	}
 	
 	
 	

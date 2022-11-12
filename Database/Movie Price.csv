@@ -1,0 +1,35 @@
+"table specifiying all the prices, from table i",,,,
+,default price (weekday),,,
+2D,$10,,,
+3D,$12,,,
+,,,,
+,weekend,,,
+2D,$14.50,,,
+3D,$,,,
+,,,,
+Student ,,,,
+When?,2D,Blockbustors,3D,Platinum
+Weekday (before 6PM),$7,$7,$9,$25
+Weekday (after 6PM) Mon - Wed,$8.50,$9.00,$11,$25
+Weekday (after 6PM) Thu,$9.50,$10.00,$11,$25
+Weekday (after 6PM) Fri,$11,$12,$15,$25
+Weekend,$11,$12,$15,$25
+,,,,
+,,,,
+Senior Citizen,,,,
+When?,2D,Blockbustors,3D,Platinum
+Weekday (before 6PM),$4,$4,depends,$25
+Weekday (Mon - Wed),$8.50,$9.00,$11,$25
+Weekday (Thur),$9.50,$10.00,$11,$25
+Weekday (before 6PM) Fri,$9.50,$10.00,$15,$25
+Weekday (after 6PM) Fri,$11,$11.50,$15,$25
+Weekend,$11,$11.50,$15,$25
+,,,,
+,,,,
+Adult,,,,
+When?,2D,Blockbustors,3D,Platinum
+Weekday (Mon - Wed),$8.50,$9.00,$11,$25
+Weekday (Thur),$9.50,$10.00,$11,$25
+Weekday (before 6PM) Fri,$9.50,$10.00,$15,$25
+Weekday (after 6PM) Fri,$11,$11.50,$15,$25
+Weekend,$11,$11.50,$15,$25

@@ -5,41 +5,61 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 
 import entity.Holiday;
 
-public class HolidayFileManager {
+public class HolidayFileManager implements HolidayManager {
 	
 	private static final String FILENAME = "Database/holidays.txt"; 
 	
-	public static void createHoliday(Holiday h) {
-		try
-		{
-			FileOutputStream fileOut = new FileOutputStream(FILENAME);
-			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-			objectOut.writeObject(h);
-            objectOut.close();
-            System.out.println("Holiday added.");
+	
+	
+	public boolean createHoliday(LocalDate date) {
+		ArrayList<Holiday> holidayList = getAllHolidays();
+		
+		//check for duplicated Holiday
+		for(Holiday hol : holidayList) {
+			if(hol.getDate().equals(date)){
+				System.out.println("This holiday has already been added!");
+				return false;
+			}
 		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
+		
+		//append the holiday
+		holidayList.add(new Holiday(date));
+		
+		//sort the holidayList by date
+		holidayList.sort(new Comparator<Holiday>() {
+			public int compare(Holiday h1, Holiday h2) {
+				LocalDate h1date = h1.getDate();
+				LocalDate h2date = h2.getDate();
+				if(h1date.isBefore(h2date)) return -1;
+				else if(h1date.isAfter(h2date)) return 1;
+				else return 0;
+			}
+		});
+		
+		//save to file
+		writeToFile(holidayList);
+		return true;
 	}
-	public static boolean deleteHoliday(Holiday h) {
+	
+	
+	public boolean deleteHoliday(LocalDate date) {
 		File f = new File(FILENAME);
 		if(f.exists())
 		{
-			ArrayList<Holiday> holidaylist = new ArrayList<Holiday>();
-			holidaylist = getAllHolidays();
+			ArrayList<Holiday> holidaylist = getAllHolidays();
 			for(int i = 0; i < holidaylist.size();i++)
 			{
-				if(h.getDate() == holidaylist.get(i).getDate())
+				if(holidaylist.get(i).getDate().equals(date))
 				{
 					holidaylist.remove(i);
 					System.out.println("Successfully removed holiday!");
+					writeToFile(holidaylist);
 					return true;
 				}
 			}
@@ -55,7 +75,9 @@ public class HolidayFileManager {
 		
 	}
 	
-	public static ArrayList<Holiday> getAllHolidays(){
+	//returns empty List if file not found
+	@SuppressWarnings("unchecked")
+	public ArrayList<Holiday> getAllHolidays(){
 		
 		ArrayList<Holiday> holidaylist = new ArrayList<Holiday>();
 		
@@ -65,17 +87,29 @@ public class HolidayFileManager {
 			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 			
 			holidaylist = (ArrayList<Holiday>)objectIn.readObject();
-			System.out.println("The Object has been read from the file");
             objectIn.close();
 		}
 		catch(Exception ex)
 		{
-			ex.printStackTrace();
-			return null;
+			System.out.println("File not found!");
 		}
 		
 		return holidaylist;
-		
+	}
+	
+	
+	public void writeToFile(ArrayList<Holiday> holidayList) {
+		try
+		{
+			FileOutputStream fileOut = new FileOutputStream(FILENAME);
+			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+			objectOut.writeObject(holidayList);
+            objectOut.close();
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 	
 	

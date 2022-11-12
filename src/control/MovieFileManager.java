@@ -110,6 +110,22 @@ public class MovieFileManager implements MovieManager, Serializable{
 	
 	//finds and returns a specific movie based on movieID
 	//return null if not found
+	public Movie findMovie(int movieID) {
+		ArrayList<Movie> movieList = getAllMovie();
+		if(movieList ==null) return null; 
+		Movie mov=null;
+		
+		for(int i=0; i < movieList.size(); i++) {
+			if(movieList.get(i).getMovieID() == movieID) {
+				mov = movieList.get(i);
+				break;
+			}
+		}
+		return mov;
+	}
+	
+	//finds and returns a specific movie based on movieID
+	//return null if not found
 	public Movie findMovie(ArrayList<Movie> movieList, int movieID) {
 		if(movieList ==null) return null; 
 		Movie mov=null;
@@ -305,7 +321,7 @@ public class MovieFileManager implements MovieManager, Serializable{
 		ArrayList<Movie> movieList = getAllMovie();
 		for(Movie movie: movieList) {
 			if(movie.getShowingStatus() == ShowingStatus.PREVIEW || movie.getShowingStatus() == ShowingStatus.NOW_SHOWING)
-				System.out.println("MovieID: " + movie.getMovieID() + ". Title: " + movie);
+				System.out.println(movie);
 		}
 	}
 	

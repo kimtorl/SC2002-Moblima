@@ -7,12 +7,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.io.ObjectInputStream;
 
 import entity.Holiday;
 
-public class HolidayFileManager implements HolidayManager {
+public class HolidayFileManager implements HolidayManager, Serializable{
 	
+	private static final long serialVersionUID = 24L;
 	private static final String FILENAME = "Database/holidays.txt"; 
 	
 	

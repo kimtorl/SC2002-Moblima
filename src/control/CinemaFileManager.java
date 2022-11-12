@@ -1,6 +1,7 @@
 package control;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import entity.Cinema;
@@ -8,16 +9,14 @@ import entity.Cineplex;
 import entity.ClassOfCinema;
 import entity.Showtime;
 
-public class CinemaFileManager implements CinemaManager{
+public class CinemaFileManager implements CinemaManager, Serializable{
 
+	private static final long serialVersionUID = 22L;
 	//Attributes
 	private CineplexManager cineplexMgr;
 	
-	//Empty Constructor
-	public CinemaFileManager() {
-		cineplexMgr = new CineplexFileManager();
-	}
 	
+	//Constructor
 	public CinemaFileManager(CineplexManager cineplexMgr) {
 		this.cineplexMgr = cineplexMgr;
 	}

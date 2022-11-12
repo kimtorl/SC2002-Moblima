@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -13,8 +14,9 @@ import entity.Movie;
 import entity.ShowingStatus;
 import entity.TypeOfMovie;
 
-public class MovieFileManager implements MovieManager{
+public class MovieFileManager implements MovieManager, Serializable{
 
+	private static final long serialVersionUID = 20L;
 	//Attribute
 	private static final String FILENAME = "Database/movies.txt"; //file that this class manages
 	
@@ -295,6 +297,16 @@ public class MovieFileManager implements MovieManager{
 		if(movie==null) return;
 		
 		movie.dislayInfo();
+	}
+	
+	//list out all movies
+	//checks showing status before printing
+	public void listAllMovies() {
+		ArrayList<Movie> movieList = getAllMovie();
+		for(Movie movie: movieList) {
+			if(movie.getShowingStatus() == ShowingStatus.PREVIEW || movie.getShowingStatus() == ShowingStatus.NOW_SHOWING)
+				System.out.println("MovieID: " + movie.getMovieID() + ". Title: " + movie);
+		}
 	}
 	
 	

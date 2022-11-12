@@ -1,5 +1,6 @@
 package control;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -15,17 +16,14 @@ import entity.SeatLayout;
 import entity.ShowingStatus;
 import entity.Showtime;
 
-public class ShowtimeFileManager implements ShowtimeManager{
+public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 
 	
+	private static final long serialVersionUID = 21L;
 	//Attributes
 	private CinemaManager cinemaMgr;
 	
-	//empty constructor
-	public ShowtimeFileManager() {
-		cinemaMgr = new CinemaFileManager();
-	}
-	
+	//Constructor
 	public ShowtimeFileManager(CinemaManager cinemaMgr) {
 		this.cinemaMgr = cinemaMgr;
 	}

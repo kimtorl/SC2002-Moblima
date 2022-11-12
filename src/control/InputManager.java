@@ -76,8 +76,22 @@ public class InputManager {
 	
 	
 	public static boolean getY_or_N() {
+		boolean invalid = true, result = false;
+		String message = "Please only enter Y or N!", input;
+		while(invalid) {
+			input = userInput.nextLine();
+			if(input.equals("Y") || input.equals("y")) {
+				result = true;
+				invalid = false;
+			}
+			else if(input.equals("N") || input.equals("n")) {
+				result = false;
+				invalid = false;
+			}
+			else System.out.println(message);	
+		}
 		
-		return true;
+		return result;
 	}
 	
 	

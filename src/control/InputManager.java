@@ -26,7 +26,7 @@ public class InputManager {
 				userInput.nextLine();
 			}
 			userInput.nextLine();
-		}while(choice<lower && choice>upper);
+		}while(choice<lower || choice>upper);
 		
 		return choice;
 	}

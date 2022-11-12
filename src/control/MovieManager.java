@@ -31,6 +31,7 @@ public interface MovieManager {
 			ArrayList<String> cast,
 			ArrayList<String> pastReviews,
 			ArrayList<Integer> pastRatings);
+
 	
 	//finds and returns a specific movie based on movieID
 	//return null if not found

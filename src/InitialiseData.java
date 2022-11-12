@@ -219,7 +219,7 @@ public class InitialiseData {
 		
 		
 		//creates Showtimes for each Cinema based on current System time
-		showtimeMgr.populateAllCinemaShowtime();
+		showtimeMgr.populateAllCinemaShowtime(LocalDateTime.now());
 		//Create Past transactions - not needed?
 		
 		//Create Price files

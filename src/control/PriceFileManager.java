@@ -76,7 +76,7 @@ public class PriceFileManager {
                     TrieNode newNode = new TrieNode();
                     node.children.put(currentString, newNode);
                 }
-                node.children.get(currentString);
+                node = node.children.get(currentString);
 
             }
             node.finalInformation = finalPrice;

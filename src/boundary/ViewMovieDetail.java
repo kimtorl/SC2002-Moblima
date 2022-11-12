@@ -2,6 +2,7 @@ package boundary;
 
 import java.io.Serializable;
 
+import control.InputManager;
 import control.MovieManager;
 
 public class ViewMovieDetail implements Capability, Serializable {
@@ -17,7 +18,11 @@ public class ViewMovieDetail implements Capability, Serializable {
 
 	@Override
 	public void performCapability() {
-		// TODO Auto-generated method stub
+		System.out.println("------------------------------");
+		System.out.println("Enter movieID to view:");
+		int choice = InputManager.getInt();
+		if(movieMgr.findMovie(choice) == null) System.out.println("Movie cannot be found! Please try again!");
+		movieMgr.displayMovieInfo(choice);
 
 	}
 	

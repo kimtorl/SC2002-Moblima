@@ -272,11 +272,11 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	
 	//randomly creates showtime to populate the ShowtimeList of a cinema based off on current System dateTime
-	public void populateShowtime(int cineplexID, String cinemaCode) {
+	public void populateShowtime(int cineplexID, String cinemaCode, LocalDateTime dateTime) {
 		MovieManager movieMgr = new MovieFileManager();
 		ArrayList<Movie> movieList = movieMgr.getAllMovie(); //get list of movies
 		
-		LocalDateTime now = LocalDateTime.now(); //get current time
+		LocalDateTime now = dateTime; //take dateTime as currentTime
 		LocalDateTime startTime;
 		//Assume that the the earlist possible showtime is 10:00 and last possible show time is at 23:30
 		if(now.toLocalTime().isAfter(LocalTime.of(21, 59))) { //if its currently after 21:59
@@ -295,8 +295,11 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 		
 		
 		Movie movie;
+		int attempts=0, maxAttempts =3;
+		
 		//Add 5 showtimes for each cinema
 		for(int i=0; i < 5; i++) {
+			attempts =0;
 			movie = movieList.get(rand.nextInt(movieList.size())); //retrives a random Movie from the movieList
 			if(createShowtime(cineplexID, cinemaCode, movie, startTime)) { //check showing status, showtime added successfully
 				//Calculate the startTime of the nextMovie;
@@ -304,16 +307,21 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 				startTime = startTime.truncatedTo(ChronoUnit.HOURS).plusMinutes(15*(startTime.getMinute()+14)/15); //round up to nearest 15min
 				
 			}
-			else i--; //Showtime not created.
+			else {
+				i--; //Showtime not created.
+				attempts++;
+			}
 			
 			//last possible show time is at 23:30
 			if(startTime.toLocalTime().isAfter(LocalTime.of(23, 30))) return;;
+			
+			if(attempts>maxAttempts) return;
 		}
 	}
 	
 	
 	//creates showtime for all cinemas
-	public void populateAllCinemaShowtime() {
+	public void populateAllCinemaShowtime(LocalDateTime dateTime) {
 		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex(); //retrieve cineplexList
 		
 		for(int i=0; i<cineplexList.size(); i++) {
@@ -321,7 +329,8 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 			ArrayList<Cinema> cinemaList = cineplex.getCinemaList();
 			for(int j=0; j<cinemaList.size(); j++) {
 				Cinema cinema = cinemaList.get(j);
-				populateShowtime(cineplex.getCineplexID(),cinema.getCinemaCode());
+				//if(cinema.getShowtimeList().size()==0)
+					populateShowtime(cineplex.getCineplexID(),cinema.getCinemaCode(), dateTime); //populate if the showtimeList is empty
 			}
 		}
 		

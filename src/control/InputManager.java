@@ -26,8 +26,30 @@ public class InputManager {
 				userInput.nextLine();
 			}
 			userInput.nextLine();
-		}while(choice<lower && choice>upper);
+		}while(choice<lower || choice>upper);
 		
+		return choice;
+	}
+	
+	//overloaded method with no bounds
+	//gets an integer from a range from User 
+	public static int getInt() {
+		String message = "Invalid input! Please enter an integer!";
+		int choice=-1;
+		boolean invalid = true;
+		while(invalid){
+			if (userInput.hasNextInt()) {
+				choice = userInput.nextInt();
+				invalid = false;
+				userInput.nextLine(); //remove newline char
+
+			}
+			else {
+				System.out.println(message);
+				userInput.nextLine();
+			}
+			
+		}
 		return choice;
 	}
 	
@@ -54,8 +76,22 @@ public class InputManager {
 	
 	
 	public static boolean getY_or_N() {
+		boolean invalid = true, result = false;
+		String message = "Please only enter Y or N!", input;
+		while(invalid) {
+			input = userInput.nextLine();
+			if(input.equals("Y") || input.equals("y")) {
+				result = true;
+				invalid = false;
+			}
+			else if(input.equals("N") || input.equals("n")) {
+				result = false;
+				invalid = false;
+			}
+			else System.out.println(message);	
+		}
 		
-		return true;
+		return result;
 	}
 	
 	
@@ -69,7 +105,17 @@ public class InputManager {
 		return str;
 	}
 	
-	
+	//used when input error
+	//return true if user wants to input again
+	//returns false if user does not want to try again
+	public static boolean tryAgain() {
+		System.out.println("Choose an option:");
+		System.out.println("1. Try again");
+		System.out.println("2. Exit");
+		int choice = getInt(1,2);
+		if(choice ==1) return true;
+		else return false;
+	}
 	
 	
 	

@@ -55,6 +55,6 @@ public interface ShowtimeManager {
 		//deletes a specific showtime in a cinema specified by dateTime
 		public boolean deleteSpecificShowtime(int cineplexID, String cinemaCode, LocalDateTime dateTime);
 		
-		public void populateAllCinemaShowtime();
+		public void populateAllCinemaShowtime(LocalDateTime dateTime);
 		
 }

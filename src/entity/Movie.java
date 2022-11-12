@@ -68,7 +68,13 @@ public class Movie implements Serializable{
 			else
 				System.out.print(cast.get(i)+", ");
 		}
-		System.out.println("Overall Ratings: "+ getOverallReviewerRating());
+		double overallRating = getOverallReviewerRating();
+		if(overallRating == -1) System.out.println("Overall Ratings: NA"); //displays NA if <= 1 rating
+		else System.out.printf("Overall Ratings: %.1f\n",overallRating);
+		
+		for(int i=0; i<pastReviews.size();i++) {
+			System.out.println("Reviewer "+(i+1)+": "+pastReviews.get(i));
+		}
 	}
 	
 	
@@ -133,6 +139,8 @@ public class Movie implements Serializable{
 	}
 	public double getOverallReviewerRating() {
 		double value=0;
+		
+		if(pastRatings.size() <=1) return -1; //Overall reviewer rating will only be displayed if there are more than one individual rating
 		
 		for(int i=0; i< pastRatings.size();i++) {
 			value += pastRatings.get(i);

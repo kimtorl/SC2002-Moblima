@@ -3,18 +3,11 @@ package boundary;
 import java.io.Serializable;
 
 import control.InputManager;
-import control.ShowtimeManager;
 
 public class EditMovieShowtime implements Capability, Serializable{
 
 	private static final long serialVersionUID = 31L;
 
-	private ShowtimeManager showtimeMgr;
-	
-	public EditMovieShowtime(ShowtimeManager showtimeMgr) {
-		this.showtimeMgr = showtimeMgr;
-	}
-	
 	@Override
 	public void performCapability() {
 		int choice;

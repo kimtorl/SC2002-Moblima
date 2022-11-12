@@ -31,28 +31,6 @@ public class InputManager {
 		return choice;
 	}
 	
-	//overloaded: without bounds
-	//gets an integer from a range from User 
-	public static int getInt() {
-		String message = "Invalid input! Please enter an integer!";
-		boolean invalid = true;
-		int choice = -1;
-		
-		while(invalid){
-			if (userInput.hasNextInt()) {
-				choice = userInput.nextInt();
-				invalid=false;
-				userInput.nextLine();
-			}
-			else {
-				System.out.println(message);
-				userInput.nextLine();
-			}
-		}
-		
-		return choice;
-	}
-	
 	
 	//gets a double from a range from User 
 	// inclusive of lower and upper bounds

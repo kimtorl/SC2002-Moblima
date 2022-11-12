@@ -34,10 +34,7 @@ public interface MovieManager {
 	
 	//finds and returns a specific movie based on movieID
 	//return null if not found
-	public Movie findMovie(int movieID);
-	
 	public Movie findMovie(ArrayList<Movie> movieList, int movieID);
-	
 	
 	//returns all the movies that have the movieTitle
 	// as the same movie titles are stored in various versions such as 2D,3D, Blockbuster

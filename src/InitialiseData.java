@@ -29,23 +29,23 @@ public class InitialiseData {
 		
 		//create admin Accounts
 		ArrayList<Capability> adminCapabilities = new ArrayList<Capability>();
-		adminCapabilities.add(new ConfigureSystemSetting());
-		adminCapabilities.add(new EditMovieListing());
-		adminCapabilities.add(new EditMovieShowtime());
-		adminCapabilities.add(new Top5MovieByTicketSale());
-		adminCapabilities.add(new Top5MovieByRating());
+		adminCapabilities.add(new ConfigureSystemSetting(holidayMgr));
+		adminCapabilities.add(new EditMovieListing(movieMgr));
+		adminCapabilities.add(new EditMovieShowtime(showtimeMgr));
+		adminCapabilities.add(new Top5MovieByTicketSale(movieMgr, transactionMgr));
+		adminCapabilities.add(new Top5MovieByRating(movieMgr));
 		
 		accMgr.createAdminAccount("PleaseGiveA+", "WeLoveOODP!", AccountType.ADMIN, adminCapabilities);
 		
 		//create MovieGoer Account
 		ArrayList<Capability> movieGoerCapabilities = new ArrayList<Capability>();
 		movieGoerCapabilities.add(new SearchOrListMovie(movieMgr));
-		movieGoerCapabilities.add(new ViewMovieDetail());
-		movieGoerCapabilities.add(new ReviewMovie());
-		movieGoerCapabilities.add(new BookTicket());
-		movieGoerCapabilities.add(new ViewBookingHistory());
-		movieGoerCapabilities.add(new Top5MovieByTicketSale());
-		movieGoerCapabilities.add(new Top5MovieByRating());
+		movieGoerCapabilities.add(new ViewMovieDetail(movieMgr));
+		movieGoerCapabilities.add(new ReviewMovie(movieMgr));
+		movieGoerCapabilities.add(new BookTicket(showtimeMgr, movieMgr, transactionMgr));
+		movieGoerCapabilities.add(new ViewBookingHistory(transactionMgr));
+		movieGoerCapabilities.add(new Top5MovieByTicketSale(movieMgr, transactionMgr));
+		movieGoerCapabilities.add(new Top5MovieByRating(movieMgr));
 		
 		accMgr.createMovieGoerAccount("wakanda", "forever", AccountType.MOVIEGOER, movieGoerCapabilities, 
 				"Adam", "93374263", "adam0021@e.ntu.edu.sg");

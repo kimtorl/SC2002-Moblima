@@ -16,6 +16,8 @@ public interface CinemaManager {
 	//returns null if not found
 	public Cinema findCinema(ArrayList<Cineplex> cineplexList,int cineplexID, String cinemaCode);
 	
+	//overloaded method
+	public Cinema findCinema(String cinemaCode);
 	
 	
 	//creates a single Cinema object for a specific cineplex

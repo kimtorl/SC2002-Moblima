@@ -318,7 +318,6 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 		
 		//Add 5 showtimes for each cinema
 		for(int i=0; i < 5; i++) {
-			attempts =0;
 			movie = movieList.get(rand.nextInt(movieList.size())); //retrives a random Movie from the movieList
 			if(createShowtime(cineplexID, cinemaCode, movie, startTime)) { //check showing status, showtime added successfully
 				//Calculate the startTime of the nextMovie;
@@ -334,7 +333,12 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 			//last possible show time is at 23:30
 			if(startTime.toLocalTime().isAfter(LocalTime.of(23, 30))) return;;
 			
-			if(attempts>maxAttempts) return;
+			if(attempts>maxAttempts) {
+				attempts =0;
+				startTime = startTime.truncatedTo(ChronoUnit.HOURS).plusMinutes(15*((startTime.getMinute()+14)/15)); //round up to nearest 15min
+				startTime.plusHours(3);
+				return;
+			}
 		}
 	}
 	
@@ -349,7 +353,7 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 			for(int j=0; j<cinemaList.size(); j++) {
 				Cinema cinema = cinemaList.get(j);
 				//if(cinema.getShowtimeList().size()==0)
-					populateShowtime(cineplex.getCineplexID(),cinema.getCinemaCode(), dateTime); //populate if the showtimeList is empty
+				populateShowtime(cineplex.getCineplexID(),cinema.getCinemaCode(), dateTime); //populate if the showtimeList is empty
 			}
 		}
 		

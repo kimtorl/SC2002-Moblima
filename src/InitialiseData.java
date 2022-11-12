@@ -22,7 +22,7 @@ public class InitialiseData {
 		MovieManager movieMgr = new MovieFileManager();
 		HolidayManager holidayMgr = new HolidayFileManager();
 		TransactionManager transactionMgr = new TransactionFileManager();
-		//PriceManager priceMgr = new PriceFileManager();
+		PriceManager priceMgr = new PriceFileManager();
 		
 		
 		
@@ -42,7 +42,7 @@ public class InitialiseData {
 		movieGoerCapabilities.add(new SearchOrListMovie(movieMgr));
 		movieGoerCapabilities.add(new ViewMovieDetail(movieMgr));
 		movieGoerCapabilities.add(new ReviewMovie(movieMgr));
-		movieGoerCapabilities.add(new BookTicket(showtimeMgr, movieMgr, transactionMgr));
+		movieGoerCapabilities.add(new BookTicket(cinemaMgr, showtimeMgr, movieMgr, transactionMgr, priceMgr));
 		movieGoerCapabilities.add(new ViewBookingHistory(transactionMgr));
 		movieGoerCapabilities.add(new Top5MovieByTicketSale(movieMgr, transactionMgr));
 		movieGoerCapabilities.add(new Top5MovieByRating(movieMgr));
@@ -223,6 +223,7 @@ public class InitialiseData {
 		//Create Past transactions - not needed?
 		
 		//Create Price files
+		priceMgr.initialisePrice();
 		
 		
 		

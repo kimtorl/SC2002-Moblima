@@ -1,0 +1,95 @@
+,,,,,
+Adult,Weekday,Monday/Tuesday/Wednesday,2D,8.5,
+Adult,Weekday,Monday/Tuesday/Wednesday,BlockBusters,9,
+Adult,Weekday,Monday/Tuesday/Wednesday,3D,11,
+Adult,Weekday,Monday/Tuesday/Wednesday,Platinum,25,
+,,,,,
+Adult,Weekday,Thursday,2D,9.5,
+Adult,Weekday,Thursday,BlockBusters,10,
+Adult,Weekday,Thursday,3D,11,
+Adult,Weekday,Thursday,Platinum,25,
+,,,,,
+Adult,Weekday,Friday,bef,2D,9.5
+Adult,Weekday,Friday,bef,BlockBusters,10
+Adult,Weekday,Friday,bef,3D,15
+Adult,Weekday,Friday,bef,Platinum,25
+,,,,,
+Adult,Weekday,Friday,af,2D,11
+Adult,Weekday,Friday,af,BlockBusters,11.5
+Adult,Weekday,Friday,af,3D,15
+Adult,Weekday,Friday,af,Platinum,25
+,,,,,
+Adult,Weekend,2D,11,,
+Adult,Weekend,BlockBusters,11.5,,
+Adult,Weekend,3D,15,,
+Adult,Weekend,Platinum,25,,
+,,,,,
+Age group,Weekday/Weekend,day,Time,Ticket Type,Price,
+Senior Citizen,Weekday,Monday/Tuesday/Wednesday,bef,2D,4,
+,Weekday,Monday/Tuesday/Wednesday,bef,BlockBusters,4,
+,Weekday,Monday/Tuesday/Wednesday,bef,3D,11,
+,Weekday,Monday/Tuesday/Wednesday,bef,Platinum,25,
+,,,,,,
+Senior Citizen,Weekday,Monday/Tuesday/Wednesday,af,2D,8.5
+,Weekday,Monday/Tuesday/Wednesday,af,BlockBusters,9,
+,Weekday,Monday/Tuesday/Wednesday,af,3D,11,
+,Weekday,Monday/Tuesday/Wednesday,af,Platinum,25,
+,,,,,,
+Senior Citizen,Weekday,Thursday,bef,2D,4
+,Weekday,Thursday,bef,BlockBusters,4,
+,Weekday,Thursday,bef,3D,11,
+,Weekday,Thursday,bef,Platinum,25,
+,,,,,,
+Senior Citizen,Weekday,Thursday,af,2D,9.5
+,Weekday,Thursday,af,BlockBusters,10,
+,Weekday,Thursday,af,3D,11,
+,Weekday,Thursday,af,Platinum,25,
+,,,,,,
+Senior Citizen,Weekday,Friday,bef,2D,4,
+,Weekday,Friday,bef,BlockBusters,4,
+,Weekday,Friday,bef,3D,15,
+,Weekday,Friday,bef,Platinum,25,
+,,,,,,
+Senior Citizen,Weekday,Friday,af,2D,11
+,Weekday,Friday,af,BlockBusters,11.5,
+,Weekday,Friday,af,3D,15,
+,Weekday,Friday,af,Platinum,25,
+,,,,,,
+Senior Citizen,Weekend,2D,11
+Senior Citizen,Weekend,BlockBusters,11.5
+Senior Citizen,Weekend,3D,15
+Senior Citizen,Weekend,Platinum,25,
+Age group,Weekday/Weekend,day,Time,Ticket Type,Price
+Student,Weekday,Monday/Tuesday/Wednesday,bef,2D,7
+Student,Weekday,Monday/Tuesday/Wednesday,bef,BlockBusters,7
+Student,Weekday,Monday/Tuesday/Wednesday,bef,3D,9
+Student,Weekday,Monday/Tuesday/Wednesday,bef,Platinum,25
+,,,,,
+Student,Weekday,Monday/Tuesday/Wednesday,af,2D,8.5
+Student,Weekday,Monday/Tuesday/Wednesday,af,BlockBusters,9
+Student,Weekday,Monday/Tuesday/Wednesday,af,3D,11
+Student,Weekday,Monday/Tuesday/Wednesday,af,Platinum,25
+,,,,,
+Student,Weekday,Thursday,bef,2D,7
+Student,Weekday,Thursday,bef,BlockBusters,7
+Student,Weekday,Thursday,bef,3D,9
+Student,Weekday,Thursday,bef,Platinum,25
+,,,,,
+Student,Weekday,Thursday,af,2D,9.5
+Student,Weekday,Thursday,af,BlockBusters,10
+Student,Weekday,Thursday,af,3D,11
+Student,Weekday,Thursday,af,Platinum,25
+,,,,,
+Student,Weekday,Friday,bef,2D,7
+Student,Weekday,Friday,bef,BlockBusters,7
+Student,Weekday,Friday,bef,3D,9
+Student,Weekday,Friday,bef,Platinum,25
+,,,,,
+Student,Weekday,Friday,af,2D,11
+Student,Weekday,Friday,af,BlockBusters,11.5
+Student,Weekday,Friday,af,3D,15
+Student,Weekday,Friday,af,Platinum,25,
+Student,Weekend,2D,11
+Student,Weekend,BlockBusters,11.5
+Student,Weekend,3D,15
+Student,Weekend,Platinum,25

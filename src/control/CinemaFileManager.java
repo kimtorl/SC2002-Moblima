@@ -49,6 +49,18 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 		return cinemaList.get(cinemaIndex);
 	}
 	
+	//overloaded method
+	//returns a cinema only by cinemaCode
+	//returns null if not found
+	public Cinema findCinema(String cinemaCode) {
+		ArrayList<Cinema> cinemaList = getAllCinema();
+		
+		int cinemaIndex = findCinemaIndex(cinemaList, cinemaCode);
+		if(cinemaIndex == -1) return null; //cinema not found
+		
+		return cinemaList.get(cinemaIndex);
+	}
+	
 	
 	
 	//creates a single Cinema object for a specific cineplex
@@ -94,6 +106,7 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 		writeToFile(cineplexList);
 		return true;
 	}
+	
 	
 	
 	//returns the index of the cinema that matches the cinemaCode

@@ -144,11 +144,11 @@ public class InputManager {
 	//gets a LocalDateTime as input
 	public static LocalDateTime getLocalDateTime() {
 		LocalDateTime dateTime =null;
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm");
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		boolean valid = false;
 		
 		do {
-			System.out.println("Enter a date and time in this format YYYY-MM-DD hh:mm ");
+			System.out.println("Enter a date and time in this format yyyy-MM-dd HH:mm ");
 			try {
 				dateTime = LocalDateTime.parse(userInput.nextLine(), format);
 				valid = true;

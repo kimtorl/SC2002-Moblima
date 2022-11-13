@@ -2,7 +2,6 @@ package boundary;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import control.InputManager;
 import control.MovieManager;

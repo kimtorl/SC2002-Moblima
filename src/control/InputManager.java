@@ -93,7 +93,7 @@ public class InputManager {
 				System.out.println(message);
 			}
 			userInput.nextLine();
-		}while(choice<lower && choice>upper);
+		}while(choice<lower || choice>upper);
 		
 		return choice;
 	}
@@ -166,11 +166,11 @@ public class InputManager {
 	//gets a LocalDate as input
 	public static LocalDate getLocalDate() {
 		LocalDate date=null;
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("YYYY-MM-DD");
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		boolean valid = false;
 		
 		do {
-			System.out.println("Enter a date in this format YYYY-MM-DD: ");
+			System.out.println("Enter a date in this format yyyy-MM-dd: ");
 			try {
 				date = LocalDate.parse(userInput.nextLine(), format);
 				valid = true;

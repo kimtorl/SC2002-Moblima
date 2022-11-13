@@ -1,5 +1,5 @@
 /*
- * 
+ *  
  */
 package boundary;
 
@@ -15,17 +15,17 @@ public class EditMovieShowtime implements Capability, Serializable{
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 31L;
 
-	/** The showtime mgr. */
+	/** The Control class for Showtime. */
 	private ShowtimeManager showtimeMgr;
 	
-	/** The movie mgr. */
+	/** The Control class for Movie */
 	private MovieManager movieMgr;
 	
 	/**
 	 * Instantiates a new edits the movie showtime.
 	 *
-	 * @param showtimeMgr the showtime mgr
-	 * @param movieMgr the movie mgr
+	 * @param showtimeMgr the ShowtimeManager
+	 * @param movieMgr the MovieManager
 	 */
 	public EditMovieShowtime(ShowtimeManager showtimeMgr, MovieManager movieMgr) {
 		this.showtimeMgr = showtimeMgr;
@@ -33,7 +33,7 @@ public class EditMovieShowtime implements Capability, Serializable{
 	}
 	
 	/**
-	 * Perform capability.
+	 * Displays a menu. Admin can create, update or remove showtimes.
 	 */
 	@Override
 	public void performCapability() {
@@ -80,7 +80,7 @@ public class EditMovieShowtime implements Capability, Serializable{
 	
 	
 	/**
-	 * To string.
+	 * Overrides toString method for printing the capability
 	 *
 	 * @return the string
 	 */
@@ -90,7 +90,8 @@ public class EditMovieShowtime implements Capability, Serializable{
 	}
 	
 	/**
-	 * Creates the showtime.
+	 * Creates the showtime with user inputs.
+	 * Inputs required are cineplexID, cinemaCode, movieID and a dateTime
 	 */
 	public void createShowtime() {
 		System.out.println("Enter cineplexID: ");
@@ -112,7 +113,9 @@ public class EditMovieShowtime implements Capability, Serializable{
 	}
 	
 	/**
-	 * Update showtime movie.
+	 * Update Showtime's movie with user inputs.
+	 * Inputs required are cineplexID, cinemaCode and a new movieID.
+	 * 
 	 */
 	public void updateShowtimeMovie() {
 		System.out.println("Enter cineplexID: ");
@@ -134,7 +137,8 @@ public class EditMovieShowtime implements Capability, Serializable{
 	}
 	
 	/**
-	 * Update showtime date time.
+	 * Update a Showtime's dateTime with user inputs.
+	 * Inputs required are cineplexID, cinemaCode, dateTime of the Showtime and the new dateTime to replace it.
 	 */
 	public void updateShowtimeDateTime() {
 		System.out.println("Enter cineplexID: ");
@@ -157,7 +161,8 @@ public class EditMovieShowtime implements Capability, Serializable{
 	}
 	
 	/**
-	 * Removes the specific showtime.
+	 * Removes a specific showtime with user inputs.
+	 * Inputs required are cineplexID, cinemaCode, dateTime of Showtime to be deleted.
 	 */
 	public void removeSpecificShowtime() {
 		System.out.println("Enter cineplexID: ");
@@ -178,7 +183,8 @@ public class EditMovieShowtime implements Capability, Serializable{
 	
 	
 	/**
-	 * Removes the all showtime of movie.
+	 * Removes the all Showtimes with a certain movieID using user inputs.
+	 * Inputs required are cineplexID, cinemaCode, movieID.
 	 */
 	public void removeAllShowtimeOfMovie() {
 		System.out.println("Enter cineplexID: ");

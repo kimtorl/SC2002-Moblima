@@ -29,7 +29,7 @@ public class SearchOrListMovie implements Capability, Serializable {
 
 
 	/**
-	 * Perform capability.
+	 * Displays menu and allows user to list or search for movies
 	 */
 	@Override
 	public void performCapability() {
@@ -66,7 +66,7 @@ public class SearchOrListMovie implements Capability, Serializable {
 
 	
 	/**
-	 * To string.
+	 * Overrides toString method for printing the capability
 	 *
 	 * @return the string
 	 */
@@ -77,7 +77,7 @@ public class SearchOrListMovie implements Capability, Serializable {
 	
 	
 	/**
-	 * List movie.
+	 * List movie all movies that are not EndOfShowing.
 	 */
 	//NEED TO CHECK MOVIE'S SHOWING STATUS WHEN LISTING!
 	public void listMovie() {

@@ -35,7 +35,8 @@ public class Top5MovieByTicketSale implements Capability, Serializable {
 	}
 	
 	/**
-	 * Perform capability.
+	 * Lists top 5 movie by the number of ticket sold in descending order
+	 * Displayed in 1dp.
 	 */
 	@Override
 	public void performCapability() {
@@ -79,7 +80,7 @@ public class Top5MovieByTicketSale implements Capability, Serializable {
 	
 	
 	/**
-	 * To string.
+	 * Overrides toString method for printing the capability
 	 *
 	 * @return the string
 	 */

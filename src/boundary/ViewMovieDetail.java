@@ -27,7 +27,8 @@ public class ViewMovieDetail implements Capability, Serializable {
 	}
 
 	/**
-	 * Perform capability.
+	 * Allows user to choose which movie to view in more details.
+	 * User to input movieID.
 	 */
 	@Override
 	public void performCapability() {
@@ -42,7 +43,7 @@ public class ViewMovieDetail implements Capability, Serializable {
 
 	
 	/**
-	 * To string.
+	 * Overrides toString method for printing the capability
 	 *
 	 * @return the string
 	 */

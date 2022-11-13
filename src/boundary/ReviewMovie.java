@@ -29,7 +29,7 @@ public class ReviewMovie implements Capability, Serializable {
 
 
 	/**
-	 * Perform capability.
+	 * Updates the review and rating of a movie with user inputs
 	 */
 	@Override
 	public void performCapability() {
@@ -70,7 +70,7 @@ public class ReviewMovie implements Capability, Serializable {
 
 	
 	/**
-	 * To string.
+	 * Overrides toString method for printing the capability
 	 *
 	 * @return the string
 	 */

@@ -19,7 +19,7 @@ public class Top5MovieByRating implements Capability, Serializable {
 	private MovieManager movieMgr;
 	
 	/**
-	 * Instantiates a new top 5 movie by rating.
+	 * Instantiates a newTop5MovieByRating.
 	 *
 	 * @param movieMgr the movie mgr
 	 */
@@ -28,7 +28,8 @@ public class Top5MovieByRating implements Capability, Serializable {
 	}
 
 	/**
-	 * Perform capability.
+	 * Lists top 5 movie by the overallReviewerRating in descending order
+	 * Displayed in 1dp.
 	 */
 	@Override
 	public void performCapability() {
@@ -69,7 +70,7 @@ public class Top5MovieByRating implements Capability, Serializable {
 
 	
 	/**
-	 * To string.
+	 * Overrides toString method for printing the capability
 	 *
 	 * @return the string
 	 */

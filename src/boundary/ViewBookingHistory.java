@@ -30,11 +30,11 @@ public class ViewBookingHistory implements Capability, Serializable {
 	}
 
 	/**
-	 * Perform capability.
+	 * Displays the transaction history for user to view
+	 * The transaction history is found based on the name of the current acount logged in.
 	 */
 	@Override
 	public void performCapability() {
-		// TODO Auto-generated method stub
 		ArrayList<Transaction> transList;
 		transList = transactionMgr.getAllTransaction();
 		
@@ -56,7 +56,7 @@ public class ViewBookingHistory implements Capability, Serializable {
 
 	
 	/**
-	 * To string.
+	 *Overrides toString method for printing the capability
 	 *
 	 * @return the string
 	 */
@@ -64,40 +64,5 @@ public class ViewBookingHistory implements Capability, Serializable {
 		String str = "View Booking History";
 		return str;
 	}
-	
-	/*(public void printTransaction(Transaction t) {
-		System.out.println("Transaction ID: "
-				+t.getTransactionID()
-				+"\nTransaction amount: "
-				+t.getTransactionAmount()
-				+"\nName: "
-				+t.getName()
-				+"\nMobile Number: "
-				+t.getMobileNumber()
-				+"\nEmail "
-				+t.getEmail());
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm:ss");
-		LocalDateTime dateTime = t.getDateTime();
-		String formattedDateTime = dateTime.format(format);
-		System.out.println("\nDate & Time: "
-				+formattedDateTime
-				+"\nMovie ID: "
-				+t.getMovieID()
-				+"\nCinema Code: "
-				+t.getCinemaCode()
-				+"\nSeat ID List: ");
-
-		printSeatIDList(t);
-		System.out.println();
-		System.out.println("_______________________________________________________________");
-	}
-	
-	public void printSeatIDList(Transaction t) {
-		ArrayList<Integer> seatList = t.getSeatIDList();
-		for(int i = 0; i < seatList.size(); i++) {
-			System.out.print(seatList.get(i)+" | ");
-		}
-		return;
-	}*/
 	
 }

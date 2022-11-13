@@ -12,7 +12,6 @@ import entity.TypeOfMovie;
 public class EditMovieListing implements Capability, Serializable {
 
 	private static final long serialVersionUID = 30L;
-	private static Scanner sc = new Scanner(System.in);
 	private MovieManager movieMgr;
 	
 	public EditMovieListing(MovieManager movieMgr) {

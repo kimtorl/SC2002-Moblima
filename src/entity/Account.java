@@ -59,7 +59,7 @@ public abstract class Account implements Serializable{
 	public abstract void displayCapabilities();
 	
 	/**
-	 * Perform select capability.
+	 * Perform selected capability.
 	 *
 	 * @param choice the choice
 	 */

@@ -8,16 +8,16 @@ package entity;
  */
 public enum ShowingStatus {
 	
-	/** The coming soon. */
+	/** Enumerator for coming soon status. */
 	COMING_SOON("Coming Soon"),
 	
-	/** The preview. */
+	/** Enumerator for preview status. */
 	PREVIEW("Preview"),
 	
-	/** The now showing. */
+	/** Enumerator for now showing status. */
 	NOW_SHOWING("Now Showing"),
 	
-	/** The end of showing. */
+	/** Enumerator for end of showing status. */
 	END_OF_SHOWING("End Of Showing");
 	 
 	/** The name. */

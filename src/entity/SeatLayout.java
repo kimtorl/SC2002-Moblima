@@ -19,11 +19,11 @@ public class SeatLayout implements Serializable{
 	/** The seat layout. */
 	private Seat[][] seatLayout;
 	
-	/** The num of row. */
-	private int numOfRow = 8; //default values
+	/** The num of row. Default value is 8. */
+	private int numOfRow = 8; 
 	
-	/** The num of col. */
-	private int numOfCol = 8; //default values
+	/** The num of col.  Default value is 8. */
+	private int numOfCol = 8; 
 	
 	//Constructor 
 	/**
@@ -62,9 +62,8 @@ public class SeatLayout implements Serializable{
 	}
 	
 	
-	//prints out the cinema Seating layout in a matrix
 	/**
-	 * Display seat layout.
+	 * Display seat layout. prints out the cinema Seating layout in a matrix 
 	 */
 	public void displaySeatLayout() {
 		//print out the column labels
@@ -88,10 +87,11 @@ public class SeatLayout implements Serializable{
 		
 	}
 	
-	//returns -1 if seat is already booked or invalid seatCode
-	//returns seatID if seat is booked successfully
+
 	/**
 	 * Book seat.
+	 * 	returns negative 1 if seat is already booked or invalid seatCode
+	 * returns seatID if seat is booked successfully
 	 *
 	 * @param seatCode the seat code
 	 * @return the int
@@ -115,7 +115,7 @@ public class SeatLayout implements Serializable{
 		
 	}
 	
-	//getters and setters
+
 	/**
 	 * Gets the num of row.
 	 *

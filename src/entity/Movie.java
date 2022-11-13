@@ -104,7 +104,8 @@ public class Movie implements Serializable{
 	}
 	
 	/**
-	 * Dislay info.
+	 * Dislay all the attributes of Movie.
+	 * For OverallRating, if there's less than or equal to 1 rating, "NA" will be displayed instead
 	 */
 	public void dislayInfo()
 	{
@@ -378,7 +379,7 @@ public class Movie implements Serializable{
 	}
 	
 	/**
-	 * Plus one sales.
+	 * Increment ticketSales attribute by one.
 	 */
 	public void plusOneSales() {
 		this.ticketSales++;

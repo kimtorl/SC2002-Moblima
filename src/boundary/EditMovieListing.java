@@ -156,80 +156,104 @@ public class EditMovieListing implements Capability, Serializable {
 				+ "\n12. Exit");
 		int choice;
 		do {
+			int movieID1, movieID2, value;
+			String str;
 			choice = InputManager.getInt(1,12);
 			switch(choice) {
 			case 1:
-				System.out.println("Enter the old Movie ID to be replaced followed by the new Movie ID to replace it.");
-				if(movieMgr.updateMovieID(InputManager.getInt(), InputManager.getInt()))
+				System.out.println("Enter the old Movie ID to be replaced: ");
+				movieID1 = InputManager.getInt();
+				System.out.println("Enter the new Movie ID to replace it: ");
+				movieID2 = InputManager.getInt();
+				if(movieMgr.updateMovieID(movieID1, movieID2))
 					System.out.println("Successful!ly updated!");
 				else
 					System.out.println("Failed to update!");
 					
 				break;
 			case 2:
-				System.out.println("Enter the old Movie title to be replaced followed by the new Movie title to replace it.");
-				movieMgr.updateMovieTitle(InputManager.getString(), InputManager.getString());
+				System.out.println("Enter the old Movie ID to be replaced: ");
+				movieID1 = InputManager.getInt();
+				System.out.println("Enter the new Movie title to replace it:");
+				str = InputManager.getString();
+				movieMgr.updateMovieTitle(movieMgr.findMovie(movieID1).getMovieTitle(), str);
 				break;
 			case 3:
-				System.out.println("Enter the Movie ID followed by the new movie type,\n1.BLOCKBUSTER_2D, 2.BLOCKBUSTER_3D,"
+				System.out.println("Enter the Movie ID: ");
+				movieID1 = InputManager.getInt();
+				System.out.println("Enter the new movie type,\n1.BLOCKBUSTER_2D, 2.BLOCKBUSTER_3D,"
 						+ " 3.NONBLOCKBUSTER_2D,"
 						+ " 4.BLOCKBUSTER_3D");
-				//int typeInt = InputManager.getInt(1,4);
-				movieMgr.updateMovieType(InputManager.getInt(), TypeOfMovie.values()[InputManager.getInt(1,4)-1]);
+				int typeInt = InputManager.getInt(1,4);
+				movieMgr.updateMovieType(movieID1, TypeOfMovie.values()[typeInt-1]);
 				break;
 			case 4:
-				System.out.println("Enter movie ID followed by the new dubbed language.");
-				movieMgr.updateMovieLanguage(InputManager.getInt(), InputManager.getString());
+				System.out.println("Enter the movie ID: ");
+				movieID1 = InputManager.getInt();
+				System.out.println("Enter the new dubbed language: ");
+				str = InputManager.getString();
+				movieMgr.updateMovieLanguage(movieID1, str);
 				break;
 			case 5:
-				System.out.println("Enter the title of the movie followed by the new duration in minutes.");
-				movieMgr.updateMovieDuration(InputManager.getString(), InputManager.getInt());
+				System.out.println("Enter the movie ID: ");
+				movieID1 = InputManager.getInt();
+				System.out.println("Enter the new duration in minutes.");
+				value = InputManager.getInt();
+				movieMgr.updateMovieDuration(movieMgr.findMovie(movieID1).getMovieTitle(), value);
 				break;
 			case 6:
-				System.out.println("Enter movie title followed by the new showing status,");
+				System.out.println("Enter the movie ID: ");
+				movieID1 = InputManager.getInt();
+				System.out.println("Enter the new showing status,");
 				System.out.println("1.COMING_SOON, 2.PREVIEW, 3.NOW_SHOWING, 4.END_OF_SHOWING");
 				int statusInt = InputManager.getInt(1, 4);
-				movieMgr.updateMovieShowingStatus(InputManager.getString(), ShowingStatus.values()[statusInt-1]);
+				movieMgr.updateMovieShowingStatus(movieMgr.findMovie(movieID1).getMovieTitle(), ShowingStatus.values()[statusInt-1]);
 				break;
 			case 7:
-				System.out.println("Enter the movie title followed by the new synopsis.");
-				movieMgr.updateMovieSynopsis(InputManager.getString(),InputManager.getString());
+				System.out.println("Enter the movie ID: ");
+				movieID1 = InputManager.getInt();
+				System.out.println("Enter the the new synopsis.");
+				str = InputManager.getString();
+				movieMgr.updateMovieSynopsis(movieMgr.findMovie(movieID1).getMovieTitle(), str);
 				break;
 			case 8:
-				System.out.println("Enter the movie title followed by the new director");
-				movieMgr.updateMovieDirector(InputManager.getString(), InputManager.getString());
+				System.out.println("Enter the movie ID: ");
+				movieID1 = InputManager.getInt();
+				System.out.println("Enter the new director");
+				str = InputManager.getString();
+				movieMgr.updateMovieDirector(movieMgr.findMovie(movieID1).getMovieTitle(), str);
 				break;
 			case 9:
-				System.out.println("Enter movie title: ");
-				String title = InputManager.getString();
+				System.out.println("Enter the movie ID: ");
+				movieID1 = InputManager.getInt();
 				System.out.println("Enter the new cast members: \n Input -1 to end.");
 				ArrayList<String> cast = new ArrayList<String>();
 				while(true) {
-					String dog = InputManager.getString();
-					if(dog.equals("-1"))
+					str = InputManager.getString();
+					if(str.equals("-1"))
 						break;
 					else
-						cast.add(dog);
+						cast.add(str);
 				}
-				movieMgr.updateMovieCast(title, cast);
+				movieMgr.updateMovieCast(movieMgr.findMovie(movieID1).getMovieTitle(), cast);
 				break;
 			case 10:
-				System.out.println("Enter movie title: ");
-				String title2 = InputManager.getString();
+				System.out.println("Enter the movie ID: ");
+				movieID1 = InputManager.getInt();
 				System.out.println("Enter the new reviews, enter -1 to end.");
 				ArrayList<String> reviews = new ArrayList<String>();
 				while(true) {
-					String cat = InputManager.getString();
-					if(cat.equals("-1"))
+					str = InputManager.getString();
+					if(str.equals("-1"))
 						break;
 					else
-						reviews.add(cat);
+						reviews.add(str);
 				}
-				movieMgr.updateMovieReview(title2, reviews);
+				movieMgr.updateMovieReview(movieMgr.findMovie(movieID1).getMovieTitle(), reviews);
 				break;
 			case 11:
-				System.out.println("Enter movie title: ");
-				String title3 = InputManager.getString();
+				System.out.println("Enter the movie ID: ");
+				movieID1 = InputManager.getInt();
 				System.out.println("Enter the new ratings 1-5, enter 0 to stop.");
 				ArrayList<Integer> ratings = new ArrayList<Integer>();
 				while(true) {
@@ -239,7 +263,7 @@ public class EditMovieListing implements Capability, Serializable {
 					else
 						ratings.add(r);
 				}
-				movieMgr.updateMovieRating(title3, ratings);
+				movieMgr.updateMovieRating(movieMgr.findMovie(movieID1).getMovieTitle(), ratings);
 				break;
 			default:
 				break;

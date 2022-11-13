@@ -7,6 +7,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import boundary.Capability;
+/**
+ * @author Cross
+ *	Abstract class Account as setters and getters method, as well as its capabilities
+ *which are methods that its account can invoke
+ */
 public abstract class Account implements Serializable{
 
 	

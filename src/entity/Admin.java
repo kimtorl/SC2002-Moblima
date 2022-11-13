@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 import boundary.Capability;
 
+/**
+ * @author Cross
+ *
+ */
 public class Admin extends Account {
 
 	

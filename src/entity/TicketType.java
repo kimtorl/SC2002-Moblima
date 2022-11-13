@@ -1,5 +1,11 @@
+/*
+ * 
+ */
 package entity;
 
+/**
+ * The Enum TicketType.
+ */
 public enum TicketType {
 	
 	

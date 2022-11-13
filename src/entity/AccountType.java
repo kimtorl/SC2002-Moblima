@@ -3,6 +3,9 @@
  */
 package entity;
 
+/**
+ * The Enum AccountType.
+ */
 public enum AccountType {
 	
 	/** The admin. */

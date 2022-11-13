@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package boundary;
 
 import java.io.Serializable;
@@ -18,14 +21,33 @@ import entity.TypeOfMovie;
 
 public class BookTicket implements Capability, Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 37L;
 	
+	/** The cinema mgr. */
 	private CinemaManager cinemaMgr;
+	
+	/** The showtime mgr. */
 	private ShowtimeManager showtimeMgr;
+	
+	/** The movie mgr. */
 	private MovieManager movieMgr;
+	
+	/** The transaction mgr. */
 	private TransactionManager transactionMgr;
+	
+	/** The price mgr. */
 	private PriceManager priceMgr;
 	
+	/**
+	 * Instantiates a new book ticket.
+	 *
+	 * @param cinemaMgr the cinema mgr
+	 * @param showtimeMgr the showtime mgr
+	 * @param movieMgr the movie mgr
+	 * @param transactionMgr the transaction mgr
+	 * @param priceMgr the price mgr
+	 */
 	public BookTicket(CinemaManager cinemaMgr, ShowtimeManager showtimeMgr, MovieManager movieMgr, TransactionManager transactionMgr, PriceManager priceMgr){
 		this.cinemaMgr = cinemaMgr;
 		this.showtimeMgr = showtimeMgr;
@@ -35,6 +57,9 @@ public class BookTicket implements Capability, Serializable {
 	}
 
 
+	/**
+	 * Perform capability.
+	 */
 	@Override
 	public void performCapability() {
 		
@@ -75,12 +100,22 @@ public class BookTicket implements Capability, Serializable {
 
 
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString() {
 		String str = "Book Tickets";
 		return str;
 	}
 	
 	
+	/**
+	 * Select movie.
+	 *
+	 * @return the int
+	 */
 	public int selectMovie() {
 		int movieID;
 		
@@ -93,6 +128,12 @@ public class BookTicket implements Capability, Serializable {
 	}
 	
 
+	/**
+	 * Select showtimes.
+	 *
+	 * @param movieID the movie ID
+	 * @return the showtime
+	 */
 	//movieID is valid
 	public Showtime selectShowtimes(int movieID) {
 		System.out.println("Here are the available showtimes for the selected movie: ");
@@ -115,6 +156,12 @@ public class BookTicket implements Capability, Serializable {
 	}
 	
 	
+	/**
+	 * Select seats.
+	 *
+	 * @param st the st
+	 * @return the array list
+	 */
 	public ArrayList<Integer> selectSeats(Showtime st) {
 		ArrayList<Integer> selectedSeats = new ArrayList<Integer>();
 		boolean invalid = true;
@@ -152,6 +199,13 @@ public class BookTicket implements Capability, Serializable {
 		return selectedSeats;
 	}
 	
+	/**
+	 * Calculate price.
+	 *
+	 * @param st the st
+	 * @param numOfTickets the num of tickets
+	 * @return the double
+	 */
 	public double calculatePrice(Showtime st, int numOfTickets) {
 		//Ticket type
 		System.out.println("Choose your ticket type:");
@@ -182,6 +236,15 @@ public class BookTicket implements Capability, Serializable {
 		
 	}
 	
+	/**
+	 * Make transaction.
+	 *
+	 * @param transactionAmount the transaction amount
+	 * @param dateTime the date time
+	 * @param movieID the movie ID
+	 * @param cinemaCode the cinema code
+	 * @param seats the seats
+	 */
 	public void makeTransaction(double transactionAmount, LocalDateTime dateTime, int movieID, String cinemaCode, ArrayList<Integer> seats) {
 		MovieGoer acc = (MovieGoer) MainApplication.currentAcc;
 		String name = acc.getName();

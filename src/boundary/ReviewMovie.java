@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package boundary;
 
 import java.io.Serializable;
@@ -9,15 +12,25 @@ import entity.Movie;
 
 public class ReviewMovie implements Capability, Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID =341L;
 
+	/** The movie mgr. */
 	private MovieManager movieMgr;
 	
+	/**
+	 * Instantiates a new review movie.
+	 *
+	 * @param movieMgr the movie mgr
+	 */
 	public ReviewMovie(MovieManager movieMgr) {
 		this.movieMgr = movieMgr;
 	}
 
 
+	/**
+	 * Perform capability.
+	 */
 	@Override
 	public void performCapability() {
 		//get required inputs from user
@@ -56,6 +69,11 @@ public class ReviewMovie implements Capability, Serializable {
 	
 
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString() {
 		String str = "Review Movie";
 		return str;

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package control;
 
 import java.io.Serializable;
@@ -19,15 +22,28 @@ import entity.Showtime;
 public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 21L;
+	
+	/** The cinema mgr. */
 	//Attributes
 	private CinemaManager cinemaMgr;
 	
+	/**
+	 * Instantiates a new showtime file manager.
+	 *
+	 * @param cinemaMgr the cinema mgr
+	 */
 	//Constructor
 	public ShowtimeFileManager(CinemaManager cinemaMgr) {
 		this.cinemaMgr = cinemaMgr;
 	}
 
+	/**
+	 * Gets the all showtime.
+	 *
+	 * @return the all showtime
+	 */
 	//reads and return all Showtime available from all Cineplexes in an ArrayList
 	public ArrayList<Showtime> getAllShowtime(){
 		ArrayList<Cinema> cinemaList = cinemaMgr.getAllCinema();
@@ -44,7 +60,19 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 		
 	
 	//returns true if successfully created
+	/**
+	 * Creates the showtime.
+	 *
+	 * @param cineplexID the cineplex ID
+	 * @param cinemaCode the cinema code
+	 * @param movie the movie
+	 * @param dateTime the date time
+	 * @return true, if successful
+	 */
 	//returns false if failed
+	/**
+	 *
+	 */
 	public boolean createShowtime(int cineplexID, String cinemaCode, Movie movie, LocalDateTime dateTime) {
 		
 		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex(); //retrieve cineplexList
@@ -95,6 +123,14 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	}
 		
 	//checks if showtime clashes with showtime to be added
+	/**
+	 * Checks for clashes.
+	 *
+	 * @param showtimeList the showtime list
+	 * @param movie the movie
+	 * @param dateTime the date time
+	 * @return true, if successful
+	 */
 	//Showtimes within a cinema cannot clash as one cinema can only show one movie at a time
 	public boolean hasClashes(ArrayList<Showtime> showtimeList, Movie movie, LocalDateTime dateTime) {
 		if(showtimeList == null) return false; //showtimeList not found
@@ -118,6 +154,14 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	//Showtimes within a cineplex should not have duplicates
 	//i.e. A cineplex shouldn't have two showtimes with the same Movie and dateTime across cinemas
+	/**
+	 * Checks if is duplicate.
+	 *
+	 * @param cinemaList the cinema list
+	 * @param movie the movie
+	 * @param dateTime the date time
+	 * @return true, if is duplicate
+	 */
 	//cinemaList contains cinemas from the same Cineplex
 	public boolean isDuplicate(ArrayList<Cinema> cinemaList, Movie movie, LocalDateTime dateTime) {
 		if (cinemaList ==null) return false; //cinemaList not found
@@ -136,6 +180,12 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	}
 	
 	
+	/**
+	 * Find all showtime by movie.
+	 *
+	 * @param movieID the movie ID
+	 * @return the array list
+	 */
 	//return all the showtime Available for a movie across cineplexes
 	public ArrayList<Showtime> findAllShowtimeByMovie(int movieID){
 		ArrayList<Showtime> movieShowtimeList = new ArrayList<Showtime>();
@@ -153,6 +203,12 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	}
 	
 	
+	/**
+	 * Find all showtime by date.
+	 *
+	 * @param date the date
+	 * @return the array list
+	 */
 	//return all the showtime available by given date across cineplexes
 	public ArrayList<Showtime> findAllShowtimeByDate(LocalDate date){
 		ArrayList<Showtime> movieShowtimeList = new ArrayList<Showtime>();
@@ -170,6 +226,15 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	
 	//returns the corresponding showtime
+	/**
+	 * Find showtime.
+	 *
+	 * @param cineplexList the cineplex list
+	 * @param cineplexID the cineplex ID
+	 * @param cinemaCode the cinema code
+	 * @param dateTime the date time
+	 * @return the showtime
+	 */
 	//returns null if not found
 	public Showtime findShowtime(ArrayList<Cineplex> cineplexList, int cineplexID, String cinemaCode, LocalDateTime dateTime) {
 		
@@ -187,6 +252,15 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	}
 	
 	//updates a showtime with a new movie and save to file
+	/**
+	 * Update showtime movie.
+	 *
+	 * @param cineplexID the cineplex ID
+	 * @param cinemaCode the cinema code
+	 * @param dateTime the date time
+	 * @param newMovie the new movie
+	 * @return true, if successful
+	 */
 	//the correct showtime to be updated is found using dateTime as its unique in a cinema
 	public boolean updateShowtimeMovie(int cineplexID, String cinemaCode, LocalDateTime dateTime, Movie newMovie) {
 		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex();
@@ -205,6 +279,15 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	}
 	
 	
+	/**
+	 * Update showtime date time.
+	 *
+	 * @param cineplexID the cineplex ID
+	 * @param cinemaCode the cinema code
+	 * @param oldDateTime the old date time
+	 * @param newDateTime the new date time
+	 * @return true, if successful
+	 */
 	//updates a showtime with a new dateTime and save to file
 	public boolean updateShowtimeDateTime(int cineplexID, String cinemaCode, LocalDateTime oldDateTime, LocalDateTime newDateTime) {
 		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex();
@@ -222,6 +305,14 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 		return true;
 	}
 	
+	/**
+	 * Update showtime seat layout.
+	 *
+	 * @param cinemaCode the cinema code
+	 * @param dateTime the date time
+	 * @param seatLayout the seat layout
+	 * @return true, if successful
+	 */
 	//update a showtime with a new seatLayout and save to file
 	public boolean updateShowtimeSeatLayout(String cinemaCode, LocalDateTime dateTime, SeatLayout seatLayout) {
 		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex();
@@ -241,6 +332,14 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	}
 	
 	
+	/**
+	 * Delete show time by movie ID.
+	 *
+	 * @param cineplexID the cineplex ID
+	 * @param cinemaCode the cinema code
+	 * @param movieID the movie ID
+	 * @return true, if successful
+	 */
 	//deletes all showtimes in a cinema that has this movieID
 	public boolean deleteShowTimeByMovieID(int cineplexID, String cinemaCode, int movieID) {
 		boolean deleted = false;
@@ -267,6 +366,14 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	}
 	
 	
+	/**
+	 * Delete specific showtime.
+	 *
+	 * @param cineplexID the cineplex ID
+	 * @param cinemaCode the cinema code
+	 * @param dateTime the date time
+	 * @return true, if successful
+	 */
 	//deletes a specific showtime in a cinema specified by dateTime
 	public boolean deleteSpecificShowtime(int cineplexID, String cinemaCode, LocalDateTime dateTime) {
 		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex();
@@ -290,6 +397,13 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	}
 	
 	
+	/**
+	 * Populate showtime.
+	 *
+	 * @param cineplexID the cineplex ID
+	 * @param cinemaCode the cinema code
+	 * @param dateTime the date time
+	 */
 	//randomly creates showtime to populate the ShowtimeList of a cinema based off on current System dateTime
 	public void populateShowtime(int cineplexID, String cinemaCode, LocalDateTime dateTime) {
 		MovieManager movieMgr = new MovieFileManager();
@@ -343,6 +457,11 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	}
 	
 	
+	/**
+	 * Populate all cinema showtime.
+	 *
+	 * @param dateTime the date time
+	 */
 	//creates showtime for all cinemas
 	public void populateAllCinemaShowtime(LocalDateTime dateTime) {
 		ArrayList<Cineplex> cineplexList = cinemaMgr.getAllCineplex(); //retrieve cineplexList

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package boundary;
 
 import java.io.Serializable;
@@ -11,14 +14,24 @@ import entity.Transaction;
 
 public class ViewBookingHistory implements Capability, Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 38L;
 	
+	/** The transaction mgr. */
 	TransactionManager transactionMgr;
 	
+	/**
+	 * Instantiates a new view booking history.
+	 *
+	 * @param transactionMgr the transaction mgr
+	 */
 	public ViewBookingHistory(TransactionManager transactionMgr) {
 		this.transactionMgr = transactionMgr;
 	}
 
+	/**
+	 * Perform capability.
+	 */
 	@Override
 	public void performCapability() {
 		// TODO Auto-generated method stub
@@ -42,6 +55,11 @@ public class ViewBookingHistory implements Capability, Serializable {
 	
 
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString() {
 		String str = "View Booking History";
 		return str;

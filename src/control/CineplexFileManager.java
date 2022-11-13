@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package control;
 
 import entity.Cinema;
@@ -15,11 +18,17 @@ import java.io.Serializable;
 
 public class CineplexFileManager implements CineplexManager, Serializable{
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 23L;
+	
+	/** The Constant FILENAME. */
 	//Attribute 
 	private static final String FILENAME = "Database/cineplex.txt"; //stores an array of Cineplexes
 	
 	
+	/**
+	 * Instantiates a new cineplex file manager.
+	 */
 	//Constructor
 	public CineplexFileManager() {
 		//empty constructor
@@ -27,6 +36,11 @@ public class CineplexFileManager implements CineplexManager, Serializable{
 	
 	
 	
+	/**
+	 * Gets the all cineplex.
+	 *
+	 * @return the all cineplex
+	 */
 	//reads and return an ArrayList of Cineplex from the file
 	@SuppressWarnings("unchecked")
 	public ArrayList<Cineplex> getAllCineplex(){
@@ -48,6 +62,11 @@ public class CineplexFileManager implements CineplexManager, Serializable{
 		return cineplexList;
 	}
 	
+	/**
+	 * Write to file.
+	 *
+	 * @param cineplexList the cineplex list
+	 */
 	//writes an ArrayList of Cineplex to the file
 	public void writeToFile(ArrayList<Cineplex> cineplexList) {
 		try {
@@ -62,6 +81,14 @@ public class CineplexFileManager implements CineplexManager, Serializable{
 	}
 	
 	
+	/**
+	 * Creates the cineplex.
+	 *
+	 * @param cineplexID the cineplex ID
+	 * @param cineplexName the cineplex name
+	 * @param cinemaList the cinema list
+	 * @return true, if successful
+	 */
 	//creates and save the cineplex into the file
 	public boolean createCineplex(int cineplexID, String cineplexName, ArrayList<Cinema> cinemaList) {
 		ArrayList<Cineplex> cineplexList;
@@ -91,6 +118,12 @@ public class CineplexFileManager implements CineplexManager, Serializable{
 	
 	
 	
+	/**
+	 * Delete cineplex.
+	 *
+	 * @param cineplexName the cineplex name
+	 * @return true, if successful
+	 */
 	//deletes a cineplex using the cineplexName
 	public boolean deleteCineplex(String cineplexName) {
 		File f = new File(FILENAME);

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package control;
 
 
@@ -11,17 +14,30 @@ import entity.Showtime;
 
 public class CinemaFileManager implements CinemaManager, Serializable{
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 22L;
+	
+	/** The cineplex mgr. */
 	//Attributes
 	private CineplexManager cineplexMgr;
 	
 	
+	/**
+	 * Instantiates a new cinema file manager.
+	 *
+	 * @param cineplexMgr the cineplex mgr
+	 */
 	//Constructor
 	public CinemaFileManager(CineplexManager cineplexMgr) {
 		this.cineplexMgr = cineplexMgr;
 	}
 	
 	
+	/**
+	 * Gets the all cinema.
+	 *
+	 * @return the all cinema
+	 */
 	//reads and returns all the Cinema in an ArrayList
 	public ArrayList<Cinema> getAllCinema(){
 		ArrayList<Cineplex> cineplexList = cineplexMgr.getAllCineplex();
@@ -38,6 +54,14 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	
 	
 	//reads and return a specific cinema specified by the cinemaCode from a given cineplexList
+	/**
+	 * Find cinema.
+	 *
+	 * @param cineplexList the cineplex list
+	 * @param cineplexID the cineplex ID
+	 * @param cinemaCode the cinema code
+	 * @return the cinema
+	 */
 	//returns null if not found
 	public Cinema findCinema(ArrayList<Cineplex> cineplexList,int cineplexID, String cinemaCode) {
 		if(cineplexID >= cineplexList.size()) return null;//error checking
@@ -52,6 +76,12 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	
 	//overloaded method
 	//returns a cinema only by cinemaCode
+	/**
+	 * Find cinema.
+	 *
+	 * @param cinemaCode the cinema code
+	 * @return the cinema
+	 */
 	//returns null if not found
 	public Cinema findCinema(String cinemaCode) {
 		ArrayList<Cinema> cinemaList = getAllCinema();
@@ -64,6 +94,15 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	
 	
 	
+	/**
+	 * Creates the cinema.
+	 *
+	 * @param cineplexID the cineplex ID
+	 * @param cinemaCode the cinema code
+	 * @param cinemaClass the cinema class
+	 * @param showtime the showtime
+	 * @return true, if successful
+	 */
 	//creates a single Cinema object for a specific cineplex
 	public boolean createCinema(int cineplexID, String cinemaCode, ClassOfCinema cinemaClass, ArrayList<Showtime> showtime) {
 		ArrayList<Cineplex> cineplexList = cineplexMgr.getAllCineplex();
@@ -90,6 +129,13 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	
 	//deletes a cinema using cinemaCode string
 	//return false if failed to delete
+	/**
+	 * Delete cinema.
+	 *
+	 * @param cineplexID the cineplex ID
+	 * @param cinemaCode the cinema code
+	 * @return true, if successful
+	 */
 	//return true if deleted successfully
 	public boolean deleteCinema(int cineplexID, String cinemaCode) {
 		ArrayList<Cineplex> cineplexList = cineplexMgr.getAllCineplex();
@@ -111,6 +157,13 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	
 	
 	//returns the index of the cinema that matches the cinemaCode
+	/**
+	 * Find cinema index.
+	 *
+	 * @param cinemaList the cinema list
+	 * @param cinemaCode the cinema code
+	 * @return the int
+	 */
 	//returns -1 if not found
 	public int findCinemaIndex(ArrayList<Cinema> cinemaList,String cinemaCode) {
 		if(cinemaList == null) return -1;
@@ -122,10 +175,20 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 		return -1;
 	}
 	
+	/**
+	 * Write to file.
+	 *
+	 * @param cineplexList the cineplex list
+	 */
 	public void writeToFile(ArrayList<Cineplex> cineplexList) {
 		cineplexMgr.writeToFile(cineplexList);
 	}
 	
+	/**
+	 * Gets the all cineplex.
+	 *
+	 * @return the all cineplex
+	 */
 	public ArrayList<Cineplex> getAllCineplex(){
 		return cineplexMgr.getAllCineplex();
 	}

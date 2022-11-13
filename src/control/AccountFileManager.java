@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package control;
 
 import java.io.File;
@@ -18,16 +21,27 @@ import entity.MovieGoer;
 
 public class AccountFileManager implements AccountManager, Serializable{
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The Constant FILENAME. */
 	//File managed by this class
 	public final static String FILENAME = "Database/accounts.txt";
 	
+	/**
+	 * Instantiates a new account file manager.
+	 */
 	//Empty constructor 
 	public AccountFileManager() {
 	}
 	
 	
 	//returns all the Accounts from the file
+	/**
+	 * Gets the all account.
+	 *
+	 * @return the all account
+	 */
 	//returns an null if file not found
 	@SuppressWarnings("unchecked")
 	public ArrayList<Account> getAllAccount(){
@@ -54,6 +68,13 @@ public class AccountFileManager implements AccountManager, Serializable{
 	
 	
 	//returns the verified Account
+	/**
+	 * Verify login.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @return the account
+	 */
 	//return null if no corresponding account can be found
 	public Account verifyLogin(String username, String password) {
 		ArrayList<Account> accountList = getAllAccount();
@@ -73,6 +94,14 @@ public class AccountFileManager implements AccountManager, Serializable{
 	}
 	
 	//@param operation "add" to add a capability, "del" to delete a capability
+	/**
+	 * Update account capability.
+	 *
+	 * @param accountType the account type
+	 * @param operation the operation
+	 * @param capability the capability
+	 * @return true, if successful
+	 */
 	//updates the capabilities of all Accounts of given accountType.
 	public boolean updateAccountCapability(AccountType accountType, String operation, Capability capability) {
 		//error checking
@@ -120,6 +149,15 @@ public class AccountFileManager implements AccountManager, Serializable{
 	
 	
 	//ONLY USED IN INITIALISING DATA
+	/**
+	 * Creates the admin account.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @param accountType the account type
+	 * @param capabilities the capabilities
+	 * @return true, if successful
+	 */
 	//creates an ADMIN Account
 	public boolean createAdminAccount(String username, String password, AccountType accountType, ArrayList<Capability> capabilities) {
 		File f = new File(FILENAME);
@@ -145,6 +183,18 @@ public class AccountFileManager implements AccountManager, Serializable{
 	}
 	
 	//ONLY USED IN INITIALISING DATA
+	/**
+	 * Creates the movie goer account.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @param accountType the account type
+	 * @param capabilities the capabilities
+	 * @param name the name
+	 * @param mobileNumber the mobile number
+	 * @param email the email
+	 * @return true, if successful
+	 */
 	//creates a MOVIEGOER Account
 	public boolean createMovieGoerAccount(String username, String password, AccountType accountType, ArrayList<Capability> capabilities, 
 			String name, String mobileNumber, String email) 
@@ -172,6 +222,11 @@ public class AccountFileManager implements AccountManager, Serializable{
 	}
 	
 	
+	/**
+	 * Write to file.
+	 *
+	 * @param accountList the account list
+	 */
 	//writes an ArrayList of Accounts to the file
 	public void writeToFile(ArrayList<Account> accountList) {
 		try {

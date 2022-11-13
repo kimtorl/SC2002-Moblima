@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package boundary;
 
 import control.AccountFileManager;
@@ -8,10 +11,18 @@ import entity.AccountType;
 
 public class MainApplication {
 	
+	/** The current acc. */
 	public static Account currentAcc = null;
+	
+	/** The acc mgr. */
 	public static AccountManager accMgr = new AccountFileManager();
 	
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		int choice;
 		
@@ -42,6 +53,9 @@ public class MainApplication {
 	//Asks for username and password
 	//verifies account
 	//Assigns an Account to currentAcc if verified, or null if not verified
+	/**
+	 * Login.
+	 */
 	//user can chooose to try again or exit.
 	public static void login() {
 		
@@ -76,6 +90,9 @@ public class MainApplication {
 	
 	//Admin account
 	//Displays menu with possible options
+	/**
+	 * Admin login.
+	 */
 	//until user chooses to logout
 	public static void adminLogin() {
 		System.out.println("Welcome admin " + currentAcc.getUsername() + "!");
@@ -101,6 +118,9 @@ public class MainApplication {
 	
 	//MovieGoer account
 	//Displays menu with possible options
+	/**
+	 * Movie goer login.
+	 */
 	//until user chooses to logout
 	public static void movieGoerLogin() {
 		System.out.println("Welcome MovieGoer " + currentAcc.getUsername() + "!");

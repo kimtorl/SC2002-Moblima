@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package boundary;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,13 +24,33 @@ import entity.ClassOfCinema;
 
 public class ConfigureSystemSetting implements Capability, Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 39L;
+	
+	/** The manager. */
 	private HolidayManager manager;
+	
+	/** The price manager. */
 	private PriceManager priceManager;
+	
+	/** The acc mgr. */
 	private AccountManager accMgr;
+	
+	/** The movie mgr. */
 	private MovieManager movieMgr;
+	
+	/** The transaction mgr. */
 	private TransactionManager transactionMgr;
 	
+	/**
+	 * Instantiates a new configure system setting.
+	 *
+	 * @param m the m
+	 * @param p the p
+	 * @param accMgr the acc mgr
+	 * @param movieMgr the movie mgr
+	 * @param transactionMgr the transaction mgr
+	 */
 	public ConfigureSystemSetting(HolidayManager m, PriceManager p, AccountManager accMgr, MovieManager movieMgr,TransactionManager  transactionMgr) {
 		manager = m;
 		priceManager = p;
@@ -38,6 +61,9 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 	
 	
 	
+	/**
+	 * Perform capability.
+	 */
 	@Override
 	public void performCapability() {
 		int choice;
@@ -75,11 +101,19 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 
 
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString() {
 		String str = "Configure System Settings";
 		return str;
 	}
 	
+	/**
+	 * Edits the holiday.
+	 */
 	public void editHoliday() {
 		System.out.println("\n1. Add holiday");
 		System.out.println("2. Delete holiday");
@@ -162,6 +196,9 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 	}
 	
 	
+	/**
+	 * Edits the price.
+	 */
 	public void editPrice() {
 		System.out.println("1. Get Price"
 				+ "\n2. Update price"
@@ -183,6 +220,11 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 
 	}
 	
+	/**
+	 * Gets the the price.
+	 *
+	 * @return the the price
+	 */
 	public double getThePrice() {
 		System.out.println("Enter ticket type: 1.Adult	2.Student	3.Senior Citizen");
 		int ticketTypeInt = InputManager.getInt(1,3);
@@ -212,6 +254,9 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 		return priceManager.getPrice(ticketType, type, cinemaClass, dateTime);
 	}
 	
+	/**
+	 * Update the price.
+	 */
 	public void UpdateThePrice() {
 		System.out.println("Enter ticket type: 1.Adult	2.Student	3.Senior Citizen");
 		int ticketTypeInt = InputManager.getInt(1,3);

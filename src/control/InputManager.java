@@ -1,3 +1,6 @@
+/*
+ * 
+ */
                                                                                                                              package control;
 
 import java.time.LocalDate;
@@ -8,10 +11,18 @@ import java.util.Scanner;
 
 public class InputManager {
 	
+	/** The user input. */
 	private static Scanner userInput = new Scanner(System.in);
 	
 	
 	//gets an integer from a range from User 
+	/**
+	 * Gets the int.
+	 *
+	 * @param lower the lower
+	 * @param upper the upper
+	 * @return the int
+	 */
 	// inclusive of lower and upper bounds
 	public static int getInt(int lower, int upper) {
 		String message = "Invalid input! Please enter an integer from " + lower + " to " + upper + "!";
@@ -33,6 +44,11 @@ public class InputManager {
 	}
 	
 	//overloaded method with no bounds
+	/**
+	 * Gets the int.
+	 *
+	 * @return the int
+	 */
 	//gets an integer from a range from User 
 	public static int getInt() {
 		String message = "Invalid input! Please enter an integer!";
@@ -56,6 +72,13 @@ public class InputManager {
 	
 	
 	//gets a double from a range from User 
+	/**
+	 * Gets the double.
+	 *
+	 * @param lower the lower
+	 * @param upper the upper
+	 * @return the double
+	 */
 	// inclusive of lower and upper bounds
 	public static double getDouble(int lower, int upper) {
 		String message = "Invalid input! Please enter a double from " + lower + " to " + upper + "!";
@@ -76,6 +99,11 @@ public class InputManager {
 	}
 	
 	
+	/**
+	 * Gets the y or N.
+	 *
+	 * @return the y or N
+	 */
 	public static boolean getY_or_N() {
 		boolean invalid = true, result = false;
 		String message = "Please only enter Y or N!", input;
@@ -96,6 +124,11 @@ public class InputManager {
 	}
 	
 	
+	/**
+	 * Gets the string.
+	 *
+	 * @return the string
+	 */
 	//gets a String as input, cannot be empty String
 	public static String getString() {
 		String str;
@@ -108,6 +141,11 @@ public class InputManager {
 	
 	//used when input error
 	//return true if user wants to input again
+	/**
+	 * Try again.
+	 *
+	 * @return true, if successful
+	 */
 	//returns false if user does not want to try again
 	public static boolean tryAgain() {
 		System.out.println("Choose an option:");
@@ -120,6 +158,11 @@ public class InputManager {
 	
 	
 	
+	/**
+	 * Gets the local date.
+	 *
+	 * @return the local date
+	 */
 	//gets a LocalDate as input
 	public static LocalDate getLocalDate() {
 		LocalDate date=null;
@@ -141,6 +184,11 @@ public class InputManager {
 	}
 	
 	
+	/**
+	 * Gets the local date time.
+	 *
+	 * @return the local date time
+	 */
 	//gets a LocalDateTime as input
 	public static LocalDateTime getLocalDateTime() {
 		LocalDateTime dateTime =null;

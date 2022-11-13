@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package boundary;
 
 import java.io.Serializable;
@@ -9,14 +12,24 @@ import entity.Movie;
 
 public class Top5MovieByRating implements Capability, Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID =33L;
 	
+	/** The movie mgr. */
 	private MovieManager movieMgr;
 	
+	/**
+	 * Instantiates a new top 5 movie by rating.
+	 *
+	 * @param movieMgr the movie mgr
+	 */
 	public Top5MovieByRating(MovieManager movieMgr) {
 		this.movieMgr = movieMgr;
 	}
 
+	/**
+	 * Perform capability.
+	 */
 	@Override
 	public void performCapability() {
 		ArrayList<Movie> movieList = movieMgr.getAllMovie();
@@ -55,6 +68,11 @@ public class Top5MovieByRating implements Capability, Serializable {
 	};
 
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString() {
 		String str = "List Top 5 Movies by Rating";
 		return str;

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package boundary;
 
 import java.io.Serializable;
@@ -10,13 +13,24 @@ import entity.TypeOfMovie;
 
 public class EditMovieListing implements Capability, Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 30L;
+	
+	/** The movie mgr. */
 	private MovieManager movieMgr;
 	
+	/**
+	 * Instantiates a new edits the movie listing.
+	 *
+	 * @param movieMgr the movie mgr
+	 */
 	public EditMovieListing(MovieManager movieMgr) {
 		this.movieMgr = movieMgr;
 	}
 
+	/**
+	 * Perform capability.
+	 */
 	@Override
 	public void performCapability() {
 		int choice;
@@ -57,11 +71,19 @@ public class EditMovieListing implements Capability, Serializable {
 
 	}
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString() {
 		String str = "Edit Movie Listing";
 		return str;
 	}
 	
+	/**
+	 * List movie.
+	 */
 	public void listMovie() {
 		System.out.println("------------------------------");
 		movieMgr.listAllMovies();
@@ -69,6 +91,9 @@ public class EditMovieListing implements Capability, Serializable {
 	}
 	
 	
+	/**
+	 * Creates the movie.
+	 */
 	public void createMovie() {
 		System.out.println("Enter the Movie information");
 		System.out.println("ID: ");
@@ -139,6 +164,9 @@ public class EditMovieListing implements Capability, Serializable {
 	
 	
 	
+	/**
+	 * Update movie.
+	 */
 	public void updateMovie() {
 		System.out.println("1. Update movie ID"
 				+ "\n2. Update movie title"
@@ -286,6 +314,9 @@ public class EditMovieListing implements Capability, Serializable {
 
 	}
 	
+	/**
+	 * Removes the movie.
+	 */
 	public void removeMovie() {
 		System.out.println("Enter the movie ID to remove");
 		boolean deleted = movieMgr.deleteMovie(InputManager.getInt());

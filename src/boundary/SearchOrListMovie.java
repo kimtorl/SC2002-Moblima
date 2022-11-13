@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package boundary;
 
 import java.io.Serializable;
@@ -9,15 +12,25 @@ import entity.Movie;
 
 public class SearchOrListMovie implements Capability, Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 35L;
 	
+	/** The movie mgr. */
 	private MovieManager movieMgr;
 	
+	/**
+	 * Instantiates a new search or list movie.
+	 *
+	 * @param movieMgr the movie mgr
+	 */
 	public SearchOrListMovie(MovieManager movieMgr) {
 		this.movieMgr = movieMgr;
 	}
 
 
+	/**
+	 * Perform capability.
+	 */
 	@Override
 	public void performCapability() {
 		int choice;
@@ -52,12 +65,20 @@ public class SearchOrListMovie implements Capability, Serializable {
 
 
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString() {
 		String str = "Search/List Movies";
 		return str;
 	}
 	
 	
+	/**
+	 * List movie.
+	 */
 	//NEED TO CHECK MOVIE'S SHOWING STATUS WHEN LISTING!
 	public void listMovie() {
 		System.out.println("------------------------------");
@@ -65,6 +86,9 @@ public class SearchOrListMovie implements Capability, Serializable {
 		System.out.println("------------------------------");
 	}
 	
+	/**
+	 * Search movie by movie ID.
+	 */
 	public void searchMovieByMovieID() {
 		System.out.println("------------------------------");
 		System.out.println("Enter a movieID: ");
@@ -78,6 +102,9 @@ public class SearchOrListMovie implements Capability, Serializable {
 		
 	}
 	
+	/**
+	 * Search movie by movie title.
+	 */
 	public void searchMovieByMovieTitle() {
 		String str = InputManager.getString();
 		

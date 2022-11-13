@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package boundary;
 
 import java.io.Serializable;
@@ -9,16 +12,29 @@ import control.ShowtimeManager;
 
 public class EditMovieShowtime implements Capability, Serializable{
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 31L;
 
+	/** The showtime mgr. */
 	private ShowtimeManager showtimeMgr;
+	
+	/** The movie mgr. */
 	private MovieManager movieMgr;
 	
+	/**
+	 * Instantiates a new edits the movie showtime.
+	 *
+	 * @param showtimeMgr the showtime mgr
+	 * @param movieMgr the movie mgr
+	 */
 	public EditMovieShowtime(ShowtimeManager showtimeMgr, MovieManager movieMgr) {
 		this.showtimeMgr = showtimeMgr;
 		this.movieMgr = movieMgr;
 	}
 	
+	/**
+	 * Perform capability.
+	 */
 	@Override
 	public void performCapability() {
 		int choice;
@@ -63,11 +79,19 @@ public class EditMovieShowtime implements Capability, Serializable{
 	}
 	
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString() {
 		String str = "Edit Movie Showtime";
 		return str;
 	}
 	
+	/**
+	 * Creates the showtime.
+	 */
 	public void createShowtime() {
 		System.out.println("Enter cineplexID: ");
 		int cineplexID = InputManager.getInt();
@@ -87,6 +111,9 @@ public class EditMovieShowtime implements Capability, Serializable{
 		
 	}
 	
+	/**
+	 * Update showtime movie.
+	 */
 	public void updateShowtimeMovie() {
 		System.out.println("Enter cineplexID: ");
 		int cineplexID = InputManager.getInt();
@@ -106,6 +133,9 @@ public class EditMovieShowtime implements Capability, Serializable{
 		
 	}
 	
+	/**
+	 * Update showtime date time.
+	 */
 	public void updateShowtimeDateTime() {
 		System.out.println("Enter cineplexID: ");
 		int cineplexID = InputManager.getInt();
@@ -126,6 +156,9 @@ public class EditMovieShowtime implements Capability, Serializable{
 			System.out.println("Please try again!");
 	}
 	
+	/**
+	 * Removes the specific showtime.
+	 */
 	public void removeSpecificShowtime() {
 		System.out.println("Enter cineplexID: ");
 		int cineplexID = InputManager.getInt();
@@ -144,6 +177,9 @@ public class EditMovieShowtime implements Capability, Serializable{
 	}
 	
 	
+	/**
+	 * Removes the all showtime of movie.
+	 */
 	public void removeAllShowtimeOfMovie() {
 		System.out.println("Enter cineplexID: ");
 		int cineplexID = InputManager.getInt();

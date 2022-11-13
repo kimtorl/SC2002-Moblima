@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package boundary;
 
 import java.io.Serializable;
@@ -11,16 +14,29 @@ import entity.Transaction;
 
 public class Top5MovieByTicketSale implements Capability, Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 32L;
 
+	/** The movie mgr. */
 	private MovieManager movieMgr;
+	
+	/** The transaction mgr. */
 	private TransactionManager transactionMgr;
 	
+	/**
+	 * Instantiates a new top 5 movie by ticket sale.
+	 *
+	 * @param movieMgr the movie mgr
+	 * @param transactionMgr the transaction mgr
+	 */
 	public Top5MovieByTicketSale(MovieManager movieMgr, TransactionManager transactionMgr) {
 		this.movieMgr = movieMgr;
 		this.transactionMgr = transactionMgr;
 	}
 	
+	/**
+	 * Perform capability.
+	 */
 	@Override
 	public void performCapability() {
 		ArrayList<Transaction> allTrans;
@@ -62,6 +78,11 @@ public class Top5MovieByTicketSale implements Capability, Serializable {
 	}
 	
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString() {
 		String str = "List Top 5 Movies by Ticket Sales";
 		return str;

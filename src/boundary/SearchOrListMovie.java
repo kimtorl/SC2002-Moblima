@@ -10,6 +10,9 @@ import control.InputManager;
 import control.MovieManager;
 import entity.Movie;
 
+/**
+ * The Class Searches Or Lists Movies.
+ */
 public class SearchOrListMovie implements Capability, Serializable {
 
 	/** The Constant serialVersionUID. */

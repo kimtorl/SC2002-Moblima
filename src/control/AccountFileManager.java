@@ -19,6 +19,10 @@ import entity.Admin;
 import entity.MovieGoer;
 
 
+/**
+ * The Class AccountFileManager. Manages, access and modifies Accounts.
+ * Verfies login and can get all accounts
+ */
 public class AccountFileManager implements AccountManager, Serializable{
 	
 	/** The Constant serialVersionUID. */

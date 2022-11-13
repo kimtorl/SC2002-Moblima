@@ -22,6 +22,10 @@ import entity.TypeOfMovie;
 import entity.AccountType;
 import entity.ClassOfCinema;
 
+/**
+ * @author Cross
+ * Class to allow us to configure system settings
+ */
 public class ConfigureSystemSetting implements Capability, Serializable {
 
 	/** The Constant serialVersionUID. */

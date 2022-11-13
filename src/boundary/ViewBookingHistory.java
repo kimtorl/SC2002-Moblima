@@ -12,6 +12,10 @@ import control.TransactionManager;
 import entity.MovieGoer;
 import entity.Transaction;
 
+/**
+ * @author Cross
+ * This class allows us to access and retrieve booking history
+ */
 public class ViewBookingHistory implements Capability, Serializable {
 
 	/** The Constant serialVersionUID. */

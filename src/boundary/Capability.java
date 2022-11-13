@@ -3,6 +3,10 @@
  */
 package boundary;
 
+/**
+ * @author Cross
+ * Implemented by all classes that are for account functionalities.
+ */
 public interface Capability{
 	
 	

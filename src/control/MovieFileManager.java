@@ -17,6 +17,13 @@ import entity.Movie;
 import entity.ShowingStatus;
 import entity.TypeOfMovie;
 
+/**
+ * The Class MovieFileManager. It manages movie files, allowing us to find movies via its
+ * ID and return. It allows us to update movies on their attributes, such as duration,
+ * showing status, synopsis, and so on. It allows us to display all movies and delete
+ * movies. It is the controller class for movies.
+ * 
+ */
 public class MovieFileManager implements MovieManager, Serializable{
 
 	/** The Constant serialVersionUID. */
@@ -38,9 +45,10 @@ public class MovieFileManager implements MovieManager, Serializable{
 	
 	//returns all the movies from the file
 	/**
-	 * Gets the all movie.
+	 * Gets the all movie. It reads from the file and stores it into an ArrayList
+	 * of Movie.
 	 *
-	 * @return the all movie
+	 * @return the ArrayList of movies called movieList
 	 */
 	//if file not found, an empty ArrayList is returned
 	@SuppressWarnings("unchecked")
@@ -64,7 +72,7 @@ public class MovieFileManager implements MovieManager, Serializable{
 	
 	
 	/**
-	 * Write to file.
+	 * Write to file an arrayList of movies.
 	 *
 	 * @param movieList the movie list
 	 */
@@ -89,7 +97,11 @@ public class MovieFileManager implements MovieManager, Serializable{
 	
 	/**
 	 * Creates the movie.
-	 *
+	 * reads the current list of movies if file exists
+	 * gets movieList if there's an existing file, else initialise an empty ArrayList
+	 * check for duplicates, return false if duplicates found
+	 * creates a movie and append it to the list.
+	 * sorts the movieList based on movieID. Then write the list to the file.
 	 * @param movieID the movie ID
 	 * @param movieTitle the movie title
 	 * @param movieType the movie type
@@ -146,10 +158,12 @@ public class MovieFileManager implements MovieManager, Serializable{
 	}
 	
 	/**
-	 * Find movie.
-	 *
+	 * Finds movie from the set of all movies using its movieID, iterates through the list
+	 * until it finds a movie with the same movieID. If found,break and return the movie.
+	 * 
+	 * if list is empty/null, we will return null
 	 * @param movieID the movie ID
-	 * @return the movie
+	 * @return the Movie
 	 */
 	//overloaded method
 	public Movie findMovie(int movieID) {
@@ -168,8 +182,8 @@ public class MovieFileManager implements MovieManager, Serializable{
 	
 	//finds and returns a specific movie based on movieID
 	/**
-	 * Find movie.
-	 *
+	 * Finds and returns a specific movie based on movieID from an arrayList of movies.
+	 * Returns null if not found.
 	 * @param movieList the movie list
 	 * @param movieID the movie ID
 	 * @return the movie
@@ -213,7 +227,13 @@ public class MovieFileManager implements MovieManager, Serializable{
 	
 	//reads movieList from file
 	//update movie attributes
-	/**
+	/**Reads movieList from file
+	 * Check if MovieID to be updated/replace exists or not
+	 * If it doesn't, return false
+	 * Else, check if the new movieID to place the old one exists or not
+	 * If yes, then there is a duplicate, and return false
+	 * else, update the movieID and return true.
+	 *
 	 * Update movie ID.
 	 *
 	 * @param oldMovieID the old movie ID
@@ -247,7 +267,10 @@ public class MovieFileManager implements MovieManager, Serializable{
 	}
 	
 	/**
-	 * Update movie title.
+	 * Update movie title. Iterate through the list to look for the movie title to be updated
+	 * If cannot be found, return false
+	 * If found, update all the movie titles with this name to the new movie title,
+	 * and return true
 	 *
 	 * @param oldMovieTitle the old movie title
 	 * @param newMovieTitle the new movie title
@@ -276,8 +299,9 @@ public class MovieFileManager implements MovieManager, Serializable{
 	}
 	
 	/**
-	 * Update movie type.
-	 *
+	 * Update movie type. Use movieID to find the movie and update its movie type.
+	 * Iterate through list and check if movieID matches.
+	 * If successful, update and return true, else return false
 	 * @param movieID the movie ID
 	 * @param newMovieType the new movie type
 	 * @return true, if successful
@@ -300,7 +324,8 @@ public class MovieFileManager implements MovieManager, Serializable{
 	}
 	
 	/**
-	 * Update movie language.
+	 * Update movie language. Iterate through list to find a matching movieID, then update the language
+	 * and return true, else return false.
 	 *
 	 * @param movieID the movie ID
 	 * @param newLanguage the new language
@@ -323,7 +348,8 @@ public class MovieFileManager implements MovieManager, Serializable{
 	}
 	
 	/**
-	 * Update movie duration.
+	 * Update movie duration. Iterate through list and find matching movetitle, update the 
+	 * duration and return true.
 	 *
 	 * @param movieTitle the movie title
 	 * @param newDuration the new duration
@@ -342,7 +368,8 @@ public class MovieFileManager implements MovieManager, Serializable{
 	}
 	
 	/**
-	 * Update movie showing status.
+	 * Update movie showing status.  Iterate through list and find matching movie titles, update the 
+	 * duration and return true. If cannot find matching title, return false, and no updates.
 	 *
 	 * @param movieTitle the movie title
 	 * @param newShowingStatus the new showing status
@@ -370,6 +397,9 @@ public class MovieFileManager implements MovieManager, Serializable{
 	
 	/**
 	 * Update movie synopsis.
+	 * Update movie synopsis. Use movieTitle to find the movie and update its movie synopsis.
+	 * Iterate through list and check if movie title matches.Update if matches.
+	 * If successful, update and return true, else return false
 	 *
 	 * @param movieTitle the movie title
 	 * @param newSynopsis the new synopsis
@@ -398,6 +428,9 @@ public class MovieFileManager implements MovieManager, Serializable{
 
 	/**
 	 * Update movie director.
+	 * Update movie director.  Iterate through list and find matching movie titles, update the 
+	 * director and return true. If cannot find at least one
+	 * matching title, return false, and no updates.
 	 *
 	 * @param movieTitle the movie title
 	 * @param newDirector the new director
@@ -425,6 +458,8 @@ public class MovieFileManager implements MovieManager, Serializable{
 	
 	/**
 	 * Update movie cast.
+	 *   Iterate through list and find matching movie titles, update the 
+	 * cast and return true. If cannot find matching title, return false, and no updates.
 	 *
 	 * @param movieTitle the movie title
 	 * @param newCast the new cast
@@ -452,6 +487,8 @@ public class MovieFileManager implements MovieManager, Serializable{
 	
 	/**
 	 * Update movie review.
+	 * Iterate through list and find matching movie titles, update the 
+	 * reviews and return true. If cannot find matching title, return false, and no updates.
 	 *
 	 * @param movieTitle the movie title
 	 * @param newReview the new review
@@ -477,7 +514,8 @@ public class MovieFileManager implements MovieManager, Serializable{
 	
 	/**
 	 * Update movie rating.
-	 *
+	 * Iterate through list and find matching movie titles, update the 
+	 * rating and return true. If cannot find matching title, return false, and no updates.
 	 * @param movieTitle the movie title
 	 * @param newRating the new rating
 	 * @return true, if successful
@@ -496,7 +534,8 @@ public class MovieFileManager implements MovieManager, Serializable{
 	
 	/**
 	 * Update ticket sales.
-	 *
+	 * Iterate through list and find matching movie ID, update the 
+	 * numOfTickets and return true. If cannot find matching ID, return false, and no updates.
 	 * @param movieID the movie ID
 	 * @param numOfTickets the num of tickets
 	 */
@@ -518,7 +557,8 @@ public class MovieFileManager implements MovieManager, Serializable{
 	//delete a movie based on movieID 
 	/**
 	 * Delete movie.
-	 *
+	 * Iterate through list and find matching movie ID, delete the movie
+	 * and return true. If cannot find matching ID, return false, and no updates.
 	 * @param movieID the movie ID
 	 * @return true, if successful
 	 */
@@ -540,7 +580,7 @@ public class MovieFileManager implements MovieManager, Serializable{
 	
 	
 	/**
-	 * Display movie info.
+	 * Display all the movie info.
 	 *
 	 * @param movieID the movie ID
 	 */
@@ -556,6 +596,7 @@ public class MovieFileManager implements MovieManager, Serializable{
 	//list out all movies
 	/**
 	 * List all movies.
+	 * checks showing status before printing
 	 * @param regardlessOfShowingStatus if true, print all movie of Coming Soon, Preview and NowShowing
 	 */
 	//checks showing status before printing

@@ -4,7 +4,7 @@
 package entity;
 
 /**
- * The Enum ClassOfCinema.
+ * The Enum ClassOfCinema, affects prices.
  */
 public enum ClassOfCinema {
 	

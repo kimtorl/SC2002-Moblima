@@ -10,6 +10,9 @@ import control.InputManager;
 import control.MovieManager;
 import control.ShowtimeManager;
 
+/**
+ * The Class Edit Movie Showtimes.
+ */
 public class EditMovieShowtime implements Capability, Serializable{
 
 	/** The Constant serialVersionUID. */

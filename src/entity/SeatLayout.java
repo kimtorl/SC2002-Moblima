@@ -7,7 +7,8 @@ import java.io.Serializable;
 
 /**
  * The Class SeatLayout.
- *
+ * Seat layour represents the seatlayout in a cinema, with the size 
+ * represented as no.of rows and columns.
  * @author Cross
  */
 public class SeatLayout implements Serializable{

@@ -12,6 +12,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+/**
+ * The Class InputManager. This class responsibilty is to get various types of inputs from the user and perform error checking on them.
+ * Input Manager does not modify any value, it only returns value based on user input.
+ * The methods are static.
+ */
 public class InputManager {
 	
 	/** Scanner initialised as static*/

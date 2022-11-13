@@ -10,6 +10,9 @@ import java.util.Comparator;
 import control.MovieManager;
 import entity.Movie;
 
+/**
+ * The Class Top5MovieByRating. The Class displays Top5MovieByTicketSales.
+ */
 public class Top5MovieByRating implements Capability, Serializable {
 
 	/** The Constant serialVersionUID. */

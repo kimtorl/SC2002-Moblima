@@ -9,7 +9,8 @@ import boundary.Capability;
 
 /**
  * @author Cross
- *
+ * This class represents the account of a MovieGoer/Buyer and has attributes storing
+ * information on the movieGoer. We can access capabilities of movieGoer.
  */
 public class MovieGoer extends Account{
 

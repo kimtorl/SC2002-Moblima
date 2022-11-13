@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * The Class Holiday.
+ * The Class Holiday, telling us the date, and allowing us to modify it.
  */
 public class Holiday implements Serializable {
 

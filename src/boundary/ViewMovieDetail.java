@@ -8,6 +8,10 @@ import java.io.Serializable;
 import control.InputManager;
 import control.MovieManager;
 
+/**
+ * @author Cross
+ * This class allows us to view movie details
+ */
 public class ViewMovieDetail implements Capability, Serializable {
 
 	/** The Constant serialVersionUID. */

@@ -13,6 +13,9 @@ import entity.Movie;
 import entity.SeatLayout;
 import entity.Showtime;
 
+/**
+ * The Interface ShowtimeManager.
+ */
 public interface ShowtimeManager {
 	
 	/**

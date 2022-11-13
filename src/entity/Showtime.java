@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package entity;
 
 import java.io.Serializable;
@@ -35,12 +38,14 @@ public class Showtime implements Serializable{
 	private SeatLayout seatLayout;
 	
 	
-	//Constructor
+
 	/**
-	 * @param cinemaCode
-	 * @param movie
-	 * @param dateTime
-	 * @param seatLayout
+	 * Instantiates a new showtime.
+	 *
+	 * @param cinemaCode the cinemaCode of the Showtime
+	 * @param movie the Movie of the Showtime
+	 * @param dateTime date and time of the Showtime
+	 * @param seatLayout the seatLayout of the Showtime
 	 */
 	public Showtime(String cinemaCode, Movie movie, LocalDateTime dateTime, SeatLayout seatLayout) {
 		this.cinemaCode = cinemaCode;
@@ -53,7 +58,7 @@ public class Showtime implements Serializable{
 	
 	/**
 	 * checks if this Showtime is on a weekend i.e. Fri 6pm to Sun
-	 * @return
+	 * @return true if its Fri 6pm to Sun, else return false
 	 */
 	public boolean isWeekend() {
 		DayOfWeek day = dateTime.getDayOfWeek();
@@ -66,8 +71,8 @@ public class Showtime implements Serializable{
 	}
 	
 	/**
-	 * prints out the date and time to in a specific format as a string
-	 * @return
+	 * convert the LocalDateTime to a formatted String 
+	 * @return a String of dateTime based on a given format
 	 */
 	public String dateTimeToString() {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -78,16 +83,18 @@ public class Showtime implements Serializable{
 	
 	/**
 	 * gets the CinemaCode
-	 * @return
+	 * @return a String which is the cinemaCode 
 	 */
 	public String getCinemaCode() {
 		return cinemaCode;
 	}
 
 
+
 	/**
-	 * sets CinemaCode
-	 * @param cinemaCode
+	 * Sets the cinemaCode of the Showtime.
+	 *
+	 * @param cinemaCode the new cinemaCode of the Showtime
 	 */
 	public void setCinemaCode(String cinemaCode) {
 		this.cinemaCode = cinemaCode;
@@ -95,16 +102,18 @@ public class Showtime implements Serializable{
 	
 	/**
 	 * gets Movie
-	 * @return
+	 * @return a Movie object
 	 */
 	public Movie getMovie() {
 		return movie;
 	}
 
 
+
 	/**
-	 * sets Movie
-	 * @param movie
+	 * Sets the Movie of the Showtime.
+	 *
+	 * @param movie the new Movie of the Showtime
 	 */
 	public void setMovie(Movie movie) {
 		this.movie = movie;
@@ -113,16 +122,18 @@ public class Showtime implements Serializable{
 
 	/**
 	 * gets the Date and Time
-	 * @return
+	 * @return a LocalDateTime object
 	 */
 	public LocalDateTime getDateTime() {
 		return dateTime;
 	}
 
 
+
 	/**
-	 * sets the Date and Time
-	 * @param dateTime
+	 * Sets the date and time of the Showtime.
+	 *
+	 * @param dateTime the new date and time of the Showtime
 	 */
 	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
@@ -130,8 +141,8 @@ public class Showtime implements Serializable{
 
 
 	/**
-	 * gets the seatLayout
-	 * @return
+	 * gets the seatLayout attribute
+	 * @return a SeatLayout object
 	 */
 	public SeatLayout getSeatLayout() {
 		return seatLayout;

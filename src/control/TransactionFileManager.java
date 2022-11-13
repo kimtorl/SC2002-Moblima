@@ -15,6 +15,11 @@ import java.util.ArrayList;
 
 import entity.Transaction;
 
+/**
+ * @author Cross
+ * Represents TransactionFileManager which implements methods of transaction manager
+ * Allows us to modify and retrieve transactions.
+ */
 public class TransactionFileManager implements TransactionManager, Serializable {
 
 	

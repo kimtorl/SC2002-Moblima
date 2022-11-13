@@ -7,7 +7,9 @@ import java.io.Serializable;
 
 /**
  * @author Cross
- *
+ * The seat class tells us information about the location of the seat and whether
+ * it is booked or not. We can also retrieve information on the seat or
+ * modify them.
  */
 public class Seat implements Serializable{
 	

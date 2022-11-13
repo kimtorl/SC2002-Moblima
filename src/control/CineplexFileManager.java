@@ -16,6 +16,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+/**
+ * @author Cross
+ * Represents CineplexFileManager to implement cineplex manager and
+ * allows us to access and modify Cineplex files.
+ */
 public class CineplexFileManager implements CineplexManager, Serializable{
 	
 	/** The Constant serialVersionUID. */

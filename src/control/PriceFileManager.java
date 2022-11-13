@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package control;
 
 import java.io.BufferedReader;
@@ -24,10 +27,13 @@ import entity.TypeOfMovie;
  * <p>This class handles the CRUD operations of the Price File Manager, our databse being a CSV file </p>
  * @author Lin Kai 
  */
-
 public class PriceFileManager implements PriceManager, Serializable{
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Represents the database for our prices.
+	 */
 	public static final String FILENAME = "Database/prices.txt";
 	
 	
@@ -124,8 +130,8 @@ public class PriceFileManager implements PriceManager, Serializable{
 	 * @param movieType the type of movie 
 	 * @param cinemaClass which class of cinema does it belong to 
 	 * @param dateTime the current time, so if its before 6 or after 6 
-	 * @param newPrice
-	 * @return
+	 * @param newPrice the new price to update to
+	 * @return boolean if update is successful or not
 	 */
     public boolean updatePrice(TicketType ticketType, TypeOfMovie movieType, ClassOfCinema cinemaClass, LocalDateTime dateTime, double newPrice) {
     	String price = String.valueOf(newPrice);//convert price to String
@@ -183,11 +189,10 @@ ArrayList<String> queries = new ArrayList<String>();
     
 	
 	/** 
+	 * check if datetime is on a weekend
 	 * @param dateTime current time 
 	 * @return boolean if it is a weekend or not 
 	 */
-	//checks if this dateTime is on a weekend
-
     public boolean isWeekend(LocalDateTime dateTime) {
 		DayOfWeek day = dateTime.getDayOfWeek();
 		if(day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) {
@@ -197,6 +202,12 @@ ArrayList<String> queries = new ArrayList<String>();
     }
     
     
+    /**
+     * Checks if is holiday.
+     *
+     * @param dateTime the date time
+     * @return true, if is holiday
+     */
     public boolean isHoliday(LocalDateTime dateTime) {
     	HolidayFileManager holidayMgr = new HolidayFileManager();
     	return holidayMgr.isHoliday(dateTime.toLocalDate());
@@ -207,10 +218,15 @@ ArrayList<String> queries = new ArrayList<String>();
     /**
 	 * A trie node class 
 	 */
-    
     public static class TrieNode implements Serializable {
+        
+        /** The Constant serialVersionUID. */
         private static final long serialVersionUID = 1L;
+		
+		/** The children. */
 		Map<String, TrieNode> children = new HashMap<String, TrieNode>();
+        
+        /** The final information. */
         String finalInformation = "";
     }
 
@@ -221,9 +237,18 @@ ArrayList<String> queries = new ArrayList<String>();
 	 * 
 	 */
     public static class Trie implements Serializable{
+        
+        /** The Constant serialVersionUID. */
         private static final long serialVersionUID = 1L;
+		
+		/** The root. */
 		TrieNode root = new TrieNode();
 
+        /**
+         * Insert information.
+         *
+         * @param currentLine the current line
+         */
         public void insertInformation(String[] currentLine) {
             String finalPrice = currentLine[currentLine.length - 1];
             TrieNode node = root;

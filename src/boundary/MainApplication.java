@@ -9,6 +9,10 @@ import control.InputManager;
 import entity.Account;
 import entity.AccountType;
 
+/**
+ * @author Cross
+ * Main application of the entire program.
+ */
 public class MainApplication {
 	
 	/** The Account of the current user*/

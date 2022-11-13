@@ -9,7 +9,7 @@ import boundary.Capability;
 
 /**
  * @author Cross
- *
+ * Represents the Admin Account
  */
 public class Admin extends Account {
 

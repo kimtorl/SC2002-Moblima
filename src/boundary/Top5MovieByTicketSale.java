@@ -12,6 +12,9 @@ import control.TransactionManager;
 import entity.Movie;
 import entity.Transaction;
 
+/**
+ * The Class displays Top5MovieByTicketSales.
+ */
 public class Top5MovieByTicketSale implements Capability, Serializable {
 
 	/** The Constant serialVersionUID. */

@@ -10,6 +10,9 @@ import control.InputManager;
 import control.MovieManager;
 import entity.Movie;
 
+/**
+ * The Class Reviews Movie.
+ */
 public class ReviewMovie implements Capability, Serializable {
 
 	/** The Constant serialVersionUID. */

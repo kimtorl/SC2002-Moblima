@@ -4,7 +4,9 @@
 package entity;
 
 /**
- * The Enum TicketType.
+ * The Enum TicketType indicating the type of ticket. Such as
+ * Adult ticket, Student ticket, Senior Citizen ticket, as they follow 
+ * different pricing
  */
 public enum TicketType {
 	

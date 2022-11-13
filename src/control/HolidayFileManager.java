@@ -27,7 +27,11 @@ public class HolidayFileManager implements HolidayManager, Serializable{
 	
 	/**
 	 * Creates the holiday.
-	 *
+	 * It takes in a date, and check if the holiday already exists in the
+	 * database. If it doesn't, we will add in the new holiday date by appending it.
+	 * Else, we will return false.
+	 * Once appended, we will sort the arraylist of date representing holiday.
+	 * once done we will write the new list into the file.
 	 * @param date the date
 	 * @return true, if successful
 	 */
@@ -64,7 +68,7 @@ public class HolidayFileManager implements HolidayManager, Serializable{
 	
 	/**
 	 * Delete holiday.
-	 *
+	 * It takes in a date and iterates through the arrayList of LocalDate holidays and deletes
 	 * @param date the date
 	 * @return true, if successful
 	 */

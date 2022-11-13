@@ -1,5 +1,5 @@
 /*
- * 
+ * Cineplex class represents a Cathay Cineplex building and the list of cinema represents the cinema halls.
  */
 package entity;
 

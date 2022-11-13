@@ -226,8 +226,13 @@ public class InitialiseData {
 		holidayMgr.createHoliday(LocalDate.of(2023, 12, 25));	//Christmas
 		
 		
-		//creates Showtimes for each Cinema based on current System time
-		showtimeMgr.populateAllCinemaShowtime(LocalDateTime.now());
+		//creates Showtimes for each Cinema based on current System time for the next daysInAdvance=5 days
+		int daysInAdvance = 5;
+		for(int i =0; i < daysInAdvance; i++) {
+			showtimeMgr.populateAllCinemaShowtime(LocalDateTime.now().plusDays(i));
+		}
+		
+		
 		//Create Past transactions - not needed?
 		
 		//Create Price files

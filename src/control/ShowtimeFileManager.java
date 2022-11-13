@@ -428,7 +428,7 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 		
 		
 		Movie movie;
-		int attempts=0, maxAttempts =3;
+		int attempts=0, maxAttempts =2;
 		
 		//Add 5 showtimes for each cinema
 		for(int i=0; i < 5; i++) {

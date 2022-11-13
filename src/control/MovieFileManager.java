@@ -556,19 +556,34 @@ public class MovieFileManager implements MovieManager, Serializable{
 	//list out all movies
 	/**
 	 * List all movies.
+	 * @param regardlessOfShowingStatus if true, print all movie of Coming Soon, Preview and NowShowing
 	 */
 	//checks showing status before printing
-	public void listAllMovies() {
+	public void listAllMovies(boolean regardlessOfShowingStatus) {
 		ArrayList<Movie> movieList = getAllMovie();
-		for(Movie movie: movieList) {
-			if(movie.getShowingStatus() == ShowingStatus.PREVIEW || movie.getShowingStatus() == ShowingStatus.NOW_SHOWING)
-			{
-				System.out.printf("%-80s | %s",movie.toString(),movie.getMovieType().toString());
-				System.out.println();
-				
+		
+		if(!regardlessOfShowingStatus) {
+			for(Movie movie: movieList) {
+				if(movie.getShowingStatus() == ShowingStatus.PREVIEW || movie.getShowingStatus() == ShowingStatus.NOW_SHOWING)
+				{
+					System.out.printf("%-80s | %s",movie.toString(),movie.getMovieType().toString());
+					System.out.println();
+					
+				}
+			}
+		}
+		else {
+			for(Movie movie: movieList) {
+				if(movie.getShowingStatus() != ShowingStatus.END_OF_SHOWING)
+				{
+					System.out.printf("%-80s | %s",movie.toString(),movie.getMovieType().toString());
+					System.out.println();
+					
+				}
 			}
 		}
 	}
+	
 	
 	
 }

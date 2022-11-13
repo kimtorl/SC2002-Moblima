@@ -82,7 +82,7 @@ public class SearchOrListMovie implements Capability, Serializable {
 	//NEED TO CHECK MOVIE'S SHOWING STATUS WHEN LISTING!
 	public void listMovie() {
 		System.out.println("------------------------------");
-		movieMgr.listAllMovies();
+		movieMgr.listAllMovies(true);
 		System.out.println("------------------------------");
 	}
 	

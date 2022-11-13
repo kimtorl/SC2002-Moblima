@@ -85,8 +85,10 @@ public class EditMovieListing implements Capability, Serializable {
 	 * List movie.
 	 */
 	public void listMovie() {
+		System.out.println("Do you want to view movies that are not yet available for booking? Enter Y/N:");
+		boolean seeUnavailable = InputManager.getY_or_N();
 		System.out.println("------------------------------");
-		movieMgr.listAllMovies();
+		movieMgr.listAllMovies(seeUnavailable);
 		System.out.println("------------------------------");
 	}
 	

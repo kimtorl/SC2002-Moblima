@@ -30,6 +30,7 @@ public class PriceFileManager implements PriceManager, Serializable{
 	private static final long serialVersionUID = 1L;
 	public static final String FILENAME = "Database/prices.txt";
 	
+	
     /**
 	 * Trie is represented as t.
 	 * This method serializes the trie and writes it to a file 
@@ -156,7 +157,7 @@ ArrayList<String> queries = new ArrayList<String>();
     	else if (ticketType == TicketType.SENIORCITIZEN) queries.add("Senior Citizen");
     	
     	//second query
-    	if (isWeekend(dateTime)) queries.add("Weekend");
+    	if (isWeekend(dateTime) || isHoliday(dateTime)) queries.add("Weekend");
     	else queries.add("Weekday");
     	
     	//third query
@@ -193,6 +194,12 @@ ArrayList<String> queries = new ArrayList<String>();
 			return true;
 		}
 		return false;
+    }
+    
+    
+    public boolean isHoliday(LocalDateTime dateTime) {
+    	HolidayFileManager holidayMgr = new HolidayFileManager();
+    	return holidayMgr.isHoliday(dateTime.toLocalDate());
     }
     
     

@@ -241,6 +241,6 @@ public interface MovieManager {
 	 * List all movies.
 	 */
 	//prints out all movies
-	public void listAllMovies();
+	public void listAllMovies(boolean regardlessOfShowingStatus);
 			
 }

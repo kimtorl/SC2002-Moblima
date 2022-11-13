@@ -15,6 +15,7 @@ import control.ShowtimeManager;
 import control.TransactionManager;
 import entity.ClassOfCinema;
 import entity.MovieGoer;
+import entity.ShowingStatus;
 import entity.Showtime;
 import entity.TicketType;
 import entity.TypeOfMovie;
@@ -85,6 +86,11 @@ public class BookTicket implements Capability, Serializable {
 			else break; //movie selected
 		}while(tryAgain);
 		
+		if(movieMgr.findMovie(movieID).getShowingStatus() == ShowingStatus.COMING_SOON) {
+			System.out.println("Booking only allowed for 'Preview' and 'Now Showing' status!");
+			return;
+		}
+		
 		//showtime selection
 		Showtime st = selectShowtimes(movieID);
 		if (st == null) return; //user exits
@@ -125,7 +131,7 @@ public class BookTicket implements Capability, Serializable {
 		int movieID;
 		
 		System.out.println("Select a movie from below:");
-		movieMgr.listAllMovies();
+		movieMgr.listAllMovies(true);
 		System.out.println("Enter movieID: (-1 to exit)");
 		movieID = InputManager.getInt();
 

@@ -45,12 +45,10 @@ public class Top5MovieByRating implements Capability, Serializable {
 			}
 		}
 		
-		for(int i = 0; i < topMoviesNoDups.size()||i<5; i++)//print top 5
-		{
-			System.out.print(topMoviesNoDups.get(i).getMovieTitle()+
-					" | Rating: ");
-			System.out.printf("%.2f", topMoviesNoDups.get(i).getOverallReviewerRating());
-			System.out.println("\n");
+		for(int i = 0; i < topMoviesNoDups.size()&& i<5; i++){//print top 5
+			System.out.printf("Top %d. %-50s | Rating: %.2f\n",i+1,
+					topMoviesNoDups.get(i).getMovieTitle(),
+					topMoviesNoDups.get(i).getOverallReviewerRating());
 
 		}
 		

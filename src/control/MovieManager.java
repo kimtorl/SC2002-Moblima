@@ -83,7 +83,9 @@ public interface MovieManager {
 	//updates the rating of all movies of the same title
 	public boolean updateMovieRating(String movieTitle, ArrayList<Integer> newRating);
 	
-	
+	//updates all movies of same title's ticket sales when a transaction is made
+	public void updateTicketSales(int movieID, int numOfTickets);
+		
 	//reads movieList from file
 	//delete a movie based on movieID 
 	//save updated movieList to file

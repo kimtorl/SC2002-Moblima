@@ -362,6 +362,19 @@ public class MovieFileManager implements MovieManager, Serializable{
 	}
 	
 	
+	//updates all movies of same title's ticket sales when a transaction is made
+	public void updateTicketSales(int movieID, int numOfTickets) {
+		ArrayList<Movie> movieList = getAllMovie();
+		
+		String movieTitle = findMovie(movieID).getMovieTitle();
+		
+		for(Movie m : movieList) {
+			if(m.getMovieTitle().equals(movieTitle)) m.setTicketSales(m.getTicketSales()+numOfTickets);
+		}
+		
+		writeToFile(movieList);
+	}
+	
 	
 	//reads movieList from file
 	//delete a movie based on movieID 

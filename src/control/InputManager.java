@@ -1,7 +1,10 @@
 /*
- * 
+ * This class responsibilty is to get various types of inputs from the user and perform error checking on them.
+ * Input Manager does not modify any value, it only returns value based on user input.
+ * The methods are static.
  */
-                                                                                                                             package control;
+                                                                                                                             
+package control;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,20 +14,19 @@ import java.util.Scanner;
 
 public class InputManager {
 	
-	/** The user input. */
+	/** Scanner initialised as static*/
 	private static Scanner userInput = new Scanner(System.in);
 	
 	
-	//gets an integer from a range from User 
 	/**
+	 * gets an integer from User within a specified range.
 	 * gets an integer bounded by a range from User, range is lower to upper inclusive.
 	 * if user inputs integer out of range, prompt the user for another input
 	 * 
-	 * @param lower the lower
-	 * @param upper the upper
-	 * @return the int
+	 * @param lower the lower bound
+	 * @param upper the upper bound
+	 * @return user input of type integer
 	 */
-	// inclusive of lower and upper bounds
 	public static int getInt(int lower, int upper) {
 		String message = "Invalid input! Please enter an integer from " + lower + " to " + upper + "!";
 		int choice;
@@ -44,13 +46,11 @@ public class InputManager {
 		return choice;
 	}
 	
-	//overloaded method with no bounds
 	/**
-	 * Gets the int.
-	 * Overloaded method with no bounds.
+	 * 
+	 * Overloaded method with no bounds to get integer value. Should take note to check for invalid input when using this method.
 	 * @return the int
-	 */
-	//gets an integer from a range from User 
+	*/
 	public static int getInt() {
 		String message = "Invalid input! Please enter an integer!";
 		int choice=-1;
@@ -70,18 +70,15 @@ public class InputManager {
 		}
 		return choice;
 	}
-	
-	
-	//gets a double from a range from User 
+	 
 	/**
 	 * Gets a double bounded within a range from the user. It is inclusive of the lower and upper bound
 	 * If input exceeds the range, prompt user for the input again.
 	 *
-	 * @param lower the lower
-	 * @param upper the upper
-	 * @return the double
+	 * @param lower the lower bound
+	 * @param upper the upper bound
+	 * @return user input of type double
 	 */
-	// inclusive of lower and upper bounds
 	public static double getDouble(int lower, int upper) {
 		String message = "Invalid input! Please enter a double from " + lower + " to " + upper + "!";
 		double choice;
@@ -102,9 +99,10 @@ public class InputManager {
 	
 	
 	/**
-	 * Gets the y or N.
 	 * Gets a boolean value.
-	 * @return the y or N
+	 * Gets user to input Y,y,N,n to return a boolean value.
+	 * 
+	 * @return boolean value
 	 */
 	public static boolean getY_or_N() {
 		boolean invalid = true, result = false;
@@ -127,11 +125,10 @@ public class InputManager {
 	
 	
 	/**
-	 * Gets a string.
+	 * Gets a non empty string.
 	 *
 	 * @return the string
 	 */
-	//gets a String as input, cannot be empty String
 	public static String getString() {
 		String str;
 		do {
@@ -145,10 +142,11 @@ public class InputManager {
 	//return true if user wants to input again
 	/**
 	 * Try again.
-	 *
-	 * @return true, if successful
+	 * Used when there is input error.
+	 * returns true if user wants to input again
+	 * returns false otherwise
+	 * @return boolean value 
 	 */
-	//returns false if user does not want to try again
 	public static boolean tryAgain() {
 		System.out.println("Choose an option:");
 		System.out.println("1. Try again");
@@ -165,7 +163,6 @@ public class InputManager {
 	 * 
 	 * @return the local date
 	 */
-	//gets a LocalDate as input
 	public static LocalDate getLocalDate() {
 		LocalDate date=null;
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -188,7 +185,7 @@ public class InputManager {
 	
 	/**
 	 * Gets the local date time.
-	 *
+	 * Format is yyyy MM dd HH:mm
 	 * @return the local date time
 	 */
 	//gets a LocalDateTime as input

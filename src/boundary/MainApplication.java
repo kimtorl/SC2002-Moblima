@@ -11,16 +11,17 @@ import entity.AccountType;
 
 public class MainApplication {
 	
-	/** The current acc. */
+	/** The Account of the current user*/
 	public static Account currentAcc = null;
 	
-	/** The acc mgr. */
+	/** The Control class for Account */
 	public static AccountManager accMgr = new AccountFileManager();
 	
 	
 	/**
-	 * The main method.
-	 *
+	 * The main method. Run this main method to start the application.
+	 * Refer to the setup guide if there are errors.
+	 *	
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
@@ -49,12 +50,13 @@ public class MainApplication {
 		}while(choice !=2);
 	}
 	
-	
-	//Asks for username and password
-	//verifies account
-	//Assigns an Account to currentAcc if verified, or null if not verified
+
 	/**
 	 * Login.
+	 * Asks for username and password
+	 * AccountManager verifies account.
+	 * Assigns an Account to currentAcc if verified, or null if not verified
+	 * The corresponding admin or movieGoer method is called depending on the Account that was returned to currentAcc.
 	 */
 	//user can chooose to try again or exit.
 	public static void login() {
@@ -88,12 +90,13 @@ public class MainApplication {
 		}
 	}
 	
-	//Admin account
-	//Displays menu with possible options
+
+	
 	/**
-	 * Admin login.
-	 */
-	//until user chooses to logout
+	 * Admin logged in.
+	 * Displays menu and prints out the array list of capabilities
+	 * until Admin logs out.
+	*/
 	public static void adminLogin() {
 		System.out.println("Welcome admin " + currentAcc.getUsername() + "!");
 		int choice, numOfOptions;
@@ -115,13 +118,13 @@ public class MainApplication {
 		}while(choice != numOfOptions);
 		
 	}
+
 	
-	//MovieGoer account
-	//Displays menu with possible options
 	/**
-	 * Movie goer login.
+	 * MovieGoer logged in.
+	 * Displays menu and prints out the array list of capabilities
+	 * 	until user chooses to logout
 	 */
-	//until user chooses to logout
 	public static void movieGoerLogin() {
 		System.out.println("Welcome MovieGoer " + currentAcc.getUsername() + "!");
 		int choice, numOfOptions;

@@ -1,22 +1,29 @@
 package boundary;
 import java.io.Serializable;
 import java.time.LocalDate;
-
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import java.time.format.DateTimeParseException;
 
 import control.HolidayManager;
 import control.InputManager;
+import control.PriceManager;
 import entity.Holiday;
+import entity.TicketType;
+import entity.TypeOfMovie;
+import entity.ClassOfCinema;
 
 public class ConfigureSystemSetting implements Capability, Serializable {
 
 	private static final long serialVersionUID = 39L;
 	private HolidayManager manager;
+	private PriceManager priceManager;
 	
-	public ConfigureSystemSetting(HolidayManager m) {
+	public ConfigureSystemSetting(HolidayManager m, PriceManager p) {
 		manager = m;
+		priceManager = p;
 	}
 	
 	
@@ -143,7 +150,85 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 	
 	
 	public void editPrice() {
+		System.out.println("1. Get Price"
+				+ "\n2. Update price"
+				+ "\n3. Exit");
+		int choice;
+		do {
+			choice = InputManager.getInt(1, 2);
+			switch(choice) {
+				case 1:
+					System.out.print("Price of ticket is: ");
+					System.out.println(getThePrice());
+					break;
+				case 2:
+					UpdateThePrice();
+					break;
+				default:		
+			}
+		}while(choice!=3);
+
+	}
+	
+	public double getThePrice() {
+		System.out.println("Enter ticket type: 1.Adult	2.Student	3.Senior Citizen");
+		int ticketTypeInt = InputManager.getInt(1,3);
+		TicketType ticketType = TicketType.values()[ticketTypeInt-1];
+		//
+		System.out.println("Enter number for the type of Movie: "
+				+ "\n1.BLOCKBUSTER_2D\n2.BLOCKBUSTER_3D\n3.NONBLOCKBUSTER_2D\n4.NONBLOCKBUSTER_3D");
+		int typeInt = InputManager.getInt(1,4);
+		TypeOfMovie type = TypeOfMovie.values()[typeInt-1];
+		//
+		System.out.println("Enter number for the class of cinema: "
+				+ "\n1.Standard\n2.Platinum Movie Suites");
+		int cinemaClassInt = InputManager.getInt(1,2);
+		ClassOfCinema cinemaClass = ClassOfCinema.values()[cinemaClassInt-1];
+		//
+		System.out.println("Enter the date of movie: yyyy-mm-dd ");
+		LocalDate date = InputManager.getLocalDate();
+		System.out.println("After or before 6pm?");
+		boolean night = InputManager.getY_or_N();
+		LocalDateTime dateTime;
 		
+		if(night)
+			 dateTime = LocalDateTime.of(date, LocalTime.of(18, 01));
+		else 
+			dateTime = LocalDateTime.of(date, LocalTime.of(10, 00));
+		
+		return priceManager.getPrice(ticketType, type, cinemaClass, dateTime);
+	}
+	
+	public void UpdateThePrice() {
+		System.out.println("Enter ticket type: 1.Adult	2.Student	3.Senior Citizen");
+		int ticketTypeInt = InputManager.getInt(1,3);
+		TicketType ticketType = TicketType.values()[ticketTypeInt-1];
+		//
+		System.out.println("Enter number for the type of Movie: "
+				+ "\n1.BLOCKBUSTER_2D\n2.BLOCKBUSTER_3D\n3.NONBLOCKBUSTER_2D\n4.NONBLOCKBUSTER_3D");
+		int typeInt = InputManager.getInt(1,4);
+		TypeOfMovie type = TypeOfMovie.values()[typeInt-1];
+		//
+		System.out.println("Enter number for the class of cinema: "
+				+ "\n1.Standard\n2.Platinum Movie Suites");
+		int cinemaClassInt = InputManager.getInt(1,2);
+		ClassOfCinema cinemaClass = ClassOfCinema.values()[cinemaClassInt-1];
+		//
+		System.out.println("Enter the date of movie: yyyy-mm-dd ");
+		LocalDate date = InputManager.getLocalDate();
+		System.out.println("Before or After 6pm?");
+		boolean night = InputManager.getY_or_N();
+		LocalDateTime dateTime;
+		
+		if(night)
+			 dateTime = LocalDateTime.of(date, LocalTime.of(18, 01));
+		else 
+			dateTime = LocalDateTime.of(date, LocalTime.of(10, 00));
+		
+		double newPrice = InputManager.getDouble(0,99999);
+		
+		priceManager.updatePrice(ticketType, type, cinemaClass, dateTime,newPrice);
+		System.out.println("Updated price successfully");
 	}
 	
 	

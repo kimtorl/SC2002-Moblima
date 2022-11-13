@@ -174,6 +174,12 @@ public class MovieFileManager implements MovieManager, Serializable{
 		}
 		movie.setMovieID(newMovieID);
 		
+		movieList.sort(new Comparator<Movie>() {
+			public int compare(Movie m1, Movie m2) {
+				return m1.getMovieID() - m2.getMovieID();
+			}
+		});
+		
 		writeToFile(movieList);
 		return true;
 	}

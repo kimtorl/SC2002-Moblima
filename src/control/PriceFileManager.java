@@ -38,7 +38,7 @@ public class PriceFileManager implements PriceManager, Serializable{
 	}
     
     public Trie readFile() {
-    	Trie t = null;
+    	Trie t = null;  
     	try {
 			FileInputStream fis = new FileInputStream(FILENAME);
 			ObjectInputStream in = new ObjectInputStream(fis);

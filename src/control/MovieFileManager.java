@@ -410,7 +410,11 @@ public class MovieFileManager implements MovieManager, Serializable{
 		ArrayList<Movie> movieList = getAllMovie();
 		for(Movie movie: movieList) {
 			if(movie.getShowingStatus() == ShowingStatus.PREVIEW || movie.getShowingStatus() == ShowingStatus.NOW_SHOWING)
-				System.out.println(movie);
+			{
+				System.out.printf("%-80s | %s",movie.toString(),movie.getMovieType().toString());
+				System.out.println();
+				
+			}
 		}
 	}
 	

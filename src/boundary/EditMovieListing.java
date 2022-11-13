@@ -73,8 +73,8 @@ public class EditMovieListing implements Capability, Serializable {
 	public void createMovie() {
 		System.out.println("Enter the Movie information");
 		System.out.println("ID: ");
-		int id = sc.nextInt();
-		if(movieMgr.findMovie(id)!=null) {
+		int movieID = InputManager.getInt();
+		if(movieMgr.findMovie(movieID)!=null) {
 			System.out.println("Movie already exists!");
 			return;
 		}
@@ -105,23 +105,23 @@ public class EditMovieListing implements Capability, Serializable {
 		String director = InputManager.getString();
 		//
 		System.out.println("Enter the cast members: \nInput -1 to end");
-		ArrayList<String> cast = new ArrayList<String>();
+		ArrayList<String> casts = new ArrayList<String>();
 		while(true) {
-			String dog = InputManager.getString();
-			if(dog.equals("-1"))
+			String cast = InputManager.getString();
+			if(cast.equals("-1"))
 				break;
 			else
-				cast.add(dog);
+				casts.add(cast);
 		}
 		//
 		System.out.println("Past Reviews: \nInput -1 to end");
 		ArrayList<String> reviews = new ArrayList<String>();
 		while(true) {
-			String cat = InputManager.getString();
-			if(cat.equals("-1"))
+			String review = InputManager.getString();
+			if(review.equals("-1"))
 				break;
 			else
-				reviews.add(cat);
+				reviews.add(review);
 		}
 		//
 		System.out.println("Past Ratings: \nInput 0 to end");
@@ -134,7 +134,7 @@ public class EditMovieListing implements Capability, Serializable {
 				ratings.add(r);
 		}
 		//
-		movieMgr.createMovie(id, title, type, language, duration, status, synopsis, director, cast, reviews, ratings);
+		movieMgr.createMovie(movieID, title, type, language, duration, status, synopsis, director, casts, reviews, ratings);
 	}
 	
 	

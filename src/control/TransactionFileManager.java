@@ -28,18 +28,16 @@ public class TransactionFileManager implements TransactionManager, Serializable 
 	/**
 	 * Instantiates a new transaction file manager.
 	 */
-	//Empty Constructor
 	public TransactionFileManager() {
 		
 	}
 	
-	//returns all the Transactions in an ArrayList
 	/**
 	 * Gets the all transaction.
+	 * returns an empty list if file is not found
 	 *
 	 * @return the all transaction
 	 */
-	//returns an empty list if file is not found
 	@SuppressWarnings("unchecked")
 	public ArrayList<Transaction> getAllTransaction(){
 		ArrayList<Transaction> transactionList = new ArrayList<Transaction> ();
@@ -61,12 +59,11 @@ public class TransactionFileManager implements TransactionManager, Serializable 
 		
 	}
 	
-	
-	//reads all the transactions into an arrayList
-	//check for duplicated TransactionID
-	//creates a Transaction and add it to this ArrayList
 	/**
 	 * Creates the transaction.
+	 * reads all the transactions into an arrayList
+	 * check for duplicated TransactionID
+	 * creates a Transaction and add it to this ArrayList
 	 *
 	 * @param transactionAmount the transaction amount
 	 * @param name the name
@@ -78,7 +75,6 @@ public class TransactionFileManager implements TransactionManager, Serializable 
 	 * @param seatIDList the seat ID list
 	 * @return true, if successful
 	 */
-	//saves ArrayList
 	public boolean createTransaction(
 			double transactionAmount,
 			String name,
@@ -118,11 +114,10 @@ public class TransactionFileManager implements TransactionManager, Serializable 
 	
 	
 	/**
-	 * Write to file.
+	 * Writes an ArrayList of Transaction to file
 	 *
 	 * @param transactionList the transaction list
 	 */
-	//writes an ArrayList of Transaction to file
 	public void writeToFile(ArrayList<Transaction> transactionList) {
 		try {
 			FileOutputStream fos = new FileOutputStream(FILENAME);
@@ -136,14 +131,12 @@ public class TransactionFileManager implements TransactionManager, Serializable 
 	}
 	
 	
-	//finds and return a transaction by transactionID
 	/**
-	 * Find by TID.
-	 *
-	 * @param transactionID the transaction ID
-	 * @return the transaction
+	 * Find and returns a Transaction by transactionID.
+	 * returns null if not found
+	 * @param transactionID the transactionID
+	 * @return  a Transaction object with given transactionID
 	 */
-	//returns null if not found
 	public Transaction findByTID(String transactionID) {
 		ArrayList<Transaction> transactionList = getAllTransaction();
 		
@@ -161,12 +154,11 @@ public class TransactionFileManager implements TransactionManager, Serializable 
 	
 	
 	/**
-	 * Find by name.
-	 *
-	 * @param name the name
+	 * Find and returns a Transaction by MovieGoer name.
+	 * MovieGoer name is retrieved using the current account ,currentAcc that is logged in.
+	 * @param name the target name
 	 * @return the array list
 	 */
-	//returns all the Transactions with the given name
 	public ArrayList<Transaction> findByName(String name) {
 		ArrayList<Transaction> transactionList = getAllTransaction();
 		ArrayList<Transaction> tList = new ArrayList<Transaction>();
@@ -182,11 +174,11 @@ public class TransactionFileManager implements TransactionManager, Serializable 
 	
 	/**
 	 * Delete transaction.
-	 *
-	 * @param transactionID the transaction ID
-	 * @return true, if successful
+	 * finds a transaction by transactionID and deletes it.
+	 * Save the changes to the file.
+	 * @param transactionID the transactionID of Transaction to be removed
+	 * @return true, if successful. 
 	 */
-	//delete the Transaction in the file with given TID
 	public boolean deleteTransaction(String transactionID) {
 		ArrayList<Transaction> transactionList = getAllTransaction();
 		

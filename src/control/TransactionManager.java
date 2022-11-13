@@ -18,11 +18,11 @@ public interface TransactionManager {
 	public ArrayList<Transaction> getAllTransaction();
 	
 	
-	//reads all the transactions into an arrayList
-	//check for duplicated TransactionID
-	//creates a Transaction and add it to this ArrayList
 	/**
 	 * Creates the transaction.
+	 * reads all the transactions into an arrayList
+	 * check for duplicated TransactionID
+	 * creates a Transaction and add it to this ArrayList
 	 *
 	 * @param transactionAmount the transaction amount
 	 * @param name the name
@@ -34,7 +34,6 @@ public interface TransactionManager {
 	 * @param seatIDList the seat ID list
 	 * @return true, if successful
 	 */
-	//saves ArrayList
 	public boolean createTransaction(double transactionAmount,
 			String name,
 			String mobileNumber,
@@ -45,40 +44,36 @@ public interface TransactionManager {
 			ArrayList<Integer> seatIDList);
 	
 	/**
-	 * Write to file.
+	 * Writes an ArrayList of Transaction to file
 	 *
 	 * @param transactionList the transaction list
 	 */
-	//writes an ArrayList of Transaction to file
 	public void writeToFile(ArrayList<Transaction> transactionList);
 	
 	/**
-	 * Find by TID.
+	 * Find and returns a Transaction by transactionID.
 	 *
-	 * @param transactionID the transaction ID
-	 * @return the transaction
+	 * @param transactionID the transactionID
+	 * @return  a Transaction object with given transactionID
 	 */
-	//finds and return a transaction by transactionID
 	public Transaction findByTID(String transactionID);
-	
-	//finds and return a transaction from a given transactionList by transactionID
 	
 	
 	/**
-	 * Find by name.
-	 *
-	 * @param name the name
+	 * Find and returns a Transaction by MovieGoer name.
+	 * MovieGoer name is retrieved using the current account ,currentAcc that is logged in.
+	 * @param name the target name
 	 * @return the array list
 	 */
 	public ArrayList<Transaction> findByName(String name); 
 	
 	/**
 	 * Delete transaction.
-	 *
+	 * finds a transaction by transactionID and deletes it.
+	 * Save the changes to the file.
 	 * @param transactionID the transaction ID
 	 * @return true, if successful
 	 */
-	//delete the Transaction in the file with given TID
 		public boolean deleteTransaction(String transactionID);
 	
 }

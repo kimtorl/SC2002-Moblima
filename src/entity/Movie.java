@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package entity;
 
 import java.io.Serializable;
@@ -9,84 +12,71 @@ import java.util.ArrayList;
  */
 public class Movie implements Serializable{	
 	
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 9L;
 	
-	/**
-	 * 
-	 */
+	/** The movie ID. */
 	private int movieID;
-	/**
-	 * 
-	 */
+	
+	/** The movie title. */
 	private String movieTitle;
-	/**
-	 * 
-	 */
+	
+	/** The movie type. */
 	private	TypeOfMovie movieType;
-	/**
-	 * 
-	 */
+	
+	/** The language. */
 	private String language;
-	/**
-	 * 
-	 */
+	
+	/** The duration. */
 	private int duration; //in minutes
-	/**
-	 * 
-	 */
+	
+	/** The showing status. */
 	private ShowingStatus showingStatus;
-	/**
-	 * 
-	 */
+	
+	/** The synopsis. */
 	private String synopsis;
-	/**
-	 * 
-	 */
+	
+	/** The director. */
 	private String director;
-	/**
-	 * 
-	 */
+	
+	/** The cast. */
 	private ArrayList<String> cast;
-	/**
-	 * 
-	 */
+	
+	/** The past reviews. */
 	private ArrayList<String> pastReviews;
-	/**
-	 * 
-	 */
+	
+	/** The past ratings. */
 	private ArrayList<Integer> pastRatings;
-	/**
-	 * 
-	 */
+	
+	/** The ticket sales. */
 	private int ticketSales = 0;
 	
 
 
 	/**
-	 * 
+	 * Instantiates a new movie.
 	 */
 	public Movie() {
 		
 	}
 	
 	/**
-	 * @param movieID
-	 * @param movieTitle
-	 * @param movieType
-	 * @param language
-	 * @param duration
-	 * @param showingStatus
-	 * @param synopsis
-	 * @param director
-	 * @param cast
-	 * @param pastReviews
-	 * @param pastRatings
+	 * Instantiates a new movie.
+	 *
+	 * @param movieID the movie ID
+	 * @param movieTitle the movie title
+	 * @param movieType the movie type
+	 * @param language the language
+	 * @param duration the duration
+	 * @param showingStatus the showing status
+	 * @param synopsis the synopsis
+	 * @param director the director
+	 * @param cast the cast
+	 * @param pastReviews the past reviews
+	 * @param pastRatings the past ratings
 	 */
 	public Movie(int movieID,
 			String movieTitle,
@@ -114,7 +104,7 @@ public class Movie implements Serializable{
 	}
 	
 	/**
-	 * 
+	 * Dislay info.
 	 */
 	public void dislayInfo()
 	{
@@ -144,7 +134,9 @@ public class Movie implements Serializable{
 	
 	
 	/**
+	 * To string.
 	 *
+	 * @return the string
 	 */
 	public String toString() {
 		return "MovieID: " + movieID + ". Title: " + movieTitle;
@@ -152,115 +144,171 @@ public class Movie implements Serializable{
 	
 	//getters and setters
 	/**
-	 * @return
+	 * Gets the movie ID.
+	 *
+	 * @return the movie ID
 	 */
 	public int getMovieID() {
 		return movieID;
 	}
+	
 	/**
-	 * @param movieID
+	 * Sets the movie ID.
+	 *
+	 * @param movieID the new movie ID
 	 */
 	public void setMovieID(int movieID) {
 		this.movieID = movieID;
 	}
+	
 	/**
-	 * @return
+	 * Gets the movie title.
+	 *
+	 * @return the movie title
 	 */
 	public String getMovieTitle() {
 		return movieTitle;
 	}
+	
 	/**
-	 * @param movieTitle
+	 * Sets the movie title.
+	 *
+	 * @param movieTitle the new movie title
 	 */
 	public void setMovieTitle(String movieTitle) {
 		this.movieTitle = movieTitle;
 	}
+	
 	/**
-	 * @return
+	 * Gets the movie type.
+	 *
+	 * @return the movie type
 	 */
 	public TypeOfMovie getMovieType() {
 		return movieType;
 	}
+	
 	/**
-	 * @param movieType
+	 * Sets the movie type.
+	 *
+	 * @param movieType the new movie type
 	 */
 	public void setMovieType(TypeOfMovie movieType) {
 		this.movieType = movieType;
 	}
+	
 	/**
-	 * @return
+	 * Gets the language.
+	 *
+	 * @return the language
 	 */
 	public String getLanguage() {
 		return language;
 	}
+	
 	/**
-	 * @param language
+	 * Sets the language.
+	 *
+	 * @param language the new language
 	 */
 	public void setLanguage(String language) {
 		this.language = language;
 	}
+	
 	/**
-	 * @return
+	 * Gets the duration.
+	 *
+	 * @return the duration
 	 */
 	public int getDuration() {
 		return duration;
 	}
+	
 	/**
-	 * @param duration
+	 * Sets the duration.
+	 *
+	 * @param duration the new duration
 	 */
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
+	
 	/**
-	 * @return
+	 * Gets the showing status.
+	 *
+	 * @return the showing status
 	 */
 	public ShowingStatus getShowingStatus() {
 		return showingStatus;
 	}
+	
 	/**
-	 * @param showingStatus
+	 * Sets the showing status.
+	 *
+	 * @param showingStatus the new showing status
 	 */
 	public void setShowingStatus(ShowingStatus showingStatus) {
 		this.showingStatus = showingStatus;
 	}
+	
 	/**
-	 * @return
+	 * Gets the synopsis.
+	 *
+	 * @return the synopsis
 	 */
 	public String getSynopsis() {
 		return synopsis;
 	}
+	
 	/**
-	 * @param synopsis
+	 * Sets the synopsis.
+	 *
+	 * @param synopsis the new synopsis
 	 */
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
 	}
+	
 	/**
-	 * @return
+	 * Gets the director.
+	 *
+	 * @return the director
 	 */
 	public String getDirector() {
 		return director;
 	}
+	
 	/**
-	 * @param director
+	 * Sets the director.
+	 *
+	 * @param director the new director
 	 */
 	public void setDirector(String director) {
 		this.director = director;
 	}
+	
 	/**
-	 * @return
+	 * Gets the cast.
+	 *
+	 * @return the cast
 	 */
 	public ArrayList<String> getCast() {
 		return cast;
 	}
+	
 	/**
-	 * @param cast
+	 * Sets the cast.
+	 *
+	 * @param cast the new cast
 	 */
 	public void setCast(ArrayList<String> cast) {
 		this.cast = cast;
 	}
+	
 	/**
-	 * @return
+	 * Gets the overall reviewer rating.
+	 *
+	 * @return the overall reviewer rating
 	 */
 	public double getOverallReviewerRating() {
 		double value=0;
@@ -276,46 +324,61 @@ public class Movie implements Serializable{
 	}
 
 	/**
-	 * @return
+	 * Gets the past reviews.
+	 *
+	 * @return the past reviews
 	 */
 	public ArrayList<String> getPastReviews() {
 		return pastReviews;
 	}
+	
 	/**
-	 * @param pastReviews
+	 * Sets the past reviews.
+	 *
+	 * @param pastReviews the new past reviews
 	 */
 	public void setPastReviews(ArrayList<String> pastReviews) {
 		this.pastReviews = pastReviews;
 	}
+	
 	/**
-	 * @return
+	 * Gets the past ratings.
+	 *
+	 * @return the past ratings
 	 */
 	public ArrayList<Integer> getPastRatings() {
 		return pastRatings;
 	}
+	
 	/**
-	 * @param pastRatings
+	 * Sets the past ratings.
+	 *
+	 * @param pastRatings the new past ratings
 	 */
 	public void setPastRatings(ArrayList<Integer> pastRatings) {
 		this.pastRatings = pastRatings;
 	}
 	
 	/**
-	 * @return
+	 * Gets the ticket sales.
+	 *
+	 * @return the ticket sales
 	 */
 	public int getTicketSales() {
 		return ticketSales;
 	}
 
 	/**
-	 * @param ticketSales
+	 * Sets the ticket sales.
+	 *
+	 * @param ticketSales the new ticket sales
 	 */
 	public void setTicketSales(int ticketSales) {
 		this.ticketSales = ticketSales;
 	}
 	
 	/**
-	 * 
+	 * Plus one sales.
 	 */
 	public void plusOneSales() {
 		this.ticketSales++;

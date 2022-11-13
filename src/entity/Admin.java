@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package entity;
 
 import java.util.ArrayList;
@@ -7,15 +10,30 @@ import boundary.Capability;
 public class Admin extends Account {
 
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 12L;
 
+	/**
+	 * Instantiates a new admin.
+	 */
 	public Admin() {
 	}
 	
+	/**
+	 * Instantiates a new admin.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @param accountType the account type
+	 * @param capabilities the capabilities
+	 */
 	public Admin(String username, String password, AccountType accountType, ArrayList<Capability> capabilities) {
 		super(username, password, accountType, capabilities);
 	}
 	
+	/**
+	 * Display capabilities.
+	 */
 	@Override
 	public void displayCapabilities() {
 		//print out list of capabilities
@@ -26,6 +44,11 @@ public class Admin extends Account {
 		
 	}
 
+	/**
+	 * Perform select capability.
+	 *
+	 * @param choice the choice
+	 */
 	@Override
 	public void performSelectCapability(int choice) {
 		//error checking

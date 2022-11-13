@@ -1,35 +1,33 @@
+/*
+ * 
+ */
 package entity;
 
 import java.io.Serializable;
 
 /**
- * @author Cross
+ * The Class SeatLayout.
  *
+ * @author Cross
  */
 public class SeatLayout implements Serializable{
 
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 4L;
 	//Attributes
-	/**
-	 * 
-	 */
+	/** The seat layout. */
 	private Seat[][] seatLayout;
-	/**
-	 * 
-	 */
+	
+	/** The num of row. */
 	private int numOfRow = 8; //default values
-	/**
-	 * 
-	 */
+	
+	/** The num of col. */
 	private int numOfCol = 8; //default values
 	
 	//Constructor 
 	/**
-	 * 
+	 * Instantiates a new seat layout.
 	 */
 	public SeatLayout() {
 		seatLayout = new Seat[numOfRow][numOfCol];
@@ -45,8 +43,10 @@ public class SeatLayout implements Serializable{
 	
 	//Constructor with params
 	/**
-	 * @param rowSize
-	 * @param colSize
+	 * Instantiates a new seat layout.
+	 *
+	 * @param rowSize the row size
+	 * @param colSize the col size
 	 */
 	public SeatLayout(int rowSize, int colSize) {
 		this.numOfRow = rowSize;
@@ -64,7 +64,7 @@ public class SeatLayout implements Serializable{
 	
 	//prints out the cinema Seating layout in a matrix
 	/**
-	 * 
+	 * Display seat layout.
 	 */
 	public void displaySeatLayout() {
 		//print out the column labels
@@ -91,8 +91,10 @@ public class SeatLayout implements Serializable{
 	//returns -1 if seat is already booked or invalid seatCode
 	//returns seatID if seat is booked successfully
 	/**
-	 * @param seatCode
-	 * @return
+	 * Book seat.
+	 *
+	 * @param seatCode the seat code
+	 * @return the int
 	 */
 	public int bookSeat(String seatCode) {
 		int row = seatCode.charAt(0)-65; //convert the alphabetical row into int
@@ -115,35 +117,45 @@ public class SeatLayout implements Serializable{
 	
 	//getters and setters
 	/**
-	 * @return
+	 * Gets the num of row.
+	 *
+	 * @return the num of row
 	 */
 	public int getNumOfRow() {
 		return numOfRow;
 	}
 
 	/**
-	 * @param numOfRow
+	 * Sets the num of row.
+	 *
+	 * @param numOfRow the new num of row
 	 */
 	public void setNumOfRow(int numOfRow) {
 		this.numOfRow = numOfRow;
 	}
 
 	/**
-	 * @return
+	 * Gets the num of col.
+	 *
+	 * @return the num of col
 	 */
 	public int getNumOfCol() {
 		return numOfCol;
 	}
 
 	/**
-	 * @param numOfCol
+	 * Sets the num of col.
+	 *
+	 * @param numOfCol the new num of col
 	 */
 	public void setNumOfCol(int numOfCol) {
 		this.numOfCol = numOfCol;
 	}
 	
 	/**
-	 * @return
+	 * Gets the seat layout.
+	 *
+	 * @return the seat layout
 	 */
 	public Seat[][] getSeatLayout(){
 		return this.seatLayout;

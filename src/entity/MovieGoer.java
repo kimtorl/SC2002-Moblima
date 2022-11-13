@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package entity;
 
 import java.util.ArrayList;
@@ -10,39 +13,35 @@ import boundary.Capability;
  */
 public class MovieGoer extends Account{
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 13L;
 	//Attributes
-	/**
-	 * 
-	 */
+	/** The name. */
 	private String name;
-	/**
-	 * 
-	 */
+	
+	/** The mobile number. */
 	private String mobileNumber;
-	/**
-	 * 
-	 */
+	
+	/** The email. */
 	private String email;
 	
 	/**
-	 * 
+	 * Instantiates a new movie goer.
 	 */
 	public MovieGoer() {
 		
 	}
 	
 	/**
-	 * @param username
-	 * @param password
-	 * @param accountType
-	 * @param capabilities
-	 * @param name
-	 * @param mobileNumber
-	 * @param email
+	 * Instantiates a new movie goer.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @param accountType the account type
+	 * @param capabilities the capabilities
+	 * @param name the name
+	 * @param mobileNumber the mobile number
+	 * @param email the email
 	 */
 	public MovieGoer(String username, String password, AccountType accountType, ArrayList<Capability> capabilities, 
 			String name, String mobileNumber, String email) 
@@ -54,7 +53,7 @@ public class MovieGoer extends Account{
 	}
 	
 	/**
-	 *
+	 * Display capabilities.
 	 */
 	@Override
 	public void displayCapabilities() {
@@ -65,7 +64,9 @@ public class MovieGoer extends Account{
 	}
 
 	/**
+	 * Perform select capability.
 	 *
+	 * @param choice the choice
 	 */
 	@Override
 	public void performSelectCapability(int choice) {
@@ -75,42 +76,54 @@ public class MovieGoer extends Account{
 	}
 
 	/**
-	 * @return
+	 * Gets the name.
+	 *
+	 * @return the name
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * @param name
+	 * Sets the name.
+	 *
+	 * @param name the new name
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * @return
+	 * Gets the mobile number.
+	 *
+	 * @return the mobile number
 	 */
 	public String getMobileNumber() {
 		return mobileNumber;
 	}
 
 	/**
-	 * @param mobileNumber
+	 * Sets the mobile number.
+	 *
+	 * @param mobileNumber the new mobile number
 	 */
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 
 	/**
-	 * @return
+	 * Gets the email.
+	 *
+	 * @return the email
 	 */
 	public String getEmail() {
 		return email;
 	}
 
 	/**
-	 * @param email
+	 * Sets the email.
+	 *
+	 * @param email the new email
 	 */
 	public void setEmail(String email) {
 		this.email = email;

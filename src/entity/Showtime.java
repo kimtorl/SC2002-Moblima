@@ -139,7 +139,7 @@ public class Showtime implements Serializable{
 
 
 	/**
-	 * sets the seatLayou
+	 * sets the seatLayout
 	 * @param seatLayout
 	 */
 	public void setSeatLayout(SeatLayout seatLayout) {

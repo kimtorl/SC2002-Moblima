@@ -21,8 +21,10 @@ public class CineplexFileManager implements CineplexManager, Serializable{
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 23L;
 	
-	/** The Constant FILENAME. */
-	//Attribute 
+	/** The Constant FILENAME, it is an Attribute that
+	 * stores an array of Cineplexes.
+	 * It is our database for cineplex
+	 */
 	private static final String FILENAME = "Database/cineplex.txt"; //stores an array of Cineplexes
 	
 	
@@ -38,7 +40,7 @@ public class CineplexFileManager implements CineplexManager, Serializable{
 	
 	/**
 	 * Gets the all cineplex.
-	 *
+	 * reads and return an ArrayList of Cineplex from the file
 	 * @return the all cineplex
 	 */
 	//reads and return an ArrayList of Cineplex from the file
@@ -63,7 +65,7 @@ public class CineplexFileManager implements CineplexManager, Serializable{
 	}
 	
 	/**
-	 * Write to file.
+	 * Write to file an ArrayList of Cineplex
 	 *
 	 * @param cineplexList the cineplex list
 	 */
@@ -82,7 +84,13 @@ public class CineplexFileManager implements CineplexManager, Serializable{
 	
 	
 	/**
-	 * Creates the cineplex.
+	 * Creates the cineplex and save the cineplex into the file, it takes in input
+	 * cineplex id, name, and an arraylis of cinema. It will use cineplex id to check
+	 * for any duplicates. If there are, we will return false, indicating that it has failed
+	 * this prevents duplicates.
+	 * If there are no duplicates, we will append the cineplexlist by instantiating a new cineplex
+	 * with cineplexID, name, and arraylist.
+	 * We will then write these to a file and return true.
 	 *
 	 * @param cineplexID the cineplex ID
 	 * @param cineplexName the cineplex name
@@ -119,7 +127,8 @@ public class CineplexFileManager implements CineplexManager, Serializable{
 	
 	
 	/**
-	 * Delete cineplex.
+	 * Delete cineplex by using its name. It will iterate through the list to find
+	 * an identical name and then remove it.
 	 *
 	 * @param cineplexName the cineplex name
 	 * @return true, if successful

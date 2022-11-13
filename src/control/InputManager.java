@@ -17,8 +17,9 @@ public class InputManager {
 	
 	//gets an integer from a range from User 
 	/**
-	 * Gets the int.
-	 *
+	 * gets an integer bounded by a range from User, range is lower to upper inclusive.
+	 * if user inputs integer out of range, prompt the user for another input
+	 * 
 	 * @param lower the lower
 	 * @param upper the upper
 	 * @return the int
@@ -46,7 +47,7 @@ public class InputManager {
 	//overloaded method with no bounds
 	/**
 	 * Gets the int.
-	 *
+	 * Overloaded method with no bounds.
 	 * @return the int
 	 */
 	//gets an integer from a range from User 
@@ -73,7 +74,8 @@ public class InputManager {
 	
 	//gets a double from a range from User 
 	/**
-	 * Gets the double.
+	 * Gets a double bounded within a range from the user. It is inclusive of the lower and upper bound
+	 * If input exceeds the range, prompt user for the input again.
 	 *
 	 * @param lower the lower
 	 * @param upper the upper
@@ -101,7 +103,7 @@ public class InputManager {
 	
 	/**
 	 * Gets the y or N.
-	 *
+	 * Gets a boolean value.
 	 * @return the y or N
 	 */
 	public static boolean getY_or_N() {
@@ -125,7 +127,7 @@ public class InputManager {
 	
 	
 	/**
-	 * Gets the string.
+	 * Gets a string.
 	 *
 	 * @return the string
 	 */
@@ -159,8 +161,8 @@ public class InputManager {
 	
 	
 	/**
-	 * Gets the local date.
-	 *
+	 * Gets a local date as input, format is yyyy mm dd.
+	 * 
 	 * @return the local date
 	 */
 	//gets a LocalDate as input

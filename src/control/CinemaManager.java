@@ -14,7 +14,7 @@ public interface CinemaManager {
 
 	/**
 	 * Gets the all cinema.
-	 *
+	 * It reads and returns all the Cinema in an ArrayList
 	 * @return the all cinema
 	 */
 	//reads and returns all the Cinema in an ArrayList
@@ -22,8 +22,9 @@ public interface CinemaManager {
 		
 	//reads and return a specific cinema specified by the cinemaCode from a given cineplexList
 	/**
-	 * Find cinema.
-	 *
+	 * Finds cinema.
+	 * reads and return a specific cinema specified by the cinemaCode from a given cineplexList
+	 * returns null if not found
 	 * @param cineplexList the cineplex list
 	 * @param cineplexID the cineplex ID
 	 * @param cinemaCode the cinema code
@@ -33,7 +34,7 @@ public interface CinemaManager {
 	public Cinema findCinema(ArrayList<Cineplex> cineplexList,int cineplexID, String cinemaCode);
 	
 	/**
-	 * Find cinema.
+	 * Finds cinema based on its cinemaCode
 	 *
 	 * @param cinemaCode the cinema code
 	 * @return the cinema
@@ -43,7 +44,8 @@ public interface CinemaManager {
 	
 	
 	/**
-	 * Creates the cinema.
+	 * Creates a single Cinema object for a specific cineplex, with its cinemaCOde
+	 * cinemaClass, and showtimes
 	 *
 	 * @param cineplexID the cineplex ID
 	 * @param cinemaCode the cinema code
@@ -58,8 +60,8 @@ public interface CinemaManager {
 	//deletes a cinema using cinemaCode string
 	//return false if failed to delete
 	/**
-	 * Delete cinema.
-	 *
+	 * deletes a cinema using cinemaCode string
+	 * return false if failed to delete
 	 * @param cineplexID the cineplex ID
 	 * @param cinemaCode the cinema code
 	 * @return true, if successful
@@ -69,7 +71,7 @@ public interface CinemaManager {
 	
 	//returns the index of the cinema that matches the cinemaCode
 	/**
-	 * Find cinema index.
+	 * returns the index of the cinema that matches the cinemaCode
 	 *
 	 * @param cinemaList the cinema list
 	 * @param cinemaCode the cinema code
@@ -86,7 +88,7 @@ public interface CinemaManager {
 	public void writeToFile(ArrayList<Cineplex> cineplexList);
 	
 	/**
-	 * Gets the all cineplex.
+	 * Gets the all cineplex by reading from an ArrayList of cineplexes
 	 *
 	 * @return the all cineplex
 	 */

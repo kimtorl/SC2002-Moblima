@@ -25,7 +25,7 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	/**
 	 * Instantiates a new cinema file manager.
 	 *
-	 * @param cineplexMgr the cineplex mgr
+	 * @param cineplexMgr the cineplex manager
 	 */
 	//Constructor
 	public CinemaFileManager(CineplexManager cineplexMgr) {
@@ -34,7 +34,8 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	
 	
 	/**
-	 * Gets the all cinema.
+	 * Gets the all cinema by reading and 
+	 * returning all the Cinema in an ArrayList of Cinema
 	 *
 	 * @return the all cinema
 	 */
@@ -56,7 +57,8 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	//reads and return a specific cinema specified by the cinemaCode from a given cineplexList
 	/**
 	 * Find cinema.
-	 *
+	 * reads and return a specific cinema specified by the cinemaCode from a given cineplexList
+	 * returns null if not found
 	 * @param cineplexList the cineplex list
 	 * @param cineplexID the cineplex ID
 	 * @param cinemaCode the cinema code
@@ -77,8 +79,9 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	//overloaded method
 	//returns a cinema only by cinemaCode
 	/**
-	 * Find cinema.
-	 *
+	 * Find a cinema based off its cinemaCode, from a cinemaList
+	 * it returns null if a cinema cannot be found
+	 * overloaded method
 	 * @param cinemaCode the cinema code
 	 * @return the cinema
 	 */
@@ -95,8 +98,8 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	
 	
 	/**
-	 * Creates the cinema.
-	 *
+	 * creates a single Cinema object for a specific cineplex
+	 * retrieve corresponding cinemaList, check for duplicate cinemaCode
 	 * @param cineplexID the cineplex ID
 	 * @param cinemaCode the cinema code
 	 * @param cinemaClass the cinema class
@@ -128,10 +131,10 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	
 	
 	//deletes a cinema using cinemaCode string
-	//return false if failed to delete
+	//return false if failed to delete, return true if successful
 	/**
-	 * Delete cinema.
-	 *
+	 * Deletes a cinema using cinemaCode string
+	 * Return false if failed to delete, return true if successful
 	 * @param cineplexID the cineplex ID
 	 * @param cinemaCode the cinema code
 	 * @return true, if successful
@@ -158,8 +161,8 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	
 	//returns the index of the cinema that matches the cinemaCode
 	/**
-	 * Find cinema index.
-	 *
+	 * Returns the index of the cinema that matches the cinemaCode by using a for loop
+	 * and iterating through the ArrayList
 	 * @param cinemaList the cinema list
 	 * @param cinemaCode the cinema code
 	 * @return the int
@@ -177,7 +180,7 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	
 	/**
 	 * Write to file.
-	 *
+	 * 
 	 * @param cineplexList the cineplex list
 	 */
 	public void writeToFile(ArrayList<Cineplex> cineplexList) {

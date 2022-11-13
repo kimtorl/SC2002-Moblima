@@ -24,25 +24,25 @@ public class AccountFileManager implements AccountManager, Serializable{
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
-	/** The Constant FILENAME. */
-	//File managed by this class
+	/** The Constant FILENAME
+	 * File managed by this class. */
 	public final static String FILENAME = "Database/accounts.txt";
 	
 	/**
+	 * Empty constructor 
 	 * Instantiates a new account file manager.
 	 */
-	//Empty constructor 
+
 	public AccountFileManager() {
 	}
 	
 	
-	//returns all the Accounts from the file
+	
 	/**
-	 * Gets the all account.
-	 *
+	 * returns all the Accounts from the file
+	 * returns an null if file not found
 	 * @return the all account
 	 */
-	//returns an null if file not found
 	@SuppressWarnings("unchecked")
 	public ArrayList<Account> getAllAccount(){
 		ArrayList<Account> accountList = null;
@@ -67,10 +67,10 @@ public class AccountFileManager implements AccountManager, Serializable{
 	}
 	
 	
-	//returns the verified Account
+	
 	/**
 	 * Verify login.
-	 *
+	 * returns the verified Account
 	 * @param username the username
 	 * @param password the password
 	 * @return the account
@@ -93,18 +93,17 @@ public class AccountFileManager implements AccountManager, Serializable{
 		return null;
 	}
 	
-	//@param operation "add" to add a capability, "del" to delete a capability
 	/**
-	 * Update account capability.
-	 *
-	 * @param accountType the account type
-	 * @param operation the operation
+	 * 
+	 * Updates the capabilities of all Accounts of given accountType.
+	 * @param accountType the account type, movieGoer or Admin
+	 * @param operation operation "add" to add a capability, "del" to delete a capability
 	 * @param capability the capability
 	 * @return true, if successful
 	 */
-	//updates the capabilities of all Accounts of given accountType.
+
 	public boolean updateAccountCapability(AccountType accountType, String operation, Capability capability) {
-		//error checking
+
 		if(operation == null || capability == null) return false;
 		
 		ArrayList<Account> accountList = getAllAccount();
@@ -148,7 +147,6 @@ public class AccountFileManager implements AccountManager, Serializable{
 	
 	
 	
-	//ONLY USED IN INITIALISING DATA
 	/**
 	 * Creates the admin account.
 	 *
@@ -182,10 +180,11 @@ public class AccountFileManager implements AccountManager, Serializable{
 		return true;
 	}
 	
-	//ONLY USED IN INITIALISING DATA
+	
 	/**
-	 * Creates the movie goer account.
-	 *
+	 * Creates the movie goer account,retrieve list of Accounts,check for duplicate username
+	 * create new account, append it and save the file
+	 * This is used to initialize the data
 	 * @param username the username
 	 * @param password the password
 	 * @param accountType the account type
@@ -223,11 +222,10 @@ public class AccountFileManager implements AccountManager, Serializable{
 	
 	
 	/**
-	 * Write to file.
+	 * writes an ArrayList of Accounts to the file
 	 *
 	 * @param accountList the account list
 	 */
-	//writes an ArrayList of Accounts to the file
 	public void writeToFile(ArrayList<Account> accountList) {
 		try {
 			FileOutputStream fos = new FileOutputStream(FILENAME);

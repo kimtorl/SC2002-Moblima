@@ -4,7 +4,7 @@
 package entity;
 
 /**
- * The Enum ShowingStatus.
+ * The Enum ShowingStatus of a movie.
  */
 public enum ShowingStatus {
 	

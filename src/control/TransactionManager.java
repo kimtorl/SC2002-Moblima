@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 import entity.Transaction;
 
+/**
+ * @author Cross
+ * Represents Transaction Manager, manages transactions 
+ */
 public interface TransactionManager {
 	
 	/**

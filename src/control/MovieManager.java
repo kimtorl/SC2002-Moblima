@@ -9,6 +9,10 @@ import entity.Movie;
 import entity.ShowingStatus;
 import entity.TypeOfMovie;
 
+/**
+ * @author Cross
+ * Interface for MovieManager, manages movies with methods 
+ */
 public interface MovieManager {
 
 	//returns all the movies from the file

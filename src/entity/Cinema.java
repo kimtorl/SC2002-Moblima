@@ -6,6 +6,10 @@ package entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * @author Cross
+ * Cinema class represents a cinema and the attributes relating to it.
+ */
 public class Cinema implements Serializable{
 	
 	/** The Constant serialVersionUID. */

@@ -20,6 +20,10 @@ import entity.Showtime;
 import entity.TicketType;
 import entity.TypeOfMovie;
 
+/**
+ * @author Cross
+ * Class allows us to book ticket.
+ */
 public class BookTicket implements Capability, Serializable {
 
 	/** The Constant serialVersionUID. */

@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 import entity.Holiday;
 
+/**
+ * The Interface HolidayManager. Represents the holiday manager to retrieve and
+ * modify information on holidays.
+ */
 public interface HolidayManager {
 
 	/**

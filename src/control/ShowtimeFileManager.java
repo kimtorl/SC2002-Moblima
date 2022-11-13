@@ -19,20 +19,25 @@ import entity.SeatLayout;
 import entity.ShowingStatus;
 import entity.Showtime;
 
+/**
+ * The Class ShowtimeFileManager, manages and edits showtimes. It takes
+ * in various inputs to identify the selected showtimes to update, then updates
+ * the attributes of it.
+ */
 public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 21L;
 	
-	/** The cinema mgr. */
+	/** The cinema manager. */
 	//Attributes
 	private CinemaManager cinemaMgr;
 	
 	/**
 	 * Instantiates a new showtime file manager.
 	 *
-	 * @param cinemaMgr the cinema mgr
+	 * @param cinemaMgr the cinema manager
 	 */
 	//Constructor
 	public ShowtimeFileManager(CinemaManager cinemaMgr) {
@@ -41,7 +46,9 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 
 	/**
 	 * Gets the all showtime.
-	 *
+	 * Reads and return all Showtime available from all Cineplexes in an ArrayList
+	 * Iterate through list, if not null then append into list
+	 * Once done, return the ArrayList.
 	 * @return the all showtime
 	 */
 	//reads and return all Showtime available from all Cineplexes in an ArrayList
@@ -61,17 +68,21 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	//returns true if successfully created
 	/**
-	 * Creates the showtime.
-	 *
+	 * Creates the showtime. It takes in various inputs of the attributes of the
+	 * showtime and constructs it. It will find a cinema based on the cineplexID
+	 * and cinemaCode, then return a cinema.
+	 * We will then call getShowtimelist from the cinema and append it into
+	 * an arraylist of showtime called showtimeList.
+	 * check for movie's showing status,check for duplicate showtimes,
+	 * and check for clashes within the cinema i.e. dateTime cannot clash. If 
+	 * all these conditions are successfully cleared, we will append the showtime into
+	 * the list and sort the list.
+	 * Returns true if successfully created
 	 * @param cineplexID the cineplex ID
 	 * @param cinemaCode the cinema code
 	 * @param movie the movie
 	 * @param dateTime the date time
 	 * @return true, if successful
-	 */
-	//returns false if failed
-	/**
-	 *
 	 */
 	public boolean createShowtime(int cineplexID, String cinemaCode, Movie movie, LocalDateTime dateTime) {
 		
@@ -124,8 +135,11 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 		
 	//checks if showtime clashes with showtime to be added
 	/**
-	 * Checks for clashes.
-	 *
+	 * Showtimes within a cinema cannot clash as one cinema can only show one movie at a time
+	 * Checks for clashes. If list is empty, return false
+	 * Check if starttime
+	 * startTimeA cannot be between startTimeB and endTimeB OR
+	 * endTimeA cannot be between StartTimeB and endTimeB, if they do then they clash
 	 * @param showtimeList the showtime list
 	 * @param movie the movie
 	 * @param dateTime the date time
@@ -156,7 +170,12 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	//i.e. A cineplex shouldn't have two showtimes with the same Movie and dateTime across cinemas
 	/**
 	 * Checks if is duplicate.
-	 *
+	 * Showtimes within a cineplex should not have duplicates
+	 * A cineplex shouldn't have two showtimes with the same Movie and dateTime across cinemas
+	 * cinemaList contains cinemas from the same Cineplex
+	 * if cinemaList is null then it is not found, and we return false
+	 * get the showtimelist, check if movieID and datetime is same
+	 * if same then there is duplicate and return true.
 	 * @param cinemaList the cinema list
 	 * @param movie the movie
 	 * @param dateTime the date time
@@ -182,7 +201,9 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	/**
 	 * Find all showtime by movie.
-	 *
+	 * Takes in an input of movieID,
+	 * Append all showtimes that show this movie by iterating through the list
+	 * and checking if the movieID matches.
 	 * @param movieID the movie ID
 	 * @return the array list
 	 */
@@ -205,7 +226,8 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	/**
 	 * Find all showtime by date.
-	 *
+	 * Append all showtimes that are on this date by checking if date matches
+	 * 
 	 * @param date the date
 	 * @return the array list
 	 */
@@ -227,8 +249,11 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	//returns the corresponding showtime
 	/**
-	 * Find showtime.
-	 *
+	 * Find showtime. We us cineplexList, cineplexID, and cinemaCode to find
+	 * the corresponding cinema
+	 * In the cinema we will get the ShowTimeList, then we iterate through
+	 * the list and if we find a matching date, we will return that element.
+	 * If nothing is found, return null.
 	 * @param cineplexList the cineplex list
 	 * @param cineplexID the cineplex ID
 	 * @param cinemaCode the cinema code
@@ -253,8 +278,8 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	//updates a showtime with a new movie and save to file
 	/**
-	 * Update showtime movie.
-	 *
+	 * Updates a showtime with a new movie and save to file
+	 * The correct showtime to be updated is found using dateTime as its unique in a cinema
 	 * @param cineplexID the cineplex ID
 	 * @param cinemaCode the cinema code
 	 * @param dateTime the date time
@@ -280,8 +305,8 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	
 	/**
-	 * Update showtime date time.
-	 *
+	 * Updates a showtime with a new dateTime and save to file
+	 * We use these parameters to find the showtime then update the date.
 	 * @param cineplexID the cineplex ID
 	 * @param cinemaCode the cinema code
 	 * @param oldDateTime the old date time
@@ -307,7 +332,9 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	/**
 	 * Update showtime seat layout.
-	 *
+	 * Update a showtime with a new seatLayout and save to file
+	 * First we try to find the showTime given the parameters, then we update and return true.
+	 * If cannot find, return false.
 	 * @param cinemaCode the cinema code
 	 * @param dateTime the date time
 	 * @param seatLayout the seat layout
@@ -334,7 +361,10 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	/**
 	 * Delete show time by movie ID.
-	 *
+	 * Deletes all showtimes in a cinema that has this movieID.
+	 * First we get the correct cinema using the parameters, then remove the
+	 * showtime from the end of the list and remove true.
+	 * If showtimelist is not found, or cinema not found, return false.
 	 * @param cineplexID the cineplex ID
 	 * @param cinemaCode the cinema code
 	 * @param movieID the movie ID
@@ -368,7 +398,10 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	/**
 	 * Delete specific showtime.
-	 *
+	 * Deletes a specific showtime in a cinema specified by dateTime
+	 * First we get the correct cinema
+	 * Then check if cinema or showtimeLis can be found.
+	 * If can be found, we match the dateTime and remove it.
 	 * @param cineplexID the cineplex ID
 	 * @param cinemaCode the cinema code
 	 * @param dateTime the date time
@@ -399,7 +432,21 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	/**
 	 * Populate showtime.
-	 *
+	 * randomly creates showtime to populate the ShowtimeList of a cinema based off on current System dateTime
+	 * get list of movies
+	 * take dateTime as currentTime
+	 * Assume that the the earlist possible showtime is 10:00 and last possible show time is at 23:30
+	 * if its currently after 21:59, set startTime to next day at 10:00
+	 * if its currently before 10:00, set startTime to current day at 10:00
+	 * else, Set startTime to the next hour
+	 * Randomise the startTime with 0 to 11 intervals of 5mins
+	 * Add 5 showtimes for each cinema
+	 * retrives a random Movie from the movieList
+	 * check showing status, showtime added successfully
+	 * Calculate the startTime of the nextMovie;
+	 * update startTime to 30mins after movie ended
+	 * round up to nearest 15min
+	 * 
 	 * @param cineplexID the cineplex ID
 	 * @param cinemaCode the cinema code
 	 * @param dateTime the date time
@@ -459,7 +506,7 @@ public class ShowtimeFileManager implements ShowtimeManager, Serializable{
 	
 	/**
 	 * Populate all cinema showtime.
-	 *
+	 * retrieve cineplexList and populate showtimeList if empty.
 	 * @param dateTime the date time
 	 */
 	//creates showtime for all cinemas

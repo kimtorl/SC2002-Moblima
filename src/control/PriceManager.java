@@ -9,6 +9,9 @@ import entity.ClassOfCinema;
 import entity.TicketType;
 import entity.TypeOfMovie;
 
+/**
+ * The Interface PriceManager.
+ */
 public interface PriceManager {
 
 	/**

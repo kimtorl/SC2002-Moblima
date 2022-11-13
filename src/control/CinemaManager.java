@@ -10,6 +10,9 @@ import entity.Cineplex;
 import entity.ClassOfCinema;
 import entity.Showtime;
 
+/**
+ * The Interface CinemaManager. Manages, access and modifies Cinema files.
+ */
 public interface CinemaManager {
 
 	/**

@@ -12,6 +12,9 @@ import entity.Cineplex;
 import entity.ClassOfCinema;
 import entity.Showtime;
 
+/**
+ * The Class CinemaFileManager.Manages, access and modifies Cinema files.
+ */
 public class CinemaFileManager implements CinemaManager, Serializable{
 
 	/** The Constant serialVersionUID. */

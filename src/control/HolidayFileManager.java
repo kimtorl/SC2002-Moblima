@@ -15,6 +15,10 @@ import java.io.ObjectInputStream;
 
 import entity.Holiday;
 
+/**
+ * @author Cross
+ * Manages holiday files and allows us to access and modify it
+ */
 public class HolidayFileManager implements HolidayManager, Serializable{
 	
 	/** The Constant serialVersionUID. */

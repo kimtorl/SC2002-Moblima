@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import entity.Cinema;
 import entity.Cineplex;
 
+/**
+ * The Interface CineplexManager. Represents Cineplex manager to allow us to
+ * access and write to cineplex, create and delete cineplex.
+ */
 public interface CineplexManager {
 
 	/**

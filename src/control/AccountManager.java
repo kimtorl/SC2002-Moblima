@@ -9,6 +9,10 @@ import boundary.Capability;
 import entity.Account;
 import entity.AccountType;
 
+/**
+ * The Interface AccountManager. Manages, access and modifies Accounts.
+ * Verfies login and can get all accounts.
+ */
 public interface AccountManager {
 	
 	/**

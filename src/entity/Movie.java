@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 /**
  * @author Cross
- *
+ * Movie to manage movies allowing us to modify and update, or retrieve information
+ * on movies
  */
 public class Movie implements Serializable{	
 	

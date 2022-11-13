@@ -6,6 +6,11 @@ package entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * @author Cross
+ * Relating to cineplex, can get and set the ID and names, as well as the 
+ * cinemaList, or anything to do with the information of cineplex.
+ */
 public class Cineplex implements Serializable{
 
 	/**

@@ -12,8 +12,8 @@ import entity.AccountType;
 public interface AccountManager {
 	
 	/**
-	 * Gets the all account.
-	 *
+	 * Gets the all account and stores it
+	 * in an ArrayList of enum type Accounts
 	 * @return the all account
 	 */
 	public ArrayList<Account> getAllAccount();
@@ -42,8 +42,8 @@ public interface AccountManager {
 	 *
 	 * @param username the username
 	 * @param password the password
-	 * @param accountType the account type
-	 * @param capabilities the capabilities
+	 * @param accountType the account type, Admin
+	 * @param capabilities the capabilities associated with the account type
 	 * @return true, if successful
 	 */
 	public boolean createAdminAccount(String username, String password, AccountType accountType, ArrayList<Capability> capabilities);
@@ -53,10 +53,10 @@ public interface AccountManager {
 	 *
 	 * @param username the username
 	 * @param password the password
-	 * @param accountType the account type
-	 * @param capabilities the capabilities
+	 * @param accountType the account type, movieGoer
+	 * @param capabilities the capabilities associated with the account type
 	 * @param name the name
-	 * @param mobileNumber the mobile number
+	 * @param mobileNumber the mobile number of the movieGoer
 	 * @param email the email
 	 * @return true, if successful
 	 */

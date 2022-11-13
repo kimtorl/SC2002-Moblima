@@ -11,25 +11,30 @@ import control.MovieManager;
 import entity.ShowingStatus;
 import entity.TypeOfMovie;
 
+/**
+ * The Class EditMovieListing, which allows the Admin account to
+ * edit movie listings, such as creating and adding new movies, updating movie information
+ * or removing movies.
+ */
 public class EditMovieListing implements Capability, Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 30L;
 	
-	/** The movie mgr. */
+	/** The movie manager. */
 	private MovieManager movieMgr;
 	
 	/**
 	 * Instantiates a new edits the movie listing.
 	 *
-	 * @param movieMgr the movie mgr
+	 * @param movieMgr the movie manager
 	 */
 	public EditMovieListing(MovieManager movieMgr) {
 		this.movieMgr = movieMgr;
 	}
 
 	/**
-	 * Perform capability.
+	 * Perform capability, and display menu.
 	 */
 	@Override
 	public void performCapability() {
@@ -72,7 +77,7 @@ public class EditMovieListing implements Capability, Serializable {
 	}
 	
 	/**
-	 * To string.
+	 * Our own tostring method
 	 *
 	 * @return the string
 	 */
@@ -82,19 +87,30 @@ public class EditMovieListing implements Capability, Serializable {
 	}
 	
 	/**
-	 * List movie.
+	 * Lists all the movies that are of ShowingStatus Preview or Now Showing
 	 */
 	public void listMovie() {
-		System.out.println("Do you want to view movies that are not yet available for booking? Enter Y/N:");
-		boolean seeUnavailable = InputManager.getY_or_N();
 		System.out.println("------------------------------");
-		movieMgr.listAllMovies(seeUnavailable);
+		movieMgr.listAllMovies();
 		System.out.println("------------------------------");
 	}
 	
 	
 	/**
-	 * Creates the movie.
+	 * Creates a movie. It will ask for
+	 * a movieID. We will check in our list of movies if that ID already exists.
+	 * If it does, we will not create the Movie.
+	 * If such a movieID does not exist, we can use the movieID to create a movieID. This
+	 * ensures no duplicates of movieID.
+	 * It will ask for inputs for the Movie Title, the TypeOfMovie(enum) via integer input with the values() method,
+	 * The language the movie is in
+	 * The duration in minutes
+	 * The showing status(enum) via integer input with values() method
+	 * Synopsis,Directors,and an ArrayList of Cast which we will keep appending with inputs
+	 * from the user until the user inputs negative one as a string.
+	 * It will also ask for past reviews and we store it in an ArrayList of Strings
+	 * It will ask for past ratings and store inputs of integers into an ArrayList of integers
+	 * It will then create a new movie based on all these inputs
 	 */
 	public void createMovie() {
 		System.out.println("Enter the Movie information");
@@ -167,7 +183,33 @@ public class EditMovieListing implements Capability, Serializable {
 	
 	
 	/**
-	 * Update movie.
+	 * Updates movie information, such as ID,title,type,language etc
+	 * for movieID, it will take in an old movie ID to be replaced and a new movieID to replace
+	 * It will look for the old movieID, if it doesnt exist, then nothing happens. If it is found,
+	 * we will check if the new movieID to replace it already exists, if the new movieID exists,
+	 * nothing will be done, this is to prevent duplication. If the new movieID does not exists,
+	 * i.e has not been used, then movie ID is successfully updated.
+	 * 
+	 * updating movie title takes in a movieID to be updated, then finds all the movies with
+	 * the same title as that movie and updates it with the new title.
+	 * 
+	 * update movie type takes in a movieID and and integer for the input for its enum type
+	 * 
+	 * update movie language takes in an id, and updates its language
+	 * update duration takes in an id, finds all movies with the same title as that movie with the
+	 * id, and then updates all the duration.
+	 * 
+	 * update showing status takes in a movie id, finds movies with same title, and updates all
+	 * of its showig status.
+	 * 
+	 * update synopsis with id, all movies with same title has synposis updated
+	 * update director with id, all movies with same title has director updated
+	 * update movie cast with id all movies with the same title is updated with
+	 * an arraylist of strings representing cast members names.
+	 * 
+	 * reviews and ratings are updated withh an arraylist of strings and integers respectively,
+	 * similarly using a movieid to find a movie and finding all other movies who has the same
+	 * title as that.
 	 */
 	public void updateMovie() {
 		System.out.println("1. Update movie ID"
@@ -317,7 +359,7 @@ public class EditMovieListing implements Capability, Serializable {
 	}
 	
 	/**
-	 * Removes the movie.
+	 * Removes the movie based off its movieID. 
 	 */
 	public void removeMovie() {
 		System.out.println("Enter the movie ID to remove");

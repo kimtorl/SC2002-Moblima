@@ -68,7 +68,7 @@ public class HolidayFileManager implements HolidayManager, Serializable{
 	
 	/**
 	 * Delete holiday.
-	 * It takes in a date and iterates through the arrayList of LocalDate holidays and deletes
+	 * It takes in a date and iterates through the arrayList of LocalDate holidays and deletes 	
 	 * @param date the date
 	 * @return true, if successful
 	 */
@@ -100,9 +100,9 @@ public class HolidayFileManager implements HolidayManager, Serializable{
 	}
 	
 	/**
-	 * Gets the all holidays.
-	 *
-	 * @return the all holidays
+	 * Gets all the holidays.
+	 * 
+	 * @return all the holidays
 	 */
 	//returns empty List if file not found
 	@SuppressWarnings("unchecked")
@@ -128,9 +128,9 @@ public class HolidayFileManager implements HolidayManager, Serializable{
 	
 	
 	/**
-	 * Write to file.
-	 *
-	 * @param holidayList the holiday list
+	 * Writes to file an ArrayList of Holiday
+	 * 
+	 * @param holidayList the holiday list to be written
 	 */
 	public void writeToFile(ArrayList<Holiday> holidayList) {
 		try
@@ -150,7 +150,7 @@ public class HolidayFileManager implements HolidayManager, Serializable{
 	/**
 	 * Checks if is holiday.
 	 *
-	 * @param date the date
+	 * @param date 		the date
 	 * @return true, if is holiday
 	 */
 	public boolean isHoliday(LocalDate date) {

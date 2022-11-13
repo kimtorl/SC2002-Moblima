@@ -13,13 +13,13 @@ public interface HolidayManager {
 	/**
 	 * Creates the holiday.
 	 *
-	 * @param date the date
+	 * @param date 		the date
 	 * @return true, if successful
 	 */
 	public boolean createHoliday(LocalDate date);
 	
 	/**
-	 * Delete holiday.
+	 * Deletes the holiday.
 	 *
 	 * @param date the date
 	 * @return true, if successful
@@ -27,15 +27,16 @@ public interface HolidayManager {
 	public boolean deleteHoliday(LocalDate date);
 	
 	/**
-	 * Gets the all holidays.
+	 * Gets all the holidays through the arrayList of holidays
+	 * Returns empty list if file not found
 	 *
-	 * @return the all holidays
+	 * @return arrayList of holidays
 	 */
 	//returns empty List if file not found
 	public ArrayList<Holiday> getAllHolidays();
 	
 	/**
-	 * Write to file.
+	 * Writes to file the ArrayList of holidays
 	 *
 	 * @param holidayList the holiday list
 	 */
@@ -43,7 +44,7 @@ public interface HolidayManager {
 	
 	
 	/**
-	 * Checks if is holiday.
+	 * Checks if date is a holiday.
 	 *
 	 * @param date the date
 	 * @return true, if is holiday

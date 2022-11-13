@@ -12,7 +12,7 @@ public class Holiday implements Serializable {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID =7L;
 	
-	/** The date. */
+	/** The date. YYYY MM DD */
 	private LocalDate date;
 	
 	/**

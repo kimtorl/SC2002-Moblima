@@ -14,15 +14,13 @@ public enum AccountType {
 	/** The moviegoer. */
 	MOVIEGOER("Movie-goer");
 	
-	/** The name. */
+	/** The name. More user friendly display*/
 	private final String name;
 	
 	/**
 	 * Instantiates a new account type.
-	 *
 	 * @param s the s
 	 */
-	//constructor
 	AccountType(String s){
 		name = s;
 	}

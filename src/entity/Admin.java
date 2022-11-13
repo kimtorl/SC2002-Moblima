@@ -36,7 +36,7 @@ public class Admin extends Account {
 	}
 	
 	/**
-	 * Display capabilities.
+	 * Display list of capabilities.
 	 */
 	@Override
 	public void displayCapabilities() {
@@ -49,7 +49,7 @@ public class Admin extends Account {
 	}
 
 	/**
-	 * Perform select capability.
+	 * Perform selected capability.
 	 *
 	 * @param choice the choice
 	 */

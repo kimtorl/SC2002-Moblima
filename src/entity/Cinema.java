@@ -11,9 +11,9 @@ public class Cinema implements Serializable{
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 2L;
 	
-	/** The cinema code. */
+	/** The cinema code. cinemaCode is unique across Cineplexes*/
 	//Attributes
-	private String cinemaCode; //cinemaCode is unique across Cineplexes
+	private String cinemaCode;
 	
 	/** The cinema class. */
 	private ClassOfCinema cinemaClass;

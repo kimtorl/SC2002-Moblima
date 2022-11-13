@@ -11,16 +11,16 @@ public enum ClassOfCinema {
 	/** The standard. */
 	STANDARD("Standard"),
 	
-	/** The platinum. */
+	/** The platinum class cinema. More expensive */
 	PLATINUM("Platinum Movie Suites");
 	
-	/** The name. */
+	/** The name. More user friendly display */
 	private final String name;
 	
 	/**
 	 * Instantiates a new class of cinema.
 	 *
-	 * @param s the s
+	 * @param s the name
 	 */
 	//constructor
 	ClassOfCinema(String s){

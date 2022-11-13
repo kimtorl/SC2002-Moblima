@@ -18,7 +18,7 @@ public class Movie implements Serializable{
 	 */
 	private static final long serialVersionUID = 9L;
 	
-	/** The movie ID. */
+	/** The movie ID. It is unique for each variation of the same movie e.g. 2D and 3D movie has diff movieID */
 	private int movieID;
 	
 	/** The movie title. */
@@ -90,7 +90,7 @@ public class Movie implements Serializable{
 			ArrayList<String> pastReviews,
 			ArrayList<Integer> pastRatings) 
 	{
-		this.movieID = movieID; //unique for each variation of the same movie e.g. 2D and 3D movie has diff movieID
+		this.movieID = movieID;
 		this.movieTitle = movieTitle;
 		this.movieType = movieType;
 		this.language = language;

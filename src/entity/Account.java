@@ -27,7 +27,7 @@ public abstract class Account implements Serializable{
 	/** The password. */
 	private String password;
 	
-	/** The capabilities. */
+	/** The Array list of capabilities. Each Capability is gives the user a functionality*/
 	private ArrayList<Capability> capabilities;
 	
 	/**

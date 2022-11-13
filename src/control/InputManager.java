@@ -19,7 +19,7 @@ public class InputManager {
 	/**
 	 * gets an integer bounded by a range from User, range is lower to upper inclusive.
 	 * if user inputs integer out of range, prompt the user for another input
-	 *
+	 * 
 	 * @param lower the lower
 	 * @param upper the upper
 	 * @return the int

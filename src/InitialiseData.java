@@ -8,10 +8,11 @@ import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-/*
- * 		Excecute this file for intital setup of the system
- */
 
+/**
+ * @author Cross
+ * Excecute this file for intital setup of the system
+ */
 public class InitialiseData {
 
 	/**

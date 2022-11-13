@@ -241,10 +241,14 @@ public interface MovieManager {
 	//displays Info
 	public void displayMovieInfo(int movieID);
 	
+
 	/**
 	 * List all movies.
+	 *
+	 * @param regardlessOfShowingStatus boolean value to check if true,
+	 * print coming soon,preview,now showing movies. else, print preview and now showing
+	 * only.
 	 */
-	//prints out all movies
 	public void listAllMovies(boolean regardlessOfShowingStatus);
 			
 }

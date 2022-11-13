@@ -24,29 +24,30 @@ public class BookTicket implements Capability, Serializable {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 37L;
 	
-	/** The cinema mgr. */
+	/** The Control class for Cinema. */
 	private CinemaManager cinemaMgr;
 	
-	/** The showtime mgr. */
+	/** The Control class for Showtime. */
 	private ShowtimeManager showtimeMgr;
 	
-	/** The movie mgr. */
+	/** The Control class for Movie. */
 	private MovieManager movieMgr;
 	
-	/** The transaction mgr. */
+	/** The Control class for Transaction. */
 	private TransactionManager transactionMgr;
 	
-	/** The price mgr. */
+	/** The Control class for Price. */
 	private PriceManager priceMgr;
 	
 	/**
-	 * Instantiates a new book ticket.
+	 * Instantiates a new bookTicket.
+	 * 
 	 *
-	 * @param cinemaMgr the cinema mgr
-	 * @param showtimeMgr the showtime mgr
-	 * @param movieMgr the movie mgr
-	 * @param transactionMgr the transaction mgr
-	 * @param priceMgr the price mgr
+	 * @param cinemaMgr 		The CinemaManager
+	 * @param showtimeMgr 		The ShowtimeManager
+	 * @param movieMgr the  	The MovieManager
+	 * @param transactionMgr 	TransactionManager
+	 * @param priceMgr 			The PriceManager
 	 */
 	public BookTicket(CinemaManager cinemaMgr, ShowtimeManager showtimeMgr, MovieManager movieMgr, TransactionManager transactionMgr, PriceManager priceMgr){
 		this.cinemaMgr = cinemaMgr;
@@ -58,7 +59,11 @@ public class BookTicket implements Capability, Serializable {
 
 
 	/**
-	 * Perform capability.
+	 * Displays available movies and get user to select a movie using movieID.
+	 * Then, displays the available Showtimes and get user to select a Showtime.
+	 * Then, displays the seat layout and get user to select the seats. More than 1 seat can be selected.
+	 * Then, ticket price is retrieved and displayed to user for confirmation.
+	 * Upon confirmation, transaction will be made and saved using TransactionManager.
 	 */
 	@Override
 	public void performCapability() {
@@ -101,7 +106,7 @@ public class BookTicket implements Capability, Serializable {
 
 	
 	/**
-	 * To string.
+	 * Overrides toString method for printing the capability.
 	 *
 	 * @return the string
 	 */
@@ -112,9 +117,9 @@ public class BookTicket implements Capability, Serializable {
 	
 	
 	/**
-	 * Select movie.
+	 * Select Movie. Movies are listed. Get user to input integer.
 	 *
-	 * @return the int
+	 * @return an integer which is the movieID 
 	 */
 	public int selectMovie() {
 		int movieID;
@@ -130,9 +135,10 @@ public class BookTicket implements Capability, Serializable {
 
 	/**
 	 * Select showtimes.
+	 * Display available showtimes for the chosen movie and user will select one.
 	 *
-	 * @param movieID the movie ID
-	 * @return the showtime
+	 * @param movieID the movieID attribute of a Movie
+	 * @return the selected Showtime
 	 */
 	//movieID is valid
 	public Showtime selectShowtimes(int movieID) {
@@ -158,9 +164,9 @@ public class BookTicket implements Capability, Serializable {
 	
 	/**
 	 * Select seats.
-	 *
-	 * @param st the st
-	 * @return the array list
+	 * Display the seat layout of the chosen Showtime and get user to choose the seats.
+	 * @param st the chosen Showtime
+	 * @return the array list of integers which represents the chosen seatIDs
 	 */
 	public ArrayList<Integer> selectSeats(Showtime st) {
 		ArrayList<Integer> selectedSeats = new ArrayList<Integer>();
@@ -201,10 +207,12 @@ public class BookTicket implements Capability, Serializable {
 	
 	/**
 	 * Calculate price.
-	 *
-	 * @param st the st
-	 * @param numOfTickets the num of tickets
-	 * @return the double
+	 * User can choose ticketType - Adult, Senior Citizen or Student. Assume that verification will be done at the cinema.
+	 * PriceManager uses TicketType, TypeOfMovie, ClassOfCinema, dateTime to retrieve price
+	 *	
+	 * @param st the chosen Showtime
+	 * @param numOfTickets the num of tickets ordered
+	 * @return the total price of the transaction
 	 */
 	public double calculatePrice(Showtime st, int numOfTickets) {
 		//Ticket type
@@ -238,12 +246,14 @@ public class BookTicket implements Capability, Serializable {
 	
 	/**
 	 * Make transaction.
+	 * Retrieves the Account of this user currently logged in and get the name, mobile number and email.
+	 * TransactionManager then creates an store the Transaction.
 	 *
 	 * @param transactionAmount the transaction amount
-	 * @param dateTime the date time
-	 * @param movieID the movie ID
+	 * @param dateTime the date time of transaction
+	 * @param movieID the movie ID of the chosen movie
 	 * @param cinemaCode the cinema code
-	 * @param seats the seats
+	 * @param seats the array list of seats chosen
 	 */
 	public void makeTransaction(double transactionAmount, LocalDateTime dateTime, int movieID, String cinemaCode, ArrayList<Integer> seats) {
 		MovieGoer acc = (MovieGoer) MainApplication.currentAcc;

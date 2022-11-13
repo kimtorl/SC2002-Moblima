@@ -212,7 +212,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 					System.out.println(getThePrice());
 					break;
 				case 2:
-					UpdateThePrice();
+					updateThePrice();
 					break;
 				default:		
 			}
@@ -257,7 +257,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 	/**
 	 * Update the price.
 	 */
-	public void UpdateThePrice() {
+	public void updateThePrice() {
 		System.out.println("Enter ticket type: 1.Adult	2.Student	3.Senior Citizen");
 		int ticketTypeInt = InputManager.getInt(1,3);
 		TicketType ticketType = TicketType.values()[ticketTypeInt-1];
@@ -272,9 +272,9 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 		int cinemaClassInt = InputManager.getInt(1,2);
 		ClassOfCinema cinemaClass = ClassOfCinema.values()[cinemaClassInt-1];
 		//
-		System.out.println("Enter the date of movie: yyyy-mm-dd ");
+		System.out.println("Enter the date of movie:");
 		LocalDate date = InputManager.getLocalDate();
-		System.out.println("Before or After 6pm?");
+		System.out.println("Before or After 6pm? Enter Y/N:");
 		boolean night = InputManager.getY_or_N();
 		LocalDateTime dateTime;
 		
@@ -283,6 +283,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 		else 
 			dateTime = LocalDateTime.of(date, LocalTime.of(10, 00));
 		
+		System.out.println("Enter new price: ");
 		double newPrice = InputManager.getDouble(0,99999);
 		
 		priceManager.updatePrice(ticketType, type, cinemaClass, dateTime,newPrice);

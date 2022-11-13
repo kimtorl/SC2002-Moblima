@@ -7,12 +7,16 @@ import java.util.ArrayList;
 
 import java.time.format.DateTimeParseException;
 
+import control.AccountManager;
 import control.HolidayManager;
 import control.InputManager;
+import control.MovieManager;
 import control.PriceManager;
+import control.TransactionManager;
 import entity.Holiday;
 import entity.TicketType;
 import entity.TypeOfMovie;
+import entity.AccountType;
 import entity.ClassOfCinema;
 
 public class ConfigureSystemSetting implements Capability, Serializable {
@@ -20,10 +24,16 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 	private static final long serialVersionUID = 39L;
 	private HolidayManager manager;
 	private PriceManager priceManager;
+	private AccountManager accMgr;
+	private MovieManager movieMgr;
+	private TransactionManager transactionMgr;
 	
-	public ConfigureSystemSetting(HolidayManager m, PriceManager p) {
+	public ConfigureSystemSetting(HolidayManager m, PriceManager p, AccountManager accMgr, MovieManager movieMgr,TransactionManager  transactionMgr) {
 		manager = m;
 		priceManager = p;
+		this.accMgr = accMgr;
+		this.movieMgr = movieMgr;
+		this.transactionMgr = transactionMgr;
 	}
 	
 	
@@ -38,10 +48,11 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 			System.out.println("Choose an option: ");
 			System.out.println("1. Edit Holidays");
 			System.out.println("2. Edit Prices");
-			System.out.println("3. Go back");
+			System.out.println("3. Edit MovieGoer Account's Permissions ");
+			System.out.println("4. Go back");
 			System.out.println("------------------------------");
 			
-			choice = InputManager.getInt(1, 3);
+			choice = InputManager.getInt(1, 4);
 			
 			switch(choice) {
 			case 1:
@@ -50,11 +61,13 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 			case 2:
 				editPrice();
 				break;
+			case 3:
+				editMovieGoerAccount();
 			default:
 					
 			}
 			
-		}while(choice != 3);
+		}while(choice != 4);
 		
 		
 
@@ -229,6 +242,40 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 		
 		priceManager.updatePrice(ticketType, type, cinemaClass, dateTime,newPrice);
 		System.out.println("Updated price successfully");
+	}
+	
+	
+	public void editMovieGoerAccount() {
+		int choice;
+	
+		System.out.println("Choose an option:");
+		System.out.println("1. Add permissions");
+		System.out.println("2. Remove permissions");
+		System.out.println("3. Go back");
+		
+		choice = InputManager.getInt(1,3);
+		if(choice == 3) return; //exit
+		
+		String operation=null;
+		if(choice==1) operation = "add";
+		else if(choice==2) operation = "del";
+		
+
+		System.out.println("Choose a permission to edit:");
+		System.out.println("1. List Top 5 Movies by Ticket Sale");
+		System.out.println("2. List Top 5 Movies by Overall Reviewer Rating");
+		System.out.println("3. Go back");
+		choice = InputManager.getInt(1,3);
+		if (choice == 3) return; //exit
+		
+		Capability capability=null;
+		if(choice == 1) capability = new Top5MovieByTicketSale(movieMgr, transactionMgr); 
+		if (choice ==2) capability = new Top5MovieByRating(movieMgr);
+		
+		
+		if(accMgr.updateAccountCapability(AccountType.MOVIEGOER, operation, capability))
+			System.out.println(operation + " permissions success!");;
+	
 	}
 	
 	

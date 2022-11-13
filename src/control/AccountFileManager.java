@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import boundary.Capability;
@@ -15,8 +16,9 @@ import entity.Admin;
 import entity.MovieGoer;
 
 
-public class AccountFileManager implements AccountManager{
+public class AccountFileManager implements AccountManager, Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	//File managed by this class
 	public final static String FILENAME = "Database/accounts.txt";
 	
@@ -73,6 +75,9 @@ public class AccountFileManager implements AccountManager{
 	//@param operation "add" to add a capability, "del" to delete a capability
 	//updates the capabilities of all Accounts of given accountType.
 	public boolean updateAccountCapability(AccountType accountType, String operation, Capability capability) {
+		//error checking
+		if(operation == null || capability == null) return false;
+		
 		ArrayList<Account> accountList = getAllAccount();
 		if (accountList==null) return false;
 		ArrayList<Capability> capabilities;

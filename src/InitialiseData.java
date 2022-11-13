@@ -29,7 +29,7 @@ public class InitialiseData {
 		
 		//create admin Accounts
 		ArrayList<Capability> adminCapabilities = new ArrayList<Capability>();
-		adminCapabilities.add(new ConfigureSystemSetting(holidayMgr, priceMgr));
+		adminCapabilities.add(new ConfigureSystemSetting(holidayMgr, priceMgr, accMgr, movieMgr, transactionMgr));
 		adminCapabilities.add(new EditMovieListing(movieMgr));
 		adminCapabilities.add(new EditMovieShowtime(showtimeMgr, movieMgr));
 		adminCapabilities.add(new Top5MovieByTicketSale(movieMgr, transactionMgr));

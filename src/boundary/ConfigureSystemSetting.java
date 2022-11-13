@@ -22,15 +22,15 @@ import entity.ClassOfCinema;
 public class ConfigureSystemSetting implements Capability, Serializable {
 
 	private static final long serialVersionUID = 39L;
-	private HolidayManager holidayMgr;
-	private PriceManager priceMgr;
+	private HolidayManager manager;
+	private PriceManager priceManager;
 	private AccountManager accMgr;
 	private MovieManager movieMgr;
 	private TransactionManager transactionMgr;
 	
 	public ConfigureSystemSetting(HolidayManager m, PriceManager p, AccountManager accMgr, MovieManager movieMgr,TransactionManager  transactionMgr) {
-		this.holidayMgr = m;
-		this.priceMgr = p;
+		manager = m;
+		priceManager = p;
 		this.accMgr = accMgr;
 		this.movieMgr = movieMgr;
 		this.transactionMgr = transactionMgr;
@@ -98,7 +98,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 					String newholiday = InputManager.getString(); //newholiday stores string of new holiday
 					try{
 						LocalDate newdate = LocalDate.parse(newholiday);	//if invalid date is input
-						holidayMgr.createHoliday(newdate);
+						manager.createHoliday(newdate);
 					}catch (DateTimeParseException e) {
 						System.out.println("Invalid date");
 					}
@@ -112,7 +112,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 					
 					try {
 						LocalDate deletedate = LocalDate.parse(deletestring);
-						holidayMgr.deleteHoliday(deletedate);
+						manager.deleteHoliday(deletedate);
 						
 					}catch (DateTimeParseException e) {
 						System.out.println("Invalid date");
@@ -122,7 +122,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 				case 3:
 					ArrayList<Holiday> holidaylist = new ArrayList<Holiday>();
 					//ArrayList<Holiday> holidaylist;
-					holidaylist = holidayMgr.getAllHolidays();
+					holidaylist = manager.getAllHolidays();
 					for(int i = 0; i < holidaylist.size(); i++) {
 						System.out.println(holidaylist.get(i).getDate());
 					}
@@ -133,7 +133,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 					
 					try {
 						LocalDate objectisholiday = LocalDate.parse(stringisholiday);
-						if(holidayMgr.isHoliday(objectisholiday))
+						if(manager.isHoliday(objectisholiday))
 							System.out.println("It is a holiday.");
 						else
 							System.out.println("It is NOT a holiday.");
@@ -175,7 +175,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 					System.out.println(getThePrice());
 					break;
 				case 2:
-					updateThePrice();
+					UpdateThePrice();
 					break;
 				default:		
 			}
@@ -209,10 +209,10 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 		else 
 			dateTime = LocalDateTime.of(date, LocalTime.of(10, 00));
 		
-		return priceMgr.getPrice(ticketType, type, cinemaClass, dateTime);
+		return priceManager.getPrice(ticketType, type, cinemaClass, dateTime);
 	}
 	
-	public void updateThePrice() {
+	public void UpdateThePrice() {
 		System.out.println("Enter ticket type: 1.Adult	2.Student	3.Senior Citizen");
 		int ticketTypeInt = InputManager.getInt(1,3);
 		TicketType ticketType = TicketType.values()[ticketTypeInt-1];
@@ -240,11 +240,14 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 		
 		double newPrice = InputManager.getDouble(0,99999);
 		
-		priceMgr.updatePrice(ticketType, type, cinemaClass, dateTime,newPrice);
+		priceManager.updatePrice(ticketType, type, cinemaClass, dateTime,newPrice);
 		System.out.println("Updated price successfully");
 	}
 	
 	
+	/**
+	 * 
+	 */
 	public void editMovieGoerAccount() {
 		int choice;
 	

@@ -3,32 +3,91 @@ package entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * @author Cross
+ *
+ */
 public class Movie implements Serializable{	
 	
 	/**
 	 * 
 	 */
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 9L;
 	
+	/**
+	 * 
+	 */
 	private int movieID;
+	/**
+	 * 
+	 */
 	private String movieTitle;
+	/**
+	 * 
+	 */
 	private	TypeOfMovie movieType;
+	/**
+	 * 
+	 */
 	private String language;
+	/**
+	 * 
+	 */
 	private int duration; //in minutes
+	/**
+	 * 
+	 */
 	private ShowingStatus showingStatus;
+	/**
+	 * 
+	 */
 	private String synopsis;
+	/**
+	 * 
+	 */
 	private String director;
+	/**
+	 * 
+	 */
 	private ArrayList<String> cast;
+	/**
+	 * 
+	 */
 	private ArrayList<String> pastReviews;
+	/**
+	 * 
+	 */
 	private ArrayList<Integer> pastRatings;
+	/**
+	 * 
+	 */
 	private int ticketSales = 0;
 	
 
 
+	/**
+	 * 
+	 */
 	public Movie() {
 		
 	}
 	
+	/**
+	 * @param movieID
+	 * @param movieTitle
+	 * @param movieType
+	 * @param language
+	 * @param duration
+	 * @param showingStatus
+	 * @param synopsis
+	 * @param director
+	 * @param cast
+	 * @param pastReviews
+	 * @param pastRatings
+	 */
 	public Movie(int movieID,
 			String movieTitle,
 			TypeOfMovie movieType, 
@@ -54,6 +113,9 @@ public class Movie implements Serializable{
 		this.pastRatings = pastRatings;
 	}
 	
+	/**
+	 * 
+	 */
 	public void dislayInfo()
 	{
 		System.out.println("Movie ID: "+movieID);
@@ -81,65 +143,125 @@ public class Movie implements Serializable{
 	}
 	
 	
+	/**
+	 *
+	 */
 	public String toString() {
 		return "MovieID: " + movieID + ". Title: " + movieTitle;
 	}
 	
 	//getters and setters
+	/**
+	 * @return
+	 */
 	public int getMovieID() {
 		return movieID;
 	}
+	/**
+	 * @param movieID
+	 */
 	public void setMovieID(int movieID) {
 		this.movieID = movieID;
 	}
+	/**
+	 * @return
+	 */
 	public String getMovieTitle() {
 		return movieTitle;
 	}
+	/**
+	 * @param movieTitle
+	 */
 	public void setMovieTitle(String movieTitle) {
 		this.movieTitle = movieTitle;
 	}
+	/**
+	 * @return
+	 */
 	public TypeOfMovie getMovieType() {
 		return movieType;
 	}
+	/**
+	 * @param movieType
+	 */
 	public void setMovieType(TypeOfMovie movieType) {
 		this.movieType = movieType;
 	}
+	/**
+	 * @return
+	 */
 	public String getLanguage() {
 		return language;
 	}
+	/**
+	 * @param language
+	 */
 	public void setLanguage(String language) {
 		this.language = language;
 	}
+	/**
+	 * @return
+	 */
 	public int getDuration() {
 		return duration;
 	}
+	/**
+	 * @param duration
+	 */
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
+	/**
+	 * @return
+	 */
 	public ShowingStatus getShowingStatus() {
 		return showingStatus;
 	}
+	/**
+	 * @param showingStatus
+	 */
 	public void setShowingStatus(ShowingStatus showingStatus) {
 		this.showingStatus = showingStatus;
 	}
+	/**
+	 * @return
+	 */
 	public String getSynopsis() {
 		return synopsis;
 	}
+	/**
+	 * @param synopsis
+	 */
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
 	}
+	/**
+	 * @return
+	 */
 	public String getDirector() {
 		return director;
 	}
+	/**
+	 * @param director
+	 */
 	public void setDirector(String director) {
 		this.director = director;
 	}
+	/**
+	 * @return
+	 */
 	public ArrayList<String> getCast() {
 		return cast;
 	}
+	/**
+	 * @param cast
+	 */
 	public void setCast(ArrayList<String> cast) {
 		this.cast = cast;
 	}
+	/**
+	 * @return
+	 */
 	public double getOverallReviewerRating() {
 		double value=0;
 		
@@ -153,27 +275,48 @@ public class Movie implements Serializable{
 		return value;
 	}
 
+	/**
+	 * @return
+	 */
 	public ArrayList<String> getPastReviews() {
 		return pastReviews;
 	}
+	/**
+	 * @param pastReviews
+	 */
 	public void setPastReviews(ArrayList<String> pastReviews) {
 		this.pastReviews = pastReviews;
 	}
+	/**
+	 * @return
+	 */
 	public ArrayList<Integer> getPastRatings() {
 		return pastRatings;
 	}
+	/**
+	 * @param pastRatings
+	 */
 	public void setPastRatings(ArrayList<Integer> pastRatings) {
 		this.pastRatings = pastRatings;
 	}
 	
+	/**
+	 * @return
+	 */
 	public int getTicketSales() {
 		return ticketSales;
 	}
 
+	/**
+	 * @param ticketSales
+	 */
 	public void setTicketSales(int ticketSales) {
 		this.ticketSales = ticketSales;
 	}
 	
+	/**
+	 * 
+	 */
 	public void plusOneSales() {
 		this.ticketSales++;
 	}

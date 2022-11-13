@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Holiday implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID =7L;
 	private LocalDate date;
 	

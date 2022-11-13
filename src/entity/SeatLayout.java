@@ -2,18 +2,35 @@ package entity;
 
 import java.io.Serializable;
 
+/**
+ * @author Cross
+ *
+ */
 public class SeatLayout implements Serializable{
+
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4L;
 	//Attributes
+	/**
+	 * 
+	 */
 	private Seat[][] seatLayout;
+	/**
+	 * 
+	 */
 	private int numOfRow = 8; //default values
+	/**
+	 * 
+	 */
 	private int numOfCol = 8; //default values
 	
 	//Constructor 
+	/**
+	 * 
+	 */
 	public SeatLayout() {
 		seatLayout = new Seat[numOfRow][numOfCol];
 		
@@ -27,6 +44,10 @@ public class SeatLayout implements Serializable{
 	
 	
 	//Constructor with params
+	/**
+	 * @param rowSize
+	 * @param colSize
+	 */
 	public SeatLayout(int rowSize, int colSize) {
 		this.numOfRow = rowSize;
 		this.numOfCol = colSize;
@@ -42,6 +63,9 @@ public class SeatLayout implements Serializable{
 	
 	
 	//prints out the cinema Seating layout in a matrix
+	/**
+	 * 
+	 */
 	public void displaySeatLayout() {
 		//print out the column labels
 		System.out.print("row\\col");
@@ -66,6 +90,10 @@ public class SeatLayout implements Serializable{
 	
 	//returns -1 if seat is already booked or invalid seatCode
 	//returns seatID if seat is booked successfully
+	/**
+	 * @param seatCode
+	 * @return
+	 */
 	public int bookSeat(String seatCode) {
 		int row = seatCode.charAt(0)-65; //convert the alphabetical row into int
 		seatCode = seatCode.substring(1);
@@ -86,22 +114,37 @@ public class SeatLayout implements Serializable{
 	}
 	
 	//getters and setters
+	/**
+	 * @return
+	 */
 	public int getNumOfRow() {
 		return numOfRow;
 	}
 
+	/**
+	 * @param numOfRow
+	 */
 	public void setNumOfRow(int numOfRow) {
 		this.numOfRow = numOfRow;
 	}
 
+	/**
+	 * @return
+	 */
 	public int getNumOfCol() {
 		return numOfCol;
 	}
 
+	/**
+	 * @param numOfCol
+	 */
 	public void setNumOfCol(int numOfCol) {
 		this.numOfCol = numOfCol;
 	}
 	
+	/**
+	 * @return
+	 */
 	public Seat[][] getSeatLayout(){
 		return this.seatLayout;
 	}

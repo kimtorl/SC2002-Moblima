@@ -91,7 +91,7 @@ public class EditMovieListing implements Capability, Serializable {
 	 */
 	public void listMovie() {
 		System.out.println("------------------------------");
-		movieMgr.listAllMovies();
+		movieMgr.listAllMovies(true); //include Coming_soon movies
 		System.out.println("------------------------------");
 	}
 	

@@ -62,11 +62,15 @@ public class BookTicket implements Capability, Serializable {
 		
 		//seat selection
 		ArrayList<Integer> selectedSeats = selectSeats(st);
+		if (selectedSeats == null) return; //user exits
 		
-		//calculates the price
-		double transactionAmount = calculatePrice(st);
-		//MainApplication.currentAcc
-		makeTransaction(transactionAmount, movieID, st.getCinemaCode(), selectedSeats);
+		//calculates the price and prints it
+		double transactionAmount = calculatePrice(st,selectedSeats.size());
+		
+		System.out.println("Confirm Transaction? Enter Y/N: ");
+		if(!InputManager.getY_or_N()) return; //user exits
+		
+		makeTransaction(transactionAmount, LocalDateTime.now(), movieID, st.getCinemaCode(), selectedSeats);
 	}
 
 
@@ -131,10 +135,13 @@ public class BookTicket implements Capability, Serializable {
 			int seatID;
 			do {
 				st.getSeatLayout().displaySeatLayout(); //display seats
-				System.out.println("Please select seat " +(i+1) + ": ");
+				System.out.println("Please select seat " +(i+1) + ": (-1 to exit)");
 				String choice = InputManager.getString();
+				if(choice.equals("-1")) return null; //user chooses to exit
+				
 				seatID = st.getSeatLayout().bookSeat(choice);
 				if(seatID != -1) invalid = false; //valid seat chosen
+				else System.out.println("Invalid seat chosen!");
 			}while(invalid);
 			selectedSeats.add(seatID);
 		}
@@ -145,7 +152,7 @@ public class BookTicket implements Capability, Serializable {
 		return selectedSeats;
 	}
 	
-	public double calculatePrice(Showtime st) {
+	public double calculatePrice(Showtime st, int numOfTickets) {
 		//Ticket type
 		System.out.println("Choose your ticket type:");
 		for(int i=0; i < TicketType.values().length;i++) {
@@ -163,19 +170,30 @@ public class BookTicket implements Capability, Serializable {
 		//dateTime
 		LocalDateTime dateTime = st.getDateTime();
 		
-		priceMgr.getPrice(ticketType, movieType, cinemaClass, dateTime);
+		double price = priceMgr.getPrice(ticketType, movieType, cinemaClass, dateTime);
 		
+		System.out.println("------------------------------");
+		System.out.println("Ticket Type: " + ticketType);
+		System.out.println("Movie Type: " + movieType);
+		System.out.println("Cinema Class: " + cinemaClass);
+		System.out.printf("Price: %.2f /ticket\n", price);
 		
-		return 14.50; //to be updated with priceFileManager
+		return price*numOfTickets;
+		
 	}
 	
-	public void makeTransaction(double transactionAmount, int movieID, String cinemaCode, ArrayList<Integer> seats) {
+	public void makeTransaction(double transactionAmount, LocalDateTime dateTime, int movieID, String cinemaCode, ArrayList<Integer> seats) {
 		MovieGoer acc = (MovieGoer) MainApplication.currentAcc;
 		String name = acc.getName();
 		String mobileNum = acc.getMobileNumber();
 		String email = acc.getEmail();
 		
-		transactionMgr.createTransaction(transactionAmount, name, mobileNum, email, LocalDateTime.now(), movieID, cinemaCode, seats);
+		if(transactionMgr.createTransaction(transactionAmount, name, mobileNum, email, dateTime, movieID, cinemaCode, seats)) {
+			System.out.println("Transaction successful!");
+		}	
+		else {
+			makeTransaction(transactionAmount,dateTime.plusMinutes(1), movieID, cinemaCode, seats); //advance the transaction to the next minute
+		}
 		
 	}
 	

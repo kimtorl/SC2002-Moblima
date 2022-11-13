@@ -23,8 +23,7 @@ public class Top5MovieByTicketSale implements Capability, Serializable {
 	
 	@Override
 	public void performCapability() {
-		// TODO Auto-generated method stub
-		ArrayList<Transaction> allTrans;//new?
+		ArrayList<Transaction> allTrans;
 		allTrans = transactionMgr.getAllTransaction();
 		
 		ArrayList<Movie> allMovies;
@@ -34,28 +33,29 @@ public class Top5MovieByTicketSale implements Capability, Serializable {
 		for(int i = 0; i < allTrans.size(); i++) {
 			
 			int movieID = allTrans.get(i).getMovieID();
-			for(int j = 0; j<allMovies.size();j++)
-			{
+			
+			for(int j = 0; j<allMovies.size();j++){
 				if(allMovies.get(j).getMovieID() == movieID) {
-					allMovies.get(j).plusOneSales();
+					//add number of tickets sold
+					for(int k=0;k<allTrans.get(i).getSeatIDList().size();k++) {
+						allMovies.get(j).plusOneSales();
+					}			
 				}
 			}
 		}
 		
 		allMovies.sort(new Comparator<Movie>() {
 			public int compare(Movie m1, Movie m2) {
-				return m1.getTicketSales() - m2.getTicketSales();
+				return m2.getTicketSales() - m1.getTicketSales();
 			}
 		});
 		
 		System.out.println("Top 5 ticket sales are: ");
 		for(int i = 0; i < 5; i++) {
-			System.out.println(allMovies.get(i).getMovieTitle()
-					+"	|	"
-					+allMovies.get(i).getMovieType().toString()
-					+"	|	Ticket Sales: "
-					+allMovies.get(i).getTicketSales()
-					+"\n");
+			System.out.printf("Top %d. %-50s | %-20s | Ticket Sales: %d\n", i+1,
+					allMovies.get(i).getMovieTitle(),
+					allMovies.get(i).getMovieType().toString(),
+					allMovies.get(i).getTicketSales());
 		}
 		
 		

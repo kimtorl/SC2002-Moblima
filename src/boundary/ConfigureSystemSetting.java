@@ -27,33 +27,33 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 39L;
 	
-	/** The manager. */
-	private HolidayManager manager;
+	/** The Control class for Holiday. */
+	private HolidayManager holidayMgr;
 	
-	/** The price manager. */
-	private PriceManager priceManager;
+	/** The Control class for Price. */
+	private PriceManager priceMgr;
 	
-	/** The acc mgr. */
+	/** The Control class for Account */
 	private AccountManager accMgr;
 	
-	/** The movie mgr. */
+	/** The Control class for Movie. */
 	private MovieManager movieMgr;
 	
-	/** The transaction mgr. */
+	/** The Control class for Transaction. */
 	private TransactionManager transactionMgr;
 	
 	/**
 	 * Instantiates a new configure system setting.
 	 *
-	 * @param m the m
-	 * @param p the p
-	 * @param accMgr the acc mgr
-	 * @param movieMgr the movie mgr
-	 * @param transactionMgr the transaction mgr
+	 * @param holidayMgr		The HolidayManager
+	 * @param priceMgr 			The PriceManager
+	 * @param accMgr 			The AccountManager
+	 * @param movieMgr 			The MovieManager
+	 * @param transactionMgr 	The TransactionManager
 	 */
-	public ConfigureSystemSetting(HolidayManager m, PriceManager p, AccountManager accMgr, MovieManager movieMgr,TransactionManager  transactionMgr) {
-		manager = m;
-		priceManager = p;
+	public ConfigureSystemSetting(HolidayManager holidayMgr, PriceManager priceMgr, AccountManager accMgr, MovieManager movieMgr,TransactionManager  transactionMgr) {
+		this.holidayMgr = holidayMgr;
+		this.priceMgr = priceMgr;
 		this.accMgr = accMgr;
 		this.movieMgr = movieMgr;
 		this.transactionMgr = transactionMgr;
@@ -62,7 +62,8 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 	
 	
 	/**
-	 * Perform capability.
+	 * Displays a menu for user to edit holidays, prices or account permissions of MovieGoer.
+	 * Input 4 to exit this menu.
 	 */
 	@Override
 	public void performCapability() {
@@ -102,7 +103,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 
 	
 	/**
-	 * To string.
+	 * Overrides toString method for printing the capability
 	 *
 	 * @return the string
 	 */
@@ -112,7 +113,8 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 	}
 	
 	/**
-	 * Edits the holiday.
+	 * Displays a menu for the admin to edits the holiday. 
+	 * Allow admin to add, delete, list or check if a date is a holiday using HolidayManager class.
 	 */
 	public void editHoliday() {
 		System.out.println("\n1. Add holiday");
@@ -132,7 +134,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 					String newholiday = InputManager.getString(); //newholiday stores string of new holiday
 					try{
 						LocalDate newdate = LocalDate.parse(newholiday);	//if invalid date is input
-						manager.createHoliday(newdate);
+						holidayMgr.createHoliday(newdate);
 					}catch (DateTimeParseException e) {
 						System.out.println("Invalid date");
 					}
@@ -146,7 +148,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 					
 					try {
 						LocalDate deletedate = LocalDate.parse(deletestring);
-						manager.deleteHoliday(deletedate);
+						holidayMgr.deleteHoliday(deletedate);
 						
 					}catch (DateTimeParseException e) {
 						System.out.println("Invalid date");
@@ -155,8 +157,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 					break;
 				case 3:
 					ArrayList<Holiday> holidaylist = new ArrayList<Holiday>();
-					//ArrayList<Holiday> holidaylist;
-					holidaylist = manager.getAllHolidays();
+					holidaylist = holidayMgr.getAllHolidays();
 					for(int i = 0; i < holidaylist.size(); i++) {
 						System.out.println(holidaylist.get(i).getDate());
 					}
@@ -167,7 +168,7 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 					
 					try {
 						LocalDate objectisholiday = LocalDate.parse(stringisholiday);
-						if(manager.isHoliday(objectisholiday))
+						if(holidayMgr.isHoliday(objectisholiday))
 							System.out.println("It is a holiday.");
 						else
 							System.out.println("It is NOT a holiday.");
@@ -197,7 +198,8 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 	
 	
 	/**
-	 * Edits the price.
+	 * Displays a menu for the admin to edit the price.
+	 * Allow admin to retrieve the price of tickets or update the price.
 	 */
 	public void editPrice() {
 		System.out.println("1. Get Price"
@@ -222,8 +224,10 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 	
 	/**
 	 * Gets the the price.
-	 *
-	 * @return the the price
+	 * Admin inputs TicketType, MovieType, ClassOfCinema, DateTime.
+	 * DateTime is used to determine whether its weekend or weekday. Certain TicketType such as Student and Senior Citizen discounts
+	 * depends on date and time.
+	 * @return the price based on these 4 factors
 	 */
 	public double getThePrice() {
 		System.out.println("Enter ticket type: 1.Adult	2.Student	3.Senior Citizen");
@@ -251,11 +255,14 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 		else 
 			dateTime = LocalDateTime.of(date, LocalTime.of(10, 00));
 		
-		return priceManager.getPrice(ticketType, type, cinemaClass, dateTime);
+		return priceMgr.getPrice(ticketType, type, cinemaClass, dateTime);
 	}
 	
 	/**
 	 * Update the price.
+	 * Old price is found using TicketType, MovieType, ClassOfCinema, DateTime, and then updated with new price
+	 * DateTime is used to determine whether its weekend or weekday. Certain TicketType such as Student and Senior Citizen discounts
+	 * depends on date and time.
 	 */
 	public void updateThePrice() {
 		System.out.println("Enter ticket type: 1.Adult	2.Student	3.Senior Citizen");
@@ -286,13 +293,14 @@ public class ConfigureSystemSetting implements Capability, Serializable {
 		System.out.println("Enter new price: ");
 		double newPrice = InputManager.getDouble(0,99999);
 		
-		priceManager.updatePrice(ticketType, type, cinemaClass, dateTime,newPrice);
+		priceMgr.updatePrice(ticketType, type, cinemaClass, dateTime,newPrice);
 		System.out.println("Updated price successfully");
 	}
 	
 	
 	/**
-	 * 
+	 * Edits MovieGoer's list of Capabilities.
+	 * Allow admin to add or remove capabilities. Only Top5MovieByTicketSale and Top5MovieByRating capabilities can be modified.
 	 */
 	public void editMovieGoerAccount() {
 		int choice;

@@ -1,6 +1,8 @@
 package boundary;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import control.TransactionManager;
@@ -30,7 +32,8 @@ public class ViewBookingHistory implements Capability, Serializable {
 		{
 			if(name.equals(transList.get(i).getName()))
 			{
-				printTransaction(transList.get(i));
+				System.out.println(transList.get(i).toString());
+				
 			}
 		}
 
@@ -44,7 +47,7 @@ public class ViewBookingHistory implements Capability, Serializable {
 		return str;
 	}
 	
-	public void printTransaction(Transaction t) {
+	/*(public void printTransaction(Transaction t) {
 		System.out.println("Transaction ID: "
 				+t.getTransactionID()
 				+"\nTransaction amount: "
@@ -54,17 +57,21 @@ public class ViewBookingHistory implements Capability, Serializable {
 				+"\nMobile Number: "
 				+t.getMobileNumber()
 				+"\nEmail "
-				+t.getEmail()
-				+"\nDate & Time: "
-				+t.getDateTime()
+				+t.getEmail());
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm:ss");
+		LocalDateTime dateTime = t.getDateTime();
+		String formattedDateTime = dateTime.format(format);
+		System.out.println("\nDate & Time: "
+				+formattedDateTime
 				+"\nMovie ID: "
 				+t.getMovieID()
 				+"\nCinema Code: "
 				+t.getCinemaCode()
-				+"\nSeat ID List: "
-				);
+				+"\nSeat ID List: ");
+
 		printSeatIDList(t);
-		System.out.println("______________________________");
+		System.out.println();
+		System.out.println("_______________________________________________________________");
 	}
 	
 	public void printSeatIDList(Transaction t) {
@@ -73,5 +80,6 @@ public class ViewBookingHistory implements Capability, Serializable {
 			System.out.print(seatList.get(i)+" | ");
 		}
 		return;
-	}
+	}*/
+	
 }

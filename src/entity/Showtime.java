@@ -39,7 +39,7 @@ public class Showtime implements Serializable{
 	}
 	
 	public String dateTimeToString() {
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		return dateTime.format(format);
 	}
 	

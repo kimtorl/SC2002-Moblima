@@ -40,6 +40,7 @@ public class CinemaFileManager implements CinemaManager, Serializable{
 	//reads and return a specific cinema specified by the cinemaCode from a given cineplexList
 	//returns null if not found
 	public Cinema findCinema(ArrayList<Cineplex> cineplexList,int cineplexID, String cinemaCode) {
+		if(cineplexID >= cineplexList.size()) return null;//error checking
 		
 		ArrayList<Cinema> cinemaList = cineplexList.get(cineplexID).getCinemaList(); //retrieve cinemaList
 		

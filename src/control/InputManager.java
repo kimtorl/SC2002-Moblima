@@ -1,6 +1,7 @@
 package control;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
@@ -137,5 +138,26 @@ public class InputManager {
 		}while(!valid);
 		
 		return date;
+	}
+	
+	
+	//gets a LocalDateTime as input
+	public static LocalDateTime getLocalDateTime() {
+		LocalDateTime dateTime =null;
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm");
+		boolean valid = false;
+		
+		do {
+			System.out.println("Enter a date and time in this format YYYY-MM-DD hh:mm ");
+			try {
+				dateTime = LocalDateTime.parse(userInput.nextLine(), format);
+				valid = true;
+			}catch(DateTimeParseException e) {
+				System.out.println("DateTime given in wrong format! Please try again!");
+			}
+			
+		}while(!valid);
+		
+		return dateTime;
 	}
 }

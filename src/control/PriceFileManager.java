@@ -19,12 +19,22 @@ import entity.ClassOfCinema;
 import entity.TicketType;
 import entity.TypeOfMovie;
 
+/**
+ * The Price File Manager which is able to read, edit and show prices of the different movies 
+ * <p>This class handles the CRUD operations of the Price File Manager, our databse being a CSV file </p>
+ * @author Lin Kai 
+ */
+
 public class PriceFileManager implements PriceManager, Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	public static final String FILENAME = "Database/prices.txt";
 	
-    
+    /**
+	 * Trie is represented as t.
+	 * This method serializes the trie and writes it to a file 
+	 * @param t trie 
+	 */
     public void writeToFile(Trie t) {
 		try {
 			FileOutputStream fos = new FileOutputStream(FILENAME);
@@ -36,6 +46,11 @@ public class PriceFileManager implements PriceManager, Serializable{
 			ex.printStackTrace();
 		}
 	}
+
+	/**
+	 * Gets the previously constructed trie and outputs it back 
+	 * @return trie t 
+	 */
     
     public Trie readFile() {
     	Trie t = null;  
@@ -55,7 +70,9 @@ public class PriceFileManager implements PriceManager, Serializable{
     }
     
     
-
+	/**
+	 * Reads from a databse of files and initializes the price in a Trie data structure 
+	 */
     public void initialisePrice() {
     	String dataPath = "Database/MoviePrice.csv";
     	String line = "";
@@ -86,7 +103,13 @@ public class PriceFileManager implements PriceManager, Serializable{
     	
     }
     
-    
+    /**
+	 * @param ticketType the type of ticket 
+	 * @param movieType the type of movie 
+	 * @param cinemaClass which class of cinema does it belong to 
+	 * @param dateTime the current time, so if its before 6 or after 6 
+	 * This method takes in the queries as the parameters and then reads the trie to generate the price of the query seen
+	 */
     public double getPrice(TicketType ticketType, TypeOfMovie movieType, ClassOfCinema cinemaClass, LocalDateTime dateTime) {
     	String[] queries = generateQuery(ticketType, movieType, cinemaClass, dateTime);
     	
@@ -95,7 +118,14 @@ public class PriceFileManager implements PriceManager, Serializable{
     	return price;
     }
     
-    
+	/**
+	 * @param ticketType the type of ticket 
+	 * @param movieType the type of movie 
+	 * @param cinemaClass which class of cinema does it belong to 
+	 * @param dateTime the current time, so if its before 6 or after 6 
+	 * @param newPrice
+	 * @return
+	 */
     public boolean updatePrice(TicketType ticketType, TypeOfMovie movieType, ClassOfCinema cinemaClass, LocalDateTime dateTime, double newPrice) {
     	String price = String.valueOf(newPrice);//convert price to String
     	
@@ -109,7 +139,14 @@ public class PriceFileManager implements PriceManager, Serializable{
     	return true;
     }
     
-    
+    /**
+	 * Some queries have different lengths, this is to format the query such that it is neat.
+	 * @param ticketType the type of ticket 
+	 * @param movieType the type of movie 
+	 * @param cinemaClass which class of cinema does it belong to 
+	 * @param dateTime the current time, so if its before 6 or after 6 
+	 * @return the compiled query of the String 
+	 */
     public String[] generateQuery(TicketType ticketType, TypeOfMovie movieType, ClassOfCinema cinemaClass, LocalDateTime dateTime) {
 ArrayList<String> queries = new ArrayList<String>();
     	
@@ -143,7 +180,13 @@ ArrayList<String> queries = new ArrayList<String>();
     }
     
     
+	
+	/** 
+	 * @param dateTime current time 
+	 * @return boolean if it is a weekend or not 
+	 */
 	//checks if this dateTime is on a weekend
+
     public boolean isWeekend(LocalDateTime dateTime) {
 		DayOfWeek day = dateTime.getDayOfWeek();
 		if(day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY) {
@@ -154,7 +197,9 @@ ArrayList<String> queries = new ArrayList<String>();
     
     
     
-    
+    /**
+	 * A trie node class 
+	 */
     
     public static class TrieNode implements Serializable {
         private static final long serialVersionUID = 1L;
@@ -162,6 +207,12 @@ ArrayList<String> queries = new ArrayList<String>();
         String finalInformation = "";
     }
 
+
+	/**
+	 * Trie consisting of trie nodes 
+	 * A trie is essentially a node consisting of hashmaps 
+	 * 
+	 */
     public static class Trie implements Serializable{
         private static final long serialVersionUID = 1L;
 		TrieNode root = new TrieNode();
@@ -182,6 +233,11 @@ ArrayList<String> queries = new ArrayList<String>();
 
         }
 
+		/**
+		 *  traverses down the trie and reads the current price where the information is stored
+		 * @param queries an array of queries to read from the trie 
+		 * @return the price based on the query 
+		 */
         public String readPrice(String[] queries) {
             String res = "";
 
@@ -196,7 +252,12 @@ ArrayList<String> queries = new ArrayList<String>();
             return res;
         }
         
-        public void setPrice(String[] queries, String newStr) {
+		/**
+		 * updates the new price 
+		 * @param queries The new attributes of the ticket you want to update 
+		 * @param newPrice The new price based on the attributes you want to update 
+		 */
+        public void setPrice(String[] queries, String newPrice) {
             TrieNode node = root;
             for (String query : queries) {
                 if (node.children.containsKey(query)) { //if key exists
@@ -204,7 +265,7 @@ ArrayList<String> queries = new ArrayList<String>();
                 }
             }
 
-            node.finalInformation = newStr; //update price
+            node.finalInformation = newPrice; //update price
         }
     }
 
